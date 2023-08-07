@@ -1,13 +1,15 @@
+# required terraform providers
 terraform {
   required_providers {
     aws = {
-      source  = "hashicorp/aws"
-      version = "~> 5.0"
+      source = "hashicorp/aws"
+      Version = "~>5.0"
     }
   }
+  required_version = ">=0.14.9"
 }
 
-# Configure the AWS Provider
+# configure the aws provider
 provider "aws" {
   region     = var.aws_region
   access_key = var.aws_access_key_id
