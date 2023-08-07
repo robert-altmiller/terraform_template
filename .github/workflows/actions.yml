@@ -1,9 +1,16 @@
 name: Deploy Infrastructure
 
 on:
+  workflow_dispatch:
+    inputs:
+      github_var_input:
+        description: 'deploy environment'
+        required: true
+        default: 'dev'
+  
   push:
     branches:
-      - master
+      - main
 
 jobs:
 
