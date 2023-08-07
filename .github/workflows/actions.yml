@@ -62,12 +62,4 @@ jobs:
         TF_ACTION_WORKING_DIR: 'terraform'
         AWS_ACCESS_KEY_ID:  ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-
-
-    - name: aws-secrets-put
-      uses: robert-altmiller/nationwide_terraform@main
-      env:
-        SOURCE_DIR: './src'
-        AWS_REGION: ${{ secrets.AWS_REGION }}
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      run: terraform apply -auto-approve
