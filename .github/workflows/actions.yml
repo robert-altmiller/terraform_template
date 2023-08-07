@@ -8,9 +8,9 @@ on:
         required: true
         default: 'dev'
   
-  push:
-    branches:
-      - main
+  # push:
+  #   branches:
+  #     - main
 
 jobs:
 
@@ -43,7 +43,7 @@ jobs:
 
 
     - name: aws-secrets-put
-      uses: robert-altmiller/nationwide_terraform@master
+      uses: robert-altmiller/nationwide_terraform@main
       env:
         SOURCE_DIR: './src/aws_secrets_put'
         AWS_REGION: ${{ secrets.AWS_REGION }}
