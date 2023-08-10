@@ -4,6 +4,12 @@ output "github_actor_output" {
   sensitive = true
 }
 
+output "environment_output" {
+  value = jsonencode(local.environment)
+  description = "value for source_dir"
+  sensitive = true
+}
+
 output "source_dir_output" {
   value = jsonencode(local.source_dir)
   description = "value for source_dir"

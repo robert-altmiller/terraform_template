@@ -3,6 +3,11 @@ locals {
   github_actor = "${var.github_actor}"
 }
 
+# deploy environment 
+locals {
+  environment = "${var.environment}"
+}
+
 # source directory
 locals {
   source_dir = "${var.source_dir}"
