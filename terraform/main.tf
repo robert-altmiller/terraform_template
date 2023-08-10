@@ -1,5 +1,5 @@
 locals {
-  source_dir_unredacted = "${var.source_dir}"
+  source_dir = "${var.source_dir}"
 }
 
 locals {
@@ -16,17 +16,17 @@ locals {
 }
 
 output "source_dir_output" {
-  value = local.source_dir_unredacted
+  value = local.source_dir
   description = "un-redacted version of source_dir"
 }
 
 output "aws_region_output" {
-  value = local.aws_region_redacted
+  value = nonsensitive(local.aws_region_redacted)
   description = "redacted version of aws_region"
 }
 
 output "aws_access_key_id_output" {
-  value = local.aws_access_key_id_redacted
+  value = nonsensitive(local.aws_access_key_id_redacted)
   description = "redacted version of aws_access_key_id"
 }
 
