@@ -2,6 +2,9 @@
 terraform {
   required_providers {
     aws = "~> 3.0"
+    databricks = {
+      source = "databricks/databricks"
+    }
   }
   required_version = ">=0.12.8"
 }
@@ -11,4 +14,15 @@ provider "aws" {
   region     = local.aws_region
   access_key = local.aws_access_key_id
   secret_key =  local.aws_secret_access_key
+}
+
+// Initialize provider in "MWS" mode to provision the new workspace.
+// alias = "mws" instructs Databricks to connect to https://accounts.cloud.databricks.com, to create
+// a Databricks workspace that uses the E2 version of the Databricks on AWS platform.
+// See https://registry.terraform.io/providers/databricks/databricks/latest/docs#authentication
+provider "databricks" {
+  alias    = "mws"
+  host     = "https://accounts.cloud.databricks.com"
+  client_id = var.databricks_client_id
+  client_secret = var.databricks_client_secret
 }
