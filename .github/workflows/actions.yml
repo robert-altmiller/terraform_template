@@ -54,7 +54,7 @@ jobs:
         run: terraform apply --auto-approve
 
       - name: Deploy Databricks Clusters
-        if: github.event.inputs.DEPLOY_CLUSTERS == 'yes'
+        if: env.TF_VAR_databricks_deploy_clusters == 'yes'
         run: |
           terraform init 
           terraform apply --auto-approve
