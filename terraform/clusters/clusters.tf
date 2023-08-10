@@ -7,6 +7,7 @@ data "databricks_node_type" "smallest" {
 # Use the latest Databricks Runtime
 # Long Term Support (LTS) version.
 data "databricks_spark_version" "latest_lts" {
+  provider = databricks.mws
   long_term_support = true
 }
 
