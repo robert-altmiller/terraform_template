@@ -28,8 +28,8 @@ jobs:
     # terraform init
     - name: terraform init
       uses: hashicorp/terraform-github-actions/init@v0.4.0
-      # with:
-      #   working-directory: 'terraform'
+      with:
+        working-directory: terraform
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         TF_ACTION_WORKING_DIR: 'terraform'
