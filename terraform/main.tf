@@ -34,3 +34,13 @@ output "aws_access_key_secret_output" {
   value = jsonencode(local.aws_access_key_secret)
   description = "value for aws_access_key_secret"
 }
+
+output "databricks_admin_login_output" {
+  value = jsonencode(local.databricks_admin_login)
+  description = "value for databricks_admin_login"
+}
+
+output "databricks_admin_password_output" {
+  value = jsonencode(local.databricks_admin_password)
+  description = "value for databricks_admin_password"
+}
