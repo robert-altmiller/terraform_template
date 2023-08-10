@@ -3,16 +3,16 @@ locals {
 }
 
 locals {
-  aws_region_redacted = "REDACTED${var.aws_region}"
+  aws_region_redacted = "${var.aws_region}"
 }
 
 locals {
-  aws_access_key_id_redacted = "REDACTED${var.aws_access_key_id}"
+  aws_access_key_id_redacted = "${var.aws_access_key_id}"
 }
 
 
 locals {
-  aws_access_key_secret_redacted = "REDACTED${var.aws_access_key_secret}"
+  aws_access_key_secret_redacted = "${var.aws_access_key_secret}"
 }
 
 output "source_dir_output" {
