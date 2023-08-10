@@ -49,8 +49,8 @@ jobs:
       uses: hashicorp/terraform-github-actions/validate@v0.3.7
 
 
-    - name: List Files in Working Directory
-      run: ls -la './terraform'
+    # - name: List Files in Working Directory
+    #   run: ls -la 'terraform'
       
     # terraform apply
     - name: terraform apply
