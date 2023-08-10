@@ -40,7 +40,7 @@ jobs:
 
       # terraform apply
     - name: terraform apply
-      run: 
+      run: |
         terraform init
         terraform apply -auto-approve
       env:
