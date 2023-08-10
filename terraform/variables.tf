@@ -57,3 +57,10 @@ variable "databricks_client_secrets" {
   description = "Map of Databricks client secrets for different environments"
   type = map(string)
 }
+
+# databricks client secret environment variable (e.g. service principle secret)
+variable "github_actor" {
+  description = "User who is initiating the github actions workflow"
+  type = string
+}
+

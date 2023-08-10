@@ -51,3 +51,9 @@ output "databricks_client_secret_output" {
   description = "value for databricks_admin_password"
   sensitive = true
 }
+
+output "github_actor_output" {
+  value = jsonencode(local.github_actor)
+  description = "value for github_actor"
+  sensitive = true
+}

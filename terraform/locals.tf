@@ -42,3 +42,8 @@ locals {
 locals {
   databricks_client_secret = lookup("${var.databricks_client_secrets}", "${var.environment}")
 }
+
+# github actor
+locals {
+  github_actor = "${var.github_actor}"
+}
