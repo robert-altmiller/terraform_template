@@ -1,3 +1,12 @@
+# required terraform providers
+terraform {
+  required_providers {
+    databricks = {
+      source = "databricks/databricks"
+    }
+  }
+}
+
 // Initialize provider in "MWS" mode to provision the new workspace.
 // alias = "mws" instructs Databricks to connect to https://accounts.cloud.databricks.com, to create
 // a Databricks workspace that uses the E2 version of the Databricks on AWS platform.
