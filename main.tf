@@ -43,12 +43,12 @@ output "aws_region_output" {
   description = "redacted version of aws_region"
 }
 
-output "redacted_secret" {
+output "aws_access_key_id_output" {
   value = local.aws_access_key_id_redacted
   description = "redacted version of aws_access_key_id"
 }
 
-output "redacted_secret" {
+output "aws_access_key_secret_output" {
   value = local.aws_access_key_secret_redacted
   description = "redacted version of aws_access_key_secret"
 }
