@@ -1,21 +1,24 @@
 # aws region environment variable
-variable "AWS_REGION" {
-  description = "AWS_REGION passed from GitHub Actions"
+variable "source_dir" {
+  description = "local github repo source directory"
   type        = string
-  default     = "None"
+  default     = "terraform"
+}
+
+# aws region environment variable
+variable "aws_region" {
+  description = "AWS_REGION secret passed from GitHub Actions"
+  type        = string
 }
 
 # aws access key id environment variable
-variable "AWS_ACCESS_KEY_ID"{
-  description = "AWS_ACCESS_KEY passed from GitHub Actions"
+variable "aws_access_key_id"{
+  description = "AWS_ACCESS_KEY secret passed from GitHub Actions"
   type        = string
-  default     = "None"
 }
 
 # aws secret access key  environment variable
-variable "AWS_SECRET_ACCESS_KEY" {
-  description = "AWS_SECRET_ACCESS_KEY passed from GitHub Actions"
+variable "aws_access_key_secret" {
+  description = "AWS_SECRET_ACCESS_KEY secret passed from GitHub Actions"
   type        = string
-  default     = "None"
 }
-
