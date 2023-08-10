@@ -34,6 +34,12 @@ output "aws_access_key_secret_output" {
   sensitive = true
 }
 
+output "databricks_account_id_output" {
+  value = jsonencode(local.databricks_account_id)
+  description = "value for databricks_account_id"
+  sensitive = true
+}
+
 output "databricks_instance_output" {
   value = jsonencode(local.databricks_instance)
   description = "value for databricks_instance"

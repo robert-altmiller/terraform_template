@@ -35,6 +35,12 @@ variable "aws_access_key_secret" {
   type        = string
 }
 
+# databricks account id
+variable "databricks_account_id" {
+  description = "DATABRICKS_ACCOUNT_ID secret passed from GitHub Actions"
+  type        = string
+}
+
 # databricks instance environment variable
 variable "databricks_instance" {
   description = "DATABRICKS_INSTANCE secret passed from GitHub Actions"
