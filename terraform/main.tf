@@ -11,9 +11,9 @@ terraform {
 
 # configure the aws provider
 provider "aws" {
-  region     = var.aws_region
-  access_key = var.aws_access_key_id
-  secret_key =  var.aws_secret_access_key
+  region     = local.aws_region_output
+  access_key = local.aws_access_key_id_output
+  secret_key =  local.aws_secret_access_key_output
 }
 
 
@@ -39,7 +39,7 @@ output "source_dir_output" {
   description = "un-redacted version of source_dir"
 }
 
-output "aws_access_key_id_output" {
+output "aws_region_output" {
   value = local.aws_region_redacted
   description = "redacted version of aws_region"
 }
