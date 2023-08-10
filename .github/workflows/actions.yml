@@ -57,5 +57,11 @@ jobs:
       - name: Deploy Databricks Clusters
         if: env.TF_VAR_databricks_deploy_clusters == 'yes'
         run: |
+          terraform init
+        working-directory: ./terraform/clusters
+
+      - name: Deploy Databricks Clusters
+        if: env.TF_VAR_databricks_deploy_clusters == 'yes'
+        run: |
           terraform apply --auto-approve
         working-directory: ./terraform/clusters
