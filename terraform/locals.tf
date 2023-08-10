@@ -28,6 +28,11 @@ locals {
   aws_access_key_secret = "${var.aws_access_key_secret}"
 }
 
+# dbricks account id
+locals {
+  databricks_account_id = "${var.databricks_account_id}"
+}
+
 # dbricks instance url
 locals {
   databricks_instance = "${var.databricks_instance}"
