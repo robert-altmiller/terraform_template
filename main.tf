@@ -1,21 +1,3 @@
-# required terraform providers
-terraform {
-  required_providers {
-    aws = {
-      # source = "hashicorp/aws"
-      version = "~>5.0"
-    }
-  }
-}
-
-# configure the aws provider
-provider "aws" {
-  region     = local.aws_region_output
-  access_key = local.aws_access_key_id_output
-  secret_key =  local.aws_secret_access_key_output
-}
-
-
 locals {
   source_dir_unredacted = "${var.source_dir}"
 }
