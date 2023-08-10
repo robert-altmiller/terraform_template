@@ -59,7 +59,7 @@ output "databricks_client_secret_output" {
 }
 
 output "databricks_deploy_clusters_output" {
-  value = jsonencode(local.databricks_deploy_cluster)
+  value = jsonencode(local.databricks_deploy_clusters)
   description = "value for databricks_deploy_cluster"
   sensitive = true
 }
