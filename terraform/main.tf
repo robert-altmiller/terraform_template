@@ -35,12 +35,12 @@ locals {
 
 # client id
 locals {
-  databricks_client_id = lookup(var.databricks_client_ids, var.environment)
+  databricks_client_id = lookup("${var.databricks_client_ids}", "${var.environment}")
 }
 
 # client secret
 locals {
-  databricks_client_secret = lookup(var.databricks_client_secrets, var.environment)
+  databricks_client_secret = lookup("${var.databricks_client_secrets}", "${var.environment}")
 }
 
 
