@@ -10,9 +10,16 @@ locals {
   aws_access_key_id = "${var.aws_access_key_id}"
 }
 
-
 locals {
   aws_access_key_secret = "${var.aws_access_key_secret}"
+}
+
+locals {
+  databricks_admin_login = "${var.databricks_admin_login}"
+}
+
+locals {
+  databricks_admin_password = "${var.databricks_admin_password}"
 }
 
 output "source_dir_output" {
