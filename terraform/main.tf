@@ -15,22 +15,22 @@ locals {
   aws_access_key_secret = "${var.aws_access_key_secret}"
 }
 
-output "source_dir_output" {
+output -json "source_dir_output" {
   value = local.source_dir
-  description = "un-redacted version of source_dir"
+  description = "value for source_dir"
 }
 
-output "aws_region_output" {
+output -json "aws_region_output" {
   value = local.aws_region
-  description = "redacted version of aws_region"
+  description = "value for aws_region"
 }
 
-output "aws_access_key_id_output" {
-  value = nonsensitive(local.aws_access_key_id)
-  description = "redacted version of aws_access_key_id"
+output -json "aws_access_key_id_output" {
+  value = local.aws_access_key_id
+  description = "value for aws_access_key_id"
 }
 
-output "aws_access_key_secret_output" {
-  value = nonsensitive(local.aws_access_key_secret)
-  description = "redacted version of aws_access_key_secret"
+output - json "aws_access_key_secret_output" {
+  value = local.aws_access_key_secret
+  description = "value for aws_access_key_secret"
 }

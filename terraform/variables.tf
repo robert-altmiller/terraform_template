@@ -3,6 +3,7 @@ variable "source_dir" {
   description = "local github repo source directory"
   type        = string
   default     = "terraform"
+  sensitive   = false
 }
 
 # aws region environment variable
