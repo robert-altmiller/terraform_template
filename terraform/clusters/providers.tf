@@ -14,6 +14,6 @@ terraform {
 provider "databricks" {
   alias    = "mws"
   host     = "https://accounts.cloud.databricks.com"
-  client_id = module.cluster_submodule.databricks_client_id
-  client_secret = module.cluster_submodule.databricks_client_secret
+  client_id = var.databricks_client_id
+  client_secret = var.databricks_client_secret
 }

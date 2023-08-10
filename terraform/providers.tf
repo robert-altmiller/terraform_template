@@ -27,7 +27,7 @@ provider "databricks" {
   client_secret = local.databricks_client_secret
 }
 
-# initialize cluster module with root level provider settings
+# initialize cluster module with root level provider settings (inherited)
 module "cluster_submodule" {
   source = "./clusters"
   databricks_client_id = local.databricks_client_id
