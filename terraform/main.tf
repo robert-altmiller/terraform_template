@@ -25,19 +25,19 @@ locals {
 output "source_dir_output" {
   value = jsonencode(local.source_dir)
   description = "value for source_dir"
-  sensitive = true
+  sensitive = false
 }
 
 output "aws_region_output" {
   value = jsonencode(local.aws_region)
   description = "value for aws_region"
-  sensitive = true
+  sensitive = false
 }
 
 output "aws_access_key_id_output" {
   value = jsonencode(local.aws_access_key_id)
   description = "value for aws_access_key_id"
-  sensitive = true
+  sensitive = false
 }
 
 output "aws_access_key_secret_output" {
