@@ -55,8 +55,7 @@ jobs:
     # terraform apply
     - name: terraform apply
       run: |
-        terraform init
-        terraform apply -auto-approve
+        terraform apply "terraform.tfplan"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         TF_ACTION_WORKING_DIR: './terraform/.terraform'
