@@ -50,7 +50,6 @@ jobs:
     # terraform apply
     - name: terraform apply
       run: |
-        terraform providers lock
         terraform apply -auto-approve
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
