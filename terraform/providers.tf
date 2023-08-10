@@ -30,6 +30,8 @@ provider "databricks" {
 # initialize cluster module with root level provider settings (inherited)
 module "cluster_submodule" {
   source = "./clusters"
+  github_actor = local.github_actor
+  environment = local.environment
   databricks_client_id = local.databricks_client_id
   databricks_client_secret = local.databricks_client_secret
 }

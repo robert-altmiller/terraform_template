@@ -4,12 +4,13 @@ variable "github_actor" {
   type = string
 }
 
-# aws region environment variable
+# deployment environment
 variable "environment" {
   description = "deployment environment"
   type        = string
 }
 
+# source directory
 variable "source_dir" {
   description = "local github repo source directory"
   type        = string
