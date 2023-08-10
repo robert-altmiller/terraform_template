@@ -50,11 +50,12 @@ jobs:
 
 
     # - name: List Files in Working Directory
-    #   run: ls -la 'terraform'
+    #   run: ls -la './terraform'
       
     # terraform apply
     - name: terraform apply
       run: |
+        terraform init
         terraform apply -auto-approve
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
