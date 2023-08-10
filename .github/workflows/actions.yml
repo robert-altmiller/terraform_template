@@ -30,6 +30,7 @@ jobs:
       TF_VAR_databricks_client_secrets: '{"dev": "${{ secrets.DATABRICKS_CLIENT_SECRET_DEV }}", "prod": "${{ secrets.DATABRICKS_CLIENT_SECRET_PROD }}"}'
       TF_VAR_databricks_admin_login: ${{ secrets.DATABRICKS_ADMIN_LOGIN }}
       TF_VAR_databricks_admin_password: ${{ secrets.DATABRICKS_ADMIN_PASSWORD }}
+      TF_VAR_github_actor: "$GITHUB_ACTOR"
 
     steps:
       - name: Checkout repository
