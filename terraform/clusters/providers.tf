@@ -14,9 +14,9 @@ terraform {
 provider "databricks" {
   alias    = "mws"
   host     = "https://accounts.cloud.databricks.com"
-  # username = var.databricks_admin_login
-  # password = var.databricks_admin_password
-  account_id    = var.databricks_account_id
-  client_id = var.databricks_client_id
-  client_secret = var.databricks_client_secret
+  account_id = local.databricks_account_id
+  username = local.databricks_admin_login
+  password = local.databricks_admin_password
+  # client_id = var.databricks_client_id
+  # client_secret = var.databricks_client_secret
 }
