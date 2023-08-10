@@ -16,7 +16,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    
+
     # checkout repository v2
     - name: Checkout repository
       uses: actions/checkout@v2
@@ -27,7 +27,7 @@ jobs:
     
     # terraform init
     - name: terraform init
-      run: terraform apply
+      run: terraform init
       # uses: hashicorp/terraform-github-actions/init@v0.4.0
       env:
         TF_VAR_github_token: '${{ secrets.GITHUB_TOKEN }}'
