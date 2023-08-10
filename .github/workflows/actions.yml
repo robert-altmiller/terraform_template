@@ -50,6 +50,7 @@ jobs:
     # terraform apply
     - name: terraform apply
       run: |
+        terraform providers lock
         terraform init
         terraform apply -auto-approve
       env:
