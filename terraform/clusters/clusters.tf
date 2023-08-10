@@ -13,8 +13,8 @@ data "databricks_spark_version" "latest_lts" {
 
 resource "databricks_cluster" "this" {
   cluster_name            = "${local.cluster_config.cluster_name}-${var.environment}"
-  node_type_id            = module.cluster_submodule.data.databricks_node_type.smallest.id
-  spark_version           = module.cluster_submodule.data.databricks_spark_version.latest_lts.id
+  node_type_id            = "${data.databricks_node_type.smallest.id}"
+  spark_version           = "${data.databricks_spark_version.latest_lts.id}"
   autotermination_minutes = format("%d", local.cluster_config.auto_termination_mins)
   num_workers             = format("%d", local.cluster_config.min_workers)
   
