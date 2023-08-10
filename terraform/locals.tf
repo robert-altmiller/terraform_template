@@ -1,3 +1,8 @@
+# github actor
+locals {
+  github_actor = "${var.github_actor}"
+}
+
 # source directory
 locals {
   source_dir = "${var.source_dir}"
@@ -43,7 +48,7 @@ locals {
   databricks_client_secret = lookup("${var.databricks_client_secrets}", "${var.environment}")
 }
 
-# github actor
+# deploy clusters
 locals {
-  github_actor = "${var.github_actor}"
+  databricks_deploy_clusters = "${var.databricks_deploy_clusters}"
 }

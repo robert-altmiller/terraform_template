@@ -1,3 +1,9 @@
+# github actor / username
+variable "github_actor" {
+  description = "User who is initiating the github actions workflow"
+  type = string
+}
+
 # aws region environment variable
 variable "environment" {
   description = "deployment environment"
@@ -58,9 +64,8 @@ variable "databricks_client_secrets" {
   type = map(string)
 }
 
-# databricks client secret environment variable (e.g. service principle secret)
-variable "github_actor" {
-  description = "User who is initiating the github actions workflow"
+# databricks deploy clusters
+variable "databricks_deploy_clusters" {
+  description = "create and deploy databricks clusters"
   type = string
 }
-

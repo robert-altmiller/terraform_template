@@ -1,3 +1,9 @@
+output "github_actor_output" {
+  value = jsonencode(local.github_actor)
+  description = "value for github_actor"
+  sensitive = true
+}
+
 output "source_dir_output" {
   value = jsonencode(local.source_dir)
   description = "value for source_dir"
@@ -52,8 +58,9 @@ output "databricks_client_secret_output" {
   sensitive = true
 }
 
-output "github_actor_output" {
-  value = jsonencode(local.github_actor)
-  description = "value for github_actor"
+output "databricks_deploy_clusters_output" {
+  value = jsonencode(local.databricks_deploy_cluster)
+  description = "value for databricks_deploy_cluster"
   sensitive = true
 }
+
