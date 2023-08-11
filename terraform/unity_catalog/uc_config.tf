@@ -1,5 +1,5 @@
-variable "cluster_config_json" {
-    description = "JSON configuration for Databricks clusters"
+variable "uc_config_json" {
+    description = "JSON configuration for Databricks unity catalog"
     type        = string
     default     = <<EOT
   {
@@ -12,5 +12,5 @@ variable "cluster_config_json" {
   }
   
   locals {
-    cluster_config = jsondecode(var.cluster_config_json)
+    uc_config = jsondecode(var.uc_config_json)
   }
