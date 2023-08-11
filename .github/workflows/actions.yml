@@ -33,6 +33,7 @@ jobs:
       TF_VAR_databricks_instance: ${{ secrets.DATABRICKS_INSTANCE }}
       TF_VAR_databricks_client_ids: '{"dev": "${{ secrets.DATABRICKS_CLIENT_ID_DEV }}", "prod": "${{ secrets.DATABRICKS_CLIENT_ID_PROD }}"}'
       TF_VAR_databricks_client_secrets: '{"dev": "${{ secrets.DATABRICKS_CLIENT_SECRET_DEV }}", "prod": "${{ secrets.DATABRICKS_CLIENT_ID_SECRET_PROD }}"}'
+      TF_VAR_databricks_token_dev: ${{ secrets.DATABRICKS_TOKEN_DEV }}
       TF_VAR_databricks_admin_login: ${{ secrets.DATABRICKS_ADMIN_LOGIN }}
       TF_VAR_databricks_admin_password: ${{ secrets.DATABRICKS_ADMIN_PASSWORD }}
       TF_VAR_databricks_deploy_clusters: ${{ github.event.inputs.DEPLOY_CLUSTERS || 'yes' }} # default to yes if running directly from push to main branch
