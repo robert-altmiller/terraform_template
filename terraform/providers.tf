@@ -46,5 +46,5 @@ module "cluster_submodule" {
   databricks_client_secret = local.databricks_client_secret
   databricks_admin_login = local.databricks_admin_login
   databricks_admin_password = local.databricks_admin_password
-  databricks_token_dev = local.databricks_token_dev
+  databricks_token = local.databricks_token
 }
