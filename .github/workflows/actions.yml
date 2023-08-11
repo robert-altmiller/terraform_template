@@ -59,11 +59,12 @@ jobs:
           export TF_LOG=DEBUG
           terraform plan
 
-      - name: Terraform Apply
-        run: terraform apply --auto-approve
+      # - name: Terraform Apply
+      #   run: terraform apply --auto-approve
 
-      # - name: Deploy Databricks Clusters
-      #   : env.TF_VAR_databricks_deploy_clusters == 'yes' if
-      #   run: |
-      #     terraform apply --auto-approve
-      #   working-directory: ./terraform/clusters
+      - name: Deploy Databricks Clusters
+        if: env.TF_VAR_databricks_deploy_clusters == 'yes'
+        run: |
+          terraform apply --auto-approve
+          working-directory: ./terraform/clusters
+    
