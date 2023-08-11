@@ -12,7 +12,7 @@ data "databricks_node_type" "smallest" {
 # }
 
 resource "databricks_cluster" "this" {
-  provider                = databricks.workspace 
+  provider                = databricks.mws
   cluster_name            = "${local.cluster_config.cluster_name}-${local.environment}"
   node_type_id            = data.databricks_node_type.smallest.id
   spark_version           = "12.2.x-scala2.12" #data.databricks_spark_version.latest_lts.id
