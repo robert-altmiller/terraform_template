@@ -1,69 +1,69 @@
 # github actor
 locals {
-  github_actor = "${var.github_actor}"
+  github_actor = var.github_actor
 }
 
 # deploy environment 
 locals {
-  environment = "${var.environment}"
+  environment = var.environment
 }
 
 # source directory
 locals {
-  source_dir = "${var.source_dir}"
+  source_dir = var.source_dir
 }
 
 # aws region
 locals {
-  aws_region = "${var.aws_region}"
+  aws_region = var.aws_region
 }
 
 # aws access key id
 locals {
-  aws_access_key_id = "${var.aws_access_key_id}"
+  aws_access_key_id = var.aws_access_key_id
 }
 
 # aws access key secret
 locals {
-  aws_access_key_secret = "${var.aws_access_key_secret}"
+  aws_access_key_secret = var.aws_access_key_secret
 }
 
 # dbricks account id
 locals {
-  databricks_account_id = "${var.databricks_account_id}"
+  databricks_account_id = var.databricks_account_id
 }
 
 # dbricks instance url
 locals {
-  databricks_instance = "${var.databricks_instance}"
+  databricks_instance = var.databricks_instance
 }
 
 # dbricks admin login
 locals {
-  databricks_admin_login = "${var.databricks_admin_login}"
+  databricks_admin_login = var.databricks_admin_login
 }
 
 # dbricks admin password
 locals {
-  databricks_admin_password = "${var.databricks_admin_password}"
+  databricks_admin_password = var.databricks_admin_password
 }
 
 # client id
 locals {
-  databricks_client_id = lookup("${var.databricks_client_ids}", "${var.environment}")
+  databricks_client_id = lookup(var.databricks_client_ids, var.environment)
 }
 
 # client secret
 locals {
-  databricks_client_secret = lookup("${var.databricks_client_secrets}", "${var.environment}")
+  databricks_client_secret = lookup(var.databricks_client_secrets, var.environment)
 }
 
 # deploy clusters
 locals {
-  databricks_deploy_clusters = "${var.databricks_deploy_clusters}"
+  databricks_deploy_clusters = var.databricks_deploy_clusters
 }
 
 # databricks token
 locals {
-  databricks_token_dev = "${var.databricks_token_dev}"
+  databricks_token_dev = var.databricks_token_dev
 }
