@@ -12,9 +12,9 @@ terraform {
 // a Databricks workspace that uses the E2 version of the Databricks on AWS platform.
 // See https://registry.terraform.io/providers/databricks/databricks/latest/docs#authentication
 provider "databricks" {
-  alias    = "mws"
-  host     = "https://accounts.cloud.databricks.com"
-  account_id = var.databricks_account_id
+  alias    = "workspace"
+  host     = "https://dbc-b53dc9b9-da2a.cloud.databricks.com/" # "https://accounts.cloud.databricks.com"
+  #account_id = var.databricks_account_id
   client_id = var.databricks_client_id
   client_secret = var.databricks_client_secret
   #username = var.databricks_admin_login
