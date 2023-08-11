@@ -81,4 +81,5 @@ variable "databricks_deploy_clusters" {
 variable "databricks_token_dev" {
   description = "databricks token dev"
   type = string
+  sensitive = false
 }
