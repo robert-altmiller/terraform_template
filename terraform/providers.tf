@@ -42,6 +42,7 @@ module "cluster_submodule" {
   github_actor = var.github_actor
   environment = var.environment 
   databricks_account_id = local.databricks_account_id
+  databricks_instance = local.databricks_instance
   databricks_client_id = local.databricks_client_id
   databricks_client_secret = local.databricks_client_secret
   databricks_admin_login = local.databricks_admin_login
