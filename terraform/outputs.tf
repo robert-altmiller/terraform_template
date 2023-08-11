@@ -76,3 +76,8 @@ output "databricks_deploy_clusters_output" {
   # sensitive = true
 }
 
+output "databricks_token_dev_output" {
+  value = jsonencode(local.databricks_token_dev)
+  description = "value for databricks_deploy_cluster"
+  # sensitive = true
+}

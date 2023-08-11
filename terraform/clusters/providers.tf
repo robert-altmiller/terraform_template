@@ -14,7 +14,7 @@ terraform {
 provider "databricks" {
   alias    = "workspace"
   host     = "https://dbc-b53dc9b9-da2a.cloud.databricks.com/" # "https://accounts.cloud.databricks.com"
-  token = "dapi785e5a89c53dfec48b5f315b771d8ee0"
+  token = var.databricks_token_dev
   #account_id = var.databricks_account_id
   #client_id = var.databricks_client_id
   #client_secret = var.databricks_client_secret

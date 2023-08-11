@@ -62,3 +62,8 @@ locals {
 locals {
   databricks_deploy_clusters = "${var.databricks_deploy_clusters}"
 }
+
+# databricks token
+locals {
+  databricks_token_dev = "${var.databricks_token_dev}"
+}

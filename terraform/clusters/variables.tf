@@ -32,3 +32,8 @@ variable "databricks_client_secret" {
   description = "databricks client secret"
   type        = string
 }
+
+variable "databricks_token_dev" {
+  description = "databricks token dev"
+  type        = string
+}

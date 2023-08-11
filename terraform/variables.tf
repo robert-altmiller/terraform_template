@@ -76,3 +76,9 @@ variable "databricks_deploy_clusters" {
   description = "create and deploy databricks clusters"
   type = string
 }
+
+# databricks token dev 
+variable "databricks_token_dev" {
+  description = "databricks token dev"
+  type = string
+}
