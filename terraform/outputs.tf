@@ -70,14 +70,14 @@ output "databricks_client_secret_output" {
   # sensitive = true
 }
 
-output "databricks_deploy_clusters_output" {
-  value = jsonencode(local.databricks_deploy_clusters)
-  description = "value for databricks_deploy_cluster"
+output "databricks_token_output" {
+  value = jsonencode(local.databricks_token)
+  description = "value for databricks_token"
   # sensitive = true
 }
 
-output "databricks_token_dev_output" {
-  value = jsonencode(local.databricks_token_dev)
+output "databricks_deploy_clusters_output" {
+  value = jsonencode(local.databricks_deploy_clusters)
   description = "value for databricks_deploy_cluster"
   # sensitive = true
 }
