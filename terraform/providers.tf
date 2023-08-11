@@ -24,10 +24,10 @@ provider "databricks" {
   alias    = "mws"
   host     = "https://accounts.cloud.databricks.com"
   account_id = local.databricks_account_id
-  username = local.databricks_admin_login
-  password = local.databricks_admin_password
-  # client_id = local.databricks_client_id
-  # client_secret = local.databricks_client_secret
+  client_id = local.databricks_client_id
+  client_secret = local.databricks_client_secret
+  # username = local.databricks_admin_login
+  # password = local.databricks_admin_password
 }
 
 # initialize cluster module with root level provider settings (inherited)
