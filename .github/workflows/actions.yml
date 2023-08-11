@@ -52,7 +52,12 @@ jobs:
         run: terraform validate
       
       - name: Terraform Plan
-        run: terraform plan
+        run: |
+          export TF_LOG=DEBUG
+          terraform plan
+      
+      # - name: Terraform Plan
+      #   run: terraform plan
 
       - name: Terraform Apply
         run: terraform apply --auto-approve
