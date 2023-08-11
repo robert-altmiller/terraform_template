@@ -32,7 +32,7 @@ provider "databricks" {
 
 provider "databricks" {
   alias = "workspace"
-  host     = var.databicks_instance # "https://dbc-b53dc9b9-da2a.cloud.databricks.com" # "https://accounts.cloud.databricks.com"
+  host     = var.databricks_instance # "https://dbc-b53dc9b9-da2a.cloud.databricks.com" # "https://accounts.cloud.databricks.com"
   token = var.databricks_token_dev
 }
 
