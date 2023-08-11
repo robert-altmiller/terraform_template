@@ -6,16 +6,16 @@ data "databricks_node_type" "smallest" {
 
 # Use the latest Databricks Runtime
 # Long Term Support (LTS) version.
-# data "databricks_spark_version" "latest_lts" {
-#   provider = databricks.mws
-#   ml = true
-# }
+data "databricks_spark_version" "latest_lts" {
+  provider = databricks.workspace
+  ml = true
+}
 
 resource "databricks_cluster" "this" {
   provider                = databricks.workspace
   cluster_name            = "${local.cluster_config.cluster_name}-${var.environment}"
   node_type_id            = data.databricks_node_type.smallest.id
-  spark_version           = "12.2.x-scala2.12" #data.databricks_spark_version.latest_lts.id
+  spark_version           =  data.databricks_spark_version.latest_lts.id #"12.2.x-scala2.12"
   autotermination_minutes = format("%d", local.cluster_config.auto_termination_mins)
   num_workers             = format("%d", local.cluster_config.min_workers)
   
