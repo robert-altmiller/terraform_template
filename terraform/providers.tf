@@ -33,7 +33,7 @@ provider "databricks" {
 provider "databricks" {
   alias = "workspace"
   host     = local.databricks_instance
-  token = local.databricks_token_dev
+  token = local.databricks_token
 }
 
 # initialize cluster module with root level provider settings (inherited)
