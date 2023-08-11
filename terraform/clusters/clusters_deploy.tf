@@ -20,8 +20,8 @@ resource "databricks_cluster" "this" {
   num_workers             = format("%d", local.cluster_config.min_workers)
   
   autoscale {
-    min_workers = format("%d", var.cluster_config.min_workers)
-    max_workers = format("%d", var.cluster_config.max_workers)
+    min_workers = format("%d", local.cluster_config.min_workers)
+    max_workers = format("%d", local.cluster_config.max_workers)
   }
   
   custom_tags = {
