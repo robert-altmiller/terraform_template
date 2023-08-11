@@ -10,9 +10,7 @@
 
 ## Step 2: Run the Github workflow to deploy cluster to Databricks workspace
 
-![run_workflow1.png](/readme_images/run_workflow1.jpg)
-
-![run_workflow2.png](/readme_images/run_workflow2.jpg)
+![run_workflow.png](/readme_images/run_workflow.jpg)
 
 ## Step 3: Monitor Github workflow for deployment progress status
 
