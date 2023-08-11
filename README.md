@@ -18,4 +18,4 @@
 
 ![monitor_workflow2.jpg](/readme_images/monitor_workflow2.jpg)
 
-![monitor_workflow3.jpg](/readme_images/monitor_workflow3.jpg)
+![monitor_workflow3.jpg](/readme_images/monitor_workflow3.jpg) 
