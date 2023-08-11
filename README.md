@@ -4,7 +4,7 @@
 
 ### Link to Github repo: https://github.com/robert-altmiller/nationwide_terraform
 
-### Step 1: In order to run the Terraform code in this repository you will need to first set the secret values under the Github repo settings:
+### Step 1: In order to run the Terraform code in this repository you will need to first set the secret values under the Github repo settings
 
 ![github_secrets.png](/readme_images/github_secrets.jpg)
 
@@ -17,6 +17,5 @@
 ![monitor_workflow1.jpg](/readme_images/monitor_workflow1.jpg)
 
 ![monitor_workflow2.jpg](/readme_images/monitor_workflow2.jpg)
-
 
 ![monitor_workflow3.jpg](/readme_images/monitor_workflow3.jpg)
