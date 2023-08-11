@@ -35,7 +35,7 @@ locals {
 
 # dbricks instance url
 locals {
-  databricks_instance = var.databricks_instance
+  databricks_instance = lookup(var.databricks_instances, var.environment)
 }
 
 # dbricks admin login

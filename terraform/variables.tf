@@ -42,9 +42,9 @@ variable "databricks_account_id" {
 }
 
 # databricks instance environment variable
-variable "databricks_instance" {
-  description = "DATABRICKS_INSTANCE secret passed from GitHub Actions"
-  type        = string
+variable "databricks_instances" {
+  description = "maps of Databricks instances secret passed from GitHub Actions"
+  type        = map(string)
 }
 
 # databricks admin login environment variable
