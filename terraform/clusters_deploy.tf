@@ -12,7 +12,8 @@ data "databricks_node_type" "smallest" {
 # }
 
 resource "databricks_cluster" "this" {
-  cluster_name            = "${local.cluster_config.cluster_name}-${var.environment}"
+  provider                = databricks.workspace 
+  cluster_name            = "${local.cluster_config.cluster_name}-${local.environment}"
   node_type_id            = data.databricks_node_type.smallest.id
   spark_version           = "12.2.x-scala2.12" #data.databricks_spark_version.latest_lts.id
   autotermination_minutes = 60#format("%d", local.cluster_config.auto_termination_mins)
@@ -24,8 +25,8 @@ resource "databricks_cluster" "this" {
   }
   
   custom_tags = {
-    environment = var.environment
-    owner       = var.github_actor
+    environment = local.environment
+    owner       = local.github_actor
   }
 }
 

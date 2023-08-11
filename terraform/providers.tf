@@ -30,15 +30,20 @@ provider "databricks" {
   # password = local.databricks_admin_password
 }
 
+provider "databricks" {
+  alias = "workspace"
+  host     = local.databricks_instance #"https://dbc-b53dc9b9-da2a.cloud.databricks.com" # "https://accounts.cloud.databricks.com"
+  token = var.databricks_token_dev
+
 # initialize cluster module with root level provider settings (inherited)
-module "cluster_submodule" {
-  source = "./clusters"
-  github_actor = var.github_actor
-  environment = var.environment 
-  # databricks_account_id = local.databricks_account_id
-  # databricks_client_id = local.databricks_client_id
-  # databricks_client_secret = local.databricks_client_secret
-  # databricks_admin_login = local.databricks_admin_login
-  # databricks_admin_password = local.databricks_admin_password
-  databricks_token_dev = var.databricks_token_dev
-}
+# module "cluster_submodule" {
+#   source = "./clusters"
+#   github_actor = var.github_actor
+#   environment = var.environment 
+#   # databricks_account_id = local.databricks_account_id
+#   # databricks_client_id = local.databricks_client_id
+#   # databricks_client_secret = local.databricks_client_secret
+#   # databricks_admin_login = local.databricks_admin_login
+#   # databricks_admin_password = local.databricks_admin_password
+#   databricks_token_dev = var.databricks_token_dev
+# }
