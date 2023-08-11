@@ -4,13 +4,13 @@
 
 ### link to Github repo: https://github.com/robert-altmiller/nationwide_terraform
 
-## Step 1: In order to run the Terraform code in this repository you will need to first set the secret values under the Github repo settings:
+### Step 1: In order to run the Terraform code in this repository you will need to first set the secret values under the Github repo settings:
 
 ![github_secrets.png](/readme_images/github_secrets.jpg)
 
-## Step 2: Run the Github workflow to deploy cluster to Databricks workspace
+### Step 2: Run the Github workflow to deploy cluster to Databricks workspace
 
 ![run_workflow.png](/readme_images/run_workflow.jpg)
 
-## Step 3: Monitor Github workflow for deployment progress status
+### Step 3: Monitor Github workflow for deployment progress status
 
