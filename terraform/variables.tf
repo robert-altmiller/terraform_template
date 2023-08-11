@@ -71,14 +71,15 @@ variable "databricks_client_secrets" {
   type = map(string)
 }
 
+# databricks token
+variable "databricks_tokens" {
+  description = "Map of Databricks tokens for different environments"
+  type = map(string)
+}
+
 # databricks deploy clusters
 variable "databricks_deploy_clusters" {
   description = "create and deploy databricks clusters"
   type = string
 }
 
-# databricks token dev 
-variable "databricks_token_dev" {
-  description = "databricks token dev"
-  type = string
-}

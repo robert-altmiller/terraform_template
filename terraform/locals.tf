@@ -58,12 +58,12 @@ locals {
   databricks_client_secret = lookup(var.databricks_client_secrets, var.environment)
 }
 
+# databricks token
+locals {
+  databricks_token = lookup(var.databricks_tokens, var.environment)
+}
+
 # deploy clusters
 locals {
   databricks_deploy_clusters = var.databricks_deploy_clusters
-}
-
-# databricks token
-locals {
-  databricks_token_dev = var.databricks_token_dev
 }
