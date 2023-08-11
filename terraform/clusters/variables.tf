@@ -13,6 +13,11 @@ variable "databricks_account_id" {
   type        = string
 }
 
+variable "databricks_instance" {
+  description = "databricks instance url"
+  type        = string
+}
+
 variable "databricks_admin_login" {
   description = "databricks admin login"
   type        = string

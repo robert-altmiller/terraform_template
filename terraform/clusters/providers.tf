@@ -13,6 +13,6 @@ terraform {
 // See https://registry.terraform.io/providers/databricks/databricks/latest/docs#authentication
 provider "databricks" {
   alias = "workspace"
-  host     = var.databricks_instance
+  host  = var.databricks_instance
   token = var.databricks_token
 }
