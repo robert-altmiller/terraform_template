@@ -13,7 +13,7 @@ data "databricks_spark_version" "latest_lts" {
 }
 
 resource "databricks_cluster" "this" {
-  count                   = var.execute_cluster_module ? 1 : 0
+  count                   = var.databricks_deploy_clusters ? 1 : 0
   provider                = databricks.workspace
   cluster_name            = "${local.cluster_config.cluster_name}-${var.environment}"
   node_type_id            = data.databricks_node_type.smallest.id
