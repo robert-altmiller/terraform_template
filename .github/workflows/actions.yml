@@ -10,11 +10,11 @@ on:
       DEPLOY_CLUSTERS: # variable
         description: 'Create Clusters (true/false)'
         required: true
-        default: 'true'
+        default: true
       DEPLOY_UC_STORAGE_CRED: # variable
         description: 'Create UC Storage Credential (true/false)'
         required: true
-        default: 'true'
+        default: true
 
   push:
     branches:
