@@ -83,14 +83,8 @@ variable "databricks_deploy_clusters" {
   type = string
 }
 
-# ----------variables for module instantiation----------
-
-variable "execute_cluster_module" {
-  description = "Set to true to execute the cluster module, false to skip."
-  type        = bool
-}
-
-variable "execute_uc_sc_module" {
-  description = "Set to true to execute the unity catalog  module, false to skip."
-  type        = bool
+# databricks deploy uc storage credential
+variable "databricks_deploy_uc_storage_credential" {
+  description = "create and deploy uc storage credentials"
+  type = string
 }

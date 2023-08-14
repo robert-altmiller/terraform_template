@@ -27,4 +27,6 @@ locals {
   databricks_token = lookup(var.databricks_tokens, var.environment)
   # deploy clusters
   databricks_deploy_clusters = var.databricks_deploy_clusters
+  # deploy uc storage credential
+  databricks_deploy_uc_storage_credential = var.databricks_deploy_uc_storage_credential
 }
