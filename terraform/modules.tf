@@ -17,7 +17,6 @@ module "cluster_module" {
 module "uc_sc_module" {
   source = "./unity_catalog/storage_creds"
   execute_uc_sc_module = var.execute_uc_sc_module
-  for_each = var.module_conditions["uc_sc_module"] ? { enabled = true } : {}
   github_actor = var.github_actor
   environment = var.environment 
   databricks_account_id = local.databricks_account_id
