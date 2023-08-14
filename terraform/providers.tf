@@ -21,7 +21,7 @@ provider "aws" {
 // a Databricks workspace that uses the E2 version of the Databricks on AWS platform.
 // See https://registry.terraform.io/providers/databricks/databricks/latest/docs#authentication
 provider "databricks" {
-  alias    = "mws"
+  alias    = "account"
   host     = "https://accounts.cloud.databricks.com"
   account_id = local.databricks_account_id
   client_id = local.databricks_client_id
@@ -33,6 +33,21 @@ provider "databricks" {
 # initialize cluster module with root level provider settings (inherited)
 module "cluster_submodule" {
   source = "./clusters"
+  github_actor = var.github_actor
+  environment = var.environment 
+  databricks_account_id = local.databricks_account_id
+  databricks_instance = local.databricks_instance
+  databricks_client_id = local.databricks_client_id
+  databricks_client_secret = local.databricks_client_secret
+  databricks_admin_login = local.databricks_admin_login
+  databricks_admin_password = local.databricks_admin_password
+  databricks_token = local.databricks_token
+}
+
+
+# initialize unity catalog storage credential (sc) with root level provider settings (inherited)
+module "uc_sc_submodule" {
+  source = "./unity_catalog/storage_creds"
   github_actor = var.github_actor
   environment = var.environment 
   databricks_account_id = local.databricks_account_id

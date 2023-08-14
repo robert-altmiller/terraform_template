@@ -22,4 +22,4 @@
 
 ### Appendix
 
-![How to setup a storage credential on AWS?](https://docs.databricks.com/en/data-governance/unity-catalog/manage-external-locations-and-credentials.html#manage-storage-credentials)
+[How to setup a storage credential on AWS?](https://docs.databricks.com/en/data-governance/unity-catalog/manage-external-locations-and-credentials.html#manage-storage-credentials)
