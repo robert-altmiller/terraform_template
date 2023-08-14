@@ -8,13 +8,13 @@ on:
         required: true
         default: 'dev'
       DEPLOY_CLUSTERS: # variable
-        description: 'Create Clusters (yes/no)'
+        description: 'Create Clusters (true/false)'
         required: true
-        default: true
+        default: 'true'
       DEPLOY_UC_STORAGE_CRED: # variable
-        description: 'Create UC Storage Credential (yes/no)'
+        description: 'Create UC Storage Credential (true/false)'
         required: true
-        default: true
+        default: 'true'
 
   push:
     branches:
@@ -67,15 +67,15 @@ jobs:
           export TF_LOG=DEBUG
           terraform plan
 
-      # - name: Terraform Apply
+      - name: Terraform Apply
+        run: terraform apply --auto-approve
+
+      # - name: Deploy Databricks Clusters
+      #   if: env.TF_VAR_databricks_deploy_clusters == true
       #   run: terraform apply --auto-approve
 
-      - name: Deploy Databricks Clusters
-        if: env.TF_VAR_databricks_deploy_clusters == true
-        run: terraform apply --auto-approve
 
-
-      - name: Deploy Unity Catalog Storage Credential
-        if: env.TF_VAR_databricks_deploy_uc_storage_credential == true
-        run: terraform apply --auto-approve
+      # - name: Deploy Unity Catalog Storage Credential
+      #   if: env.TF_VAR_databricks_deploy_uc_storage_credential == true
+      #   run: terraform apply --auto-approve
     
