@@ -14,7 +14,7 @@ variable "execute_uc_sc_module" {
 # initialize cluster module with root level provider settings (inherited)
 module "cluster_module" {
   source = "./clusters"
-  execute_cluster_module = var.execute_cluster_module
+  count  = var.execute_cluster_module ? 1 : 0
   github_actor = var.github_actor
   environment = var.environment 
   databricks_account_id = local.databricks_account_id
