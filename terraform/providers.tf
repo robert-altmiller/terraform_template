@@ -38,7 +38,7 @@ provider "databricks" {
   client_secret = local.databricks_client_secret
 }
 
-// create PAT token to provision entities within workspace
+// create personal access token (PAT) to provision entities within Databricks workspace
 resource "databricks_token" "pat" {
   provider = databricks.workspace
   comment  = "terraform provisioning databricks workspace token"
