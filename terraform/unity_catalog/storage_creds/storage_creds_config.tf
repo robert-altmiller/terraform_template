@@ -4,7 +4,7 @@ variable "sc_config_json" {
     type        = string
     default     = <<EOT
   {
-    "sc_name": "my-storage-creds1",
+    "sc_name": "my-storage-creds2",
     "sc_role_arn": "arn:aws:iam::969341422355:role/s3-dbricks-prod-bucket-role",
     "principle_name": "prod-admins",
     "privileges": "ALL PRIVILEGES"

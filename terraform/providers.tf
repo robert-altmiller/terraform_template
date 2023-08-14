@@ -34,18 +34,14 @@ provider "databricks" {
 provider "databricks" {
   alias = "workspace"
   host = local.databricks_instance
+  client_id = local.databricks_client_id
+  client_secret = local.databricks_client_secret
 }
 
 // create PAT token to provision entities within workspace
 resource "databricks_token" "pat" {
   provider = databricks.workspace
-  comment  = "Terraform Provisioning"
+  comment  = "terraform provisioning databricks workspace token"
   // 60 minute token
   lifetime_seconds = 3600
-}
-
-// output token for other modules
-output "databricks_token" {
-  value     = databricks_token.pat.token_value
-  sensitive = true
 }

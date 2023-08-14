@@ -24,7 +24,7 @@ locals {
   # client secret
   databricks_client_secret = lookup(var.databricks_client_secrets, var.environment)
   # databricks token
-  databricks_token = lookup(var.databricks_tokens, var.environment)
+  databricks_token = databricks_token.pat.token_value #lookup(var.databricks_tokens, var.environment)
   # deploy clusters
   databricks_deploy_clusters = var.databricks_deploy_clusters
   # deploy uc storage credential
