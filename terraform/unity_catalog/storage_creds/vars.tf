@@ -47,5 +47,5 @@ variable "databricks_token" {
 
 variable "databricks_deploy_uc_storage_credential" {
   description = "Set to true to execute the unity catalog  module, false to skip."
-  type        = bool
+  type        = string
 }

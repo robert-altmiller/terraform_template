@@ -80,11 +80,11 @@ variable "databricks_tokens" {
 # databricks deploy clusters
 variable "databricks_deploy_clusters" {
   description = "create and deploy databricks clusters"
-  type = bool
+  type = string
 }
 
 # databricks deploy uc storage credential
 variable "databricks_deploy_uc_storage_credential" {
   description = "create and deploy uc storage credentials"
-  type = bool
+  type = string
 }
