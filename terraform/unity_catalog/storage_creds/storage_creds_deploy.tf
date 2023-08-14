@@ -1,6 +1,5 @@
 # databricks_storage_credential (UC)
 resource "databricks_storage_credential" "external" {
-  count = var.execute_uc_sc_module ? 1 : 0
   provider = databricks.workspace
   name = "${local.sc_config.sc_name}-${var.environment}"
   aws_iam_role {
