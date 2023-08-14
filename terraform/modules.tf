@@ -4,10 +4,22 @@ variable "execute_cluster_module" {
   default     = false  # Set this to true or false based on your conditions
 }
 
+variable "execute_uc_sc_module" {
+  description = "Set to true to execute the unity catalog  module, false to skip."
+  type        = bool
+  default     = false  # Set this to true or false based on your conditions
+}
+
+
+locals {
+  execute_cluster_module = var.execute_cluster_module ? true : false
+  execute_uc_sc_module = var.execute_uc_sc_module ? true : false
+}
+
 # initialize cluster module with root level provider settings (inherited)
 module "cluster_module" {
   source = "./clusters"
-  count  = var.execute_cluster_module ? 1 : 0  # This controls whether the module is executed
+  count  = local.execute_cluster_module ? 1 : 0  # This controls whether the module is executed
   github_actor = var.github_actor
   environment = var.environment 
   databricks_account_id = local.databricks_account_id
@@ -19,16 +31,10 @@ module "cluster_module" {
   databricks_token = local.databricks_token
 }
 
-variable "execute_uc_sc_module" {
-  description = "Set to true to execute the unity catalog  module, false to skip."
-  type        = bool
-  default     = false  # Set this to true or false based on your conditions
-}
-
 # initialize unity catalog storage credential (sc) with root level provider settings (inherited)
 module "uc_sc_module" {
   source = "./unity_catalog/storage_creds"
-  count  = var.execute_uc_sc_module ? 1 : 0  # This controls whether the module is executed
+  count  = local.execute_uc_sc_module ? 1 : 0  # This controls whether the module is executed
   github_actor = var.github_actor
   environment = var.environment 
   databricks_account_id = local.databricks_account_id
