@@ -18,4 +18,8 @@
 
 ![monitor_workflow2.jpg](/readme_images/monitor_workflow2.jpg)
 
-![monitor_workflow3.jpg](/readme_images/monitor_workflow3.jpg) 
+![monitor_workflow3.jpg](/readme_images/monitor_workflow3.jpg)
+
+### Appendix
+
+![How to setup a storage credential on AWS?](https://docs.databricks.com/en/data-governance/unity-catalog/manage-external-locations-and-credentials.html#manage-storage-credentials)
