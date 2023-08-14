@@ -86,5 +86,5 @@ variable "databricks_deploy_clusters" {
 # databricks deploy uc storage credential
 variable "databricks_deploy_uc_storage_credential" {
   description = "create and deploy uc storage credentials"
-  type = bool
+  type = string
 }
