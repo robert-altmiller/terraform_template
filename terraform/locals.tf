@@ -12,7 +12,7 @@ locals {
   # aws access key secret
   aws_access_key_secret = var.aws_access_key_secret
   # dbricks account id
-    databricks_account_id = var.databricks_account_id
+  databricks_account_id = var.databricks_account_id
   # dbricks instance url
   databricks_instance = lookup(var.databricks_instances, var.environment)
   # dbricks admin login

@@ -16,8 +16,8 @@ provider "aws" {
   secret_key =  local.aws_secret_access_key
 }
 
-// Initialize provider in "MWS" mode to provision the new workspace.
-// alias = "mws" instructs Databricks to connect to https://accounts.cloud.databricks.com, to create
+// Initialize provider in "account" mode to provision the new workspace.
+// alias = "account" instructs Databricks to connect to https://accounts.cloud.databricks.com, to create
 // a Databricks workspace that uses the E2 version of the Databricks on AWS platform.
 // See https://registry.terraform.io/providers/databricks/databricks/latest/docs#authentication
 provider "databricks" {
@@ -30,31 +30,22 @@ provider "databricks" {
   # password = local.databricks_admin_password
 }
 
-# initialize cluster module with root level provider settings (inherited)
-module "cluster_submodule" {
-  source = "./clusters"
-  github_actor = var.github_actor
-  environment = var.environment 
-  databricks_account_id = local.databricks_account_id
-  databricks_instance = local.databricks_instance
-  databricks_client_id = local.databricks_client_id
-  databricks_client_secret = local.databricks_client_secret
-  databricks_admin_login = local.databricks_admin_login
-  databricks_admin_password = local.databricks_admin_password
-  databricks_token = local.databricks_token
+// initialize provider in normal mode
+provider "databricks" {
+  alias = "workspace"
+  host = local.databricks_instance
 }
 
+// create PAT token to provision entities within workspace
+resource "databricks_token" "pat" {
+  provider = databricks.workspace
+  comment  = "Terraform Provisioning"
+  // 60 minute token
+  lifetime_seconds = 3600
+}
 
-# initialize unity catalog storage credential (sc) with root level provider settings (inherited)
-module "uc_sc_submodule" {
-  source = "./unity_catalog/storage_creds"
-  github_actor = var.github_actor
-  environment = var.environment 
-  databricks_account_id = local.databricks_account_id
-  databricks_instance = local.databricks_instance
-  databricks_client_id = local.databricks_client_id
-  databricks_client_secret = local.databricks_client_secret
-  databricks_admin_login = local.databricks_admin_login
-  databricks_admin_password = local.databricks_admin_password
-  databricks_token = local.databricks_token
+// output token for other modules
+output "databricks_token" {
+  value     = databricks_token.pat.token_value
+  sensitive = true
 }
