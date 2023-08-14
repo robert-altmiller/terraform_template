@@ -42,3 +42,10 @@ variable "databricks_token" {
   description = "databricks token"
   type        = string
 }
+
+# ----------variables for module instantiation----------
+
+variable "execute_cluster_module" {
+  description = "Set to true to execute the cluster module, false to skip."
+  type        = bool
+}

@@ -83,3 +83,14 @@ variable "databricks_deploy_clusters" {
   type = string
 }
 
+# ----------variables for module instantiation----------
+
+variable "execute_cluster_module" {
+  description = "Set to true to execute the cluster module, false to skip."
+  type        = bool
+}
+
+variable "execute_uc_sc_module" {
+  description = "Set to true to execute the unity catalog  module, false to skip."
+  type        = bool
+}

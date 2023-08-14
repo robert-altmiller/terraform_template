@@ -1,29 +1,7 @@
-variable "execute_cluster_module" {
-  description = "Set to true to execute the cluster module, false to skip."
-  type        = bool
-  default     = false
-}
-
-
-variable "execute_uc_sc_module" {
-  description = "Set to true to execute the unity catalog  module, false to skip."
-  type        = bool
-  default     = false
-}
-
-# Define a map with keys representing the module names and values representing the boolean flags
-variable "module_conditions" {
-  type = map(bool)
-  default = {
-    "cluster_module" = var.execute_cluster_module
-    "uc_sc_module"   = var.execute_uc_sc_module
-  }
-}
-
 # initialize cluster module with root level provider settings (inherited)
 module "cluster_module" {
   source = "./clusters"
-  for_each = var.module_conditions["cluster_module"] ? { enabled = true } : {}
+  execute_cluster_module = var.execute_cluster_module
   github_actor = var.github_actor
   environment = var.environment 
   databricks_account_id = local.databricks_account_id
@@ -38,6 +16,7 @@ module "cluster_module" {
 # initialize unity catalog storage credential (sc) with root level provider settings (inherited)
 module "uc_sc_module" {
   source = "./unity_catalog/storage_creds"
+  execute_uc_sc_module = var.execute_uc_sc_module
   for_each = var.module_conditions["uc_sc_module"] ? { enabled = true } : {}
   github_actor = var.github_actor
   environment = var.environment 
