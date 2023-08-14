@@ -31,8 +31,3 @@ resource "databricks_cluster" "this" {
     owner       = var.github_actor
   }
 }
-
-# output cluster url to check if cluster was created successfully
-output "cluster_url" {
- value = databricks_cluster.this.url
-}
