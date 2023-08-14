@@ -21,7 +21,6 @@ resource "uc_sc_module_resource" {
 # initialize cluster module with root level provider settings (inherited)
 module "cluster_module" {
   source = "./clusters"
-  execute_cluster_module = resource.cluster_module_resource
   github_actor = var.github_actor
   environment = var.environment 
   databricks_account_id = local.databricks_account_id
@@ -36,7 +35,6 @@ module "cluster_module" {
 # initialize unity catalog storage credential (sc) with root level provider settings (inherited)
 module "uc_sc_module" {
   source = "./unity_catalog/storage_creds"
-  execute_cluster_module = resource.uc_sc_module_resource
   github_actor = var.github_actor
   environment = var.environment 
   databricks_account_id = local.databricks_account_id
