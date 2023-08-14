@@ -11,7 +11,7 @@ variable "execute_uc_sc_module" {
 # initialize cluster module with root level provider settings (inherited)
 module "cluster_module" {
   source = "./clusters"
-  var.execute_cluster_module != "" ? var.execute_cluster_module : "false"  # This controls whether the module is executed
+  var.execute_cluster_module = var.execute_cluster_module != "" ? var.execute_cluster_module : "false"  # This controls whether the module is executed
   github_actor = var.github_actor
   environment = var.environment 
   databricks_account_id = local.databricks_account_id
@@ -26,7 +26,7 @@ module "cluster_module" {
 # initialize unity catalog storage credential (sc) with root level provider settings (inherited)
 module "uc_sc_module" {
   source = "./unity_catalog/storage_creds"
-  var.execute_uc_sc_module != "" ? var.execute_uc_sc_module : "false"  # This controls whether the module is executed
+  var.execute_uc_sc_module = var.execute_uc_sc_module != "" ? var.execute_uc_sc_module : "false"  # This controls whether the module is executed
   github_actor = var.github_actor
   environment = var.environment 
   databricks_account_id = local.databricks_account_id
