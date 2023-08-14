@@ -71,10 +71,10 @@ jobs:
 
       - name: Deploy Databricks Clusters
         if: env.TF_VAR_databricks_deploy_clusters == 'yes'
-        run: terraform apply --auto-approve -var = "execute_cluster_module = true"
+        run: terraform apply --auto-approve -var="execute_cluster_module=true"
 
 
       - name: Deploy Unity Catalog Storage Credential
         if: env.TF_VAR_databricks_deploy_uc_storage_credential == 'yes'
-        run: terraform apply --auto-approve -var = "execute_uc_sc_module = true"
+        run: terraform apply --auto-approve -var="execute_uc_sc_module=true"
     
