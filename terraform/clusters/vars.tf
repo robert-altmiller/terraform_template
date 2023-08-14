@@ -47,5 +47,5 @@ variable "databricks_token" {
 
 variable "databricks_deploy_clusters" {
   description = "Set to true to execute the cluster module, false to skip."
-  type        = string
+  type        = bool
 }
