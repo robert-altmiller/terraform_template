@@ -30,19 +30,19 @@ provider "databricks" {
   # password = local.databricks_admin_password
 }
 
-// initialize provider in normal mode
-provider "databricks" {
-  alias = "workspace"
-  host = local.databricks_instance
-  account_id = local.databricks_account_id
-  client_id = local.databricks_client_id
-  client_secret = local.databricks_client_secret
-}
+# // initialize provider in normal mode
+# provider "databricks" {
+#   alias = "workspace"
+#   host = local.databricks_instance
+#   account_id = local.databricks_account_id
+#   client_id = local.databricks_client_id
+#   client_secret = local.databricks_client_secret
+# }
 
-// create personal access token (PAT) to provision entities within Databricks workspace
-resource "databricks_token" "pat" {
-  provider = databricks.workspace
-  comment  = "terraform provisioning databricks workspace token"
-  // 60 minute token
-  lifetime_seconds = 3600
-}
+# // create personal access token (PAT) to provision entities within Databricks workspace
+# resource "databricks_token" "pat" {
+#   provider = databricks.workspace
+#   comment  = "terraform provisioning databricks workspace token"
+#   // 60 minute token
+#   lifetime_seconds = 3600
+# }
