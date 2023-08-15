@@ -59,7 +59,7 @@ jobs:
         run: |
           terraform init \
           -backend-config="bucket=dbricks-dev-bucket" \
-          -backend-config="key=terraform/terraform.tfstate" \
+          -backend-config="key=terraform.tfstate" \
           -backend-config="region=${{ env.TF_VAR_aws_region }}" \
           -backend-config="access_key=${{ env.TF_VAR_aws_access_key_id }}" \
           -backend-config="secret_key=${{ env.TF_VAR_aws_access_key_secret}}"
