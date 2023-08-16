@@ -75,10 +75,10 @@ jobs:
           export TF_LOG=DEBUG
           terraform validate
       
-      # - name: Terraform Plan
-      #   run: |
-      #     export TF_LOG=DEBUG
-      #     terraform plan
+      - name: Terraform Plan
+        run: |
+          export TF_LOG=DEBUG
+          terraform plan
 
       - name: Deploy Databricks Clusters
         if: env.TF_VAR_databricks_deploy_clusters == 'true'
