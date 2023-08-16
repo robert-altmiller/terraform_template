@@ -1,4 +1,5 @@
 resource "databricks_sql_database" "unity_catalog_schema" {
+  count = var.databricks_deploy_uc_schema == "true" ? 1 : 0 # used as a conditional
   name = local.schema_config.schema_name
 }
 

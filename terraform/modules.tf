@@ -31,7 +31,7 @@ module "uc_sc_module" {
 # initialize unity catalog schema with root level provider settings (inherited)
 module "uc_schema_module" {
   source = "./unity_catalog/schemas"
-  databricks_deploy_uc_storage_credential = var.databricks_deploy_schema
+  databricks_deploy_uc_schema = var.databricks_deploy_schema
   github_actor = var.github_actor
   environment = var.environment 
   databricks_account_id = local.databricks_account_id
