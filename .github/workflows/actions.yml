@@ -55,7 +55,7 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
 
-      - name: Terraform Init
+      - name: Terraform Init Backend
         run: |
           export BUCKET_NAME="dbricks-dev-bucket"
           export KEY_NAME="terraform/terraform.tfstate"
