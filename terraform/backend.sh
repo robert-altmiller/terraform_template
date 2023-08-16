@@ -12,6 +12,6 @@ terraform init \
   -backend-config="key=$KEY_NAME" \
   -backend-config="region=$AWS_REGION" \
   -backend-config="access_key=$ACCESS_KEY" \
-  -backend-config="secret-key=$SECRET_KEY" \
+  -backend-config="secret_key=$SECRET_KEY" \
   # -backend-config="shared_credentials_file=./.aws/credentials" \
   # -backend-config="profile=$PROFILE"
