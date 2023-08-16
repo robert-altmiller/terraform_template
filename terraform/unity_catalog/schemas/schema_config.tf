@@ -4,7 +4,10 @@ variable "schema_config_json" {
     type        = string
     default     = <<EOT
   {
-    "schema_name": "main2"
+    "catalog_name": "main",
+    "schema_name": "dbo"
+    "principal_name": "prod-contributors",
+    "principal_privileges": "ALL_PRIVILEGES"
   }
   EOT
   }

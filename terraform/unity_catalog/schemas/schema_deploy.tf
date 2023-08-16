@@ -1,10 +1,16 @@
-resource "databricks_sql_database" "unity_catalog_schema" {
+# databricks_schema (UC)
+resource "databricks_schema" "schema" {
   count = var.databricks_deploy_uc_schema == "true" ? 1 : 0 # used as a conditional
-  name = local.schema_config.schema_name
+  catalog_name = local.schema_config.catalog_name
+  name         = local.schema_config.schema_name 
 }
 
-# resource "databricks_sql_table" "unity_catalog_table" {
-#   database_id = databricks_sql_database.unity_catalog_db.id
-#   name        = "unity_catalog_table"
-#   sql         = "CREATE TABLE IF NOT EXISTS unity_catalog_table (id INT, name STRING)"
-# }
+# databricks_grants on schema (UC)
+resource "databricks_grants" "schema" {
+  depends_on = [ databricks_schema.schema ]
+  schema = "${local.schema_config.catalog_name}.${local.schema_config.schema_name }"
+  grant {
+    principal  = local.schema_config.principal_name
+    privileges = local.schema_config.principal_privileges
+  }
+}
