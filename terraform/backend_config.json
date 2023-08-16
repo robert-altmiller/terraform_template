@@ -1,4 +1,4 @@
 {
-    "backend-bucket-dev": "value1",
-    "backend-bucket-prod": "value2"
+    "backend_bucket_dev": "dbricks-dev-bucket",
+    "backend_bucket_prod": "dbricks-prod-bucket"
 }
