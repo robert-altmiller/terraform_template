@@ -91,3 +91,10 @@ variable "databricks_deploy_uc_storage_credential" {
   type = string
   default = "false"
 }
+
+# databricks deploy uc storage credential
+variable "databricks_deploy_uc_schema" {
+  description = "create and deploy uc schema"
+  type = string
+  default = "false"
+}

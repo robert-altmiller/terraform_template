@@ -8,11 +8,15 @@ on:
         required: true
         default: '[dev],prod' # install chrome extension for drop down menu (see readme)
       DEPLOY_CLUSTERS: # variable
-        description: 'Create Clusters (true/false)'
+        description: 'Create Clusters (true/false/destroy)'
         required: true
         default: '[true],false,destroy' # install chrome extension for drop down menu (see readme)
       DEPLOY_UC_STORAGE_CRED: # variable
-        description: 'Create UC Storage Credential (true/false)'
+        description: 'Create UC Storage Credential (true/false/destroy)'
+        required: true
+        default: '[true],false,destroy' # install chrome extension for drop down menu (see readme)
+      DEPLOY_UC_SCHEMA: # variable
+        description: 'Create UC Schema (true/false/destroy)'
         required: true
         default: '[true],false,destroy' # install chrome extension for drop down menu (see readme)
 
@@ -40,12 +44,15 @@ jobs:
       TF_VAR_databricks_tokens: '{"dev": "${{ secrets.DATABRICKS_TOKEN_DEV }}", "prod": "${{ secrets.DATABRICKS_TOKEN_PROD }}"}'
       TF_VAR_databricks_admin_login: ${{ secrets.DATABRICKS_ADMIN_LOGIN }}
       TF_VAR_databricks_admin_password: ${{ secrets.DATABRICKS_ADMIN_PASSWORD }}
+      TF_VAR_github_actor: ${{ github.actor }} # username for tagging of resources
       # default to no if running directly from push to main branch so we execute a simple workflow run unit test
       # if running workflow manually then you can deploy clusters
       TF_VAR_databricks_deploy_clusters: ${{ github.event.inputs.DEPLOY_CLUSTERS || 'false' }}
       # if running workflow manually then you can deploy uc storage credentials
       TF_VAR_databricks_deploy_uc_storage_credential: ${{ github.event.inputs.DEPLOY_UC_STORAGE_CRED || 'false' }}
-      TF_VAR_github_actor: ${{ github.actor }}
+      # if running workflow manually then you can deploy uc storage credentials
+      TF_VAR_databricks_deploy_uc_schema: ${{ github.event.inputs.DEPLOY_UC_SCHEMA || 'false' }}
+
 
     steps:
 
@@ -106,4 +113,12 @@ jobs:
           elif [[ "${{ env.TF_VAR_databricks_deploy_uc_storage_credential }}" == "destroy" ]]; then
             terraform destroy --auto-approve -target=module.uc_sc_module.databricks_storage_credential.external
             terraform destroy --auto-approve -target=module.uc_sc_module.databricks_grants.external_creds
+          fi
+
+      - name: Deploy / Destroy Unity Catalog Schema
+        run: |
+          if [[ "${{ env.TF_VAR_databricks_deploy_uc_schema }}" == "true" ]]; then
+            terraform apply --auto-approve -target=module.uc_schema_module.
+          elif [[ "${{ env.TF_VAR_databricks_deploy_uc_schema }}" == "destroy" ]]; then
+            terraform destroy --auto-approve -target=module.uc_schema_module.
           fi
