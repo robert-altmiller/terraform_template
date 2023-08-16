@@ -12,7 +12,6 @@ resource "databricks_storage_credential" "external" {
 resource "databricks_grants" "external_creds" {
   provider = databricks.workspace
   count = var.databricks_deploy_uc_storage_credential == "true" ? 1 : 0 # used as a conditional
-  provider = databricks.workspace  
   storage_credential = databricks_storage_credential.external.id
   grant {
     principal  = local.sc_config.principal_name
