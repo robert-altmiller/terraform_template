@@ -7,13 +7,6 @@ terraform {
     }
   }
   required_version = ">=0.12.8"
-  backend "s3" {
-    bucket = "dbricks-dev-bucket"
-    key = "terraform"
-    region = local.aws_region
-    # access_key = local.aws_access_key_id
-    # secret_key = local.aws_secret_access_key
-  }
 }
 
 # configure the aws provider

@@ -4,9 +4,9 @@ variable "cluster_config_json" {
     default     = <<EOT
   {
     "cluster_name": "my-cluster",
-    "auto_termination_mins": "60",
+    "auto_termination_mins": "5",
     "min_workers": "1",
-    "max_workers": "4"
+    "max_workers": "2"
   }
   EOT
   }

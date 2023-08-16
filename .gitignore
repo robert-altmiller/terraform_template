@@ -196,3 +196,6 @@ terraform.rc
 
 # old direcotry
 old/
+
+.aws
+terraform_local

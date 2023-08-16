@@ -80,5 +80,7 @@ jobs:
 
       - name: Deploy Unity Catalog Storage Credential
         if: env.TF_VAR_databricks_deploy_uc_storage_credential == 'true'
-        run: terraform apply --auto-approve
+        run: 
+          terraform apply -target=module.uc_sc_module.databricks_storage_credential.external
+          terraform apply -target=module.uc_sc_module.databricks_grants.external_creds
     
