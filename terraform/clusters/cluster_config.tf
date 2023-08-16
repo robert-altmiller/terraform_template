@@ -5,8 +5,8 @@ variable "cluster_config_json" {
   {
     "cluster_name": "my-cluster",
     "auto_termination_mins": "60",
-    "min_workers": "2",
-    "max_workers": "3"
+    "min_workers": "1",
+    "max_workers": "2"
   }
   EOT
   }
