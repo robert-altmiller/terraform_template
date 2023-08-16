@@ -5,7 +5,7 @@ variable "schema_config_json" {
     default     = <<EOT
   {
     "catalog_name": "main",
-    "schema_name": "dbo"
+    "schema_name": "dbo",
     "principal_name": "prod-contributors",
     "principal_privileges": "ALL_PRIVILEGES"
   }
