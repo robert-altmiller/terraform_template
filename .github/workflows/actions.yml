@@ -62,8 +62,13 @@ jobs:
           export AWS_REGION="${{ env.TF_VAR_aws_region }}"
           export ACCESS_KEY="${{ env.TF_VAR_aws_access_key_id }}"
           export SECRET_KEY="${{ env.TF_VAR_aws_access_key_secret}}"
-          chmod +x ../init-terraform.sh
-          ./backend.sh
+          chmod +x ../terraform/backend.sh
+          ../terraform/backend.sh
+
+      - name: Terraform Init
+        run: |
+          export TF_LOG=DEBUG
+          terraform init
 
       - name: Terraform Validate
         run: |
