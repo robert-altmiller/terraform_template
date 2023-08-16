@@ -81,3 +81,15 @@ output "databricks_deploy_clusters_output" {
   description = "value for databricks_deploy_cluster"
   # sensitive = true
 }
+
+output "databricks_deploy_uc_storage_credential_output" {
+  value = jsonencode(local.databricks_deploy_uc_storage_credential)
+  description = "value for databricks_deploy_uc_storage_credential"
+  # sensitive = true
+}
+
+output "databricks_deploy_uc_schema_output" {
+  value = jsonencode(local.databricks_deploy_uc_schema)
+  description = "value for databricks_deploy_uc_schema"
+  # sensitive = true
+}

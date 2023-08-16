@@ -29,4 +29,6 @@ locals {
   databricks_deploy_clusters = var.databricks_deploy_clusters
   # deploy uc storage credential
   databricks_deploy_uc_storage_credential = var.databricks_deploy_uc_storage_credential
+  # deploy uc schema
+  databricks_deploy_uc_schema = var.databricks_deploy_uc_schema
 }

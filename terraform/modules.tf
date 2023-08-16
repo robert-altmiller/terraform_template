@@ -1,9 +1,9 @@
 # initialize cluster module with root level provider settings (inherited)
 module "cluster_module" {
   source = "./clusters"
-  databricks_deploy_clusters = var.databricks_deploy_clusters
-  github_actor = var.github_actor
-  environment = var.environment 
+  databricks_deploy_clusters = local.databricks_deploy_clusters
+  github_actor = local.github_actor
+  environment = local.environment 
   databricks_account_id = local.databricks_account_id
   databricks_instance = local.databricks_instance
   databricks_client_id = local.databricks_client_id
@@ -16,9 +16,9 @@ module "cluster_module" {
 # initialize unity catalog storage credential (sc) with root level provider settings (inherited)
 module "uc_sc_module" {
   source = "./unity_catalog/storage_creds"
-  databricks_deploy_uc_storage_credential = var.databricks_deploy_uc_storage_credential
-  github_actor = var.github_actor
-  environment = var.environment 
+  databricks_deploy_uc_storage_credential = local.databricks_deploy_uc_storage_credential
+  github_actor = local.github_actor
+  environment = local.environment 
   databricks_account_id = local.databricks_account_id
   databricks_instance = local.databricks_instance
   databricks_client_id = local.databricks_client_id
@@ -31,9 +31,9 @@ module "uc_sc_module" {
 # initialize unity catalog schema with root level provider settings (inherited)
 module "uc_schema_module" {
   source = "./unity_catalog/schemas"
-  databricks_deploy_uc_schema = var.databricks_deploy_schema
-  github_actor = var.github_actor
-  environment = var.environment 
+  databricks_deploy_uc_schema = local.databricks_deploy_uc_schema
+  github_actor = local.github_actor
+  environment = local.environment 
   databricks_account_id = local.databricks_account_id
   databricks_instance = local.databricks_instance
   databricks_client_id = local.databricks_client_id
