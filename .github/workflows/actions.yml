@@ -7,14 +7,17 @@ on:
         description: 'Deploy Environment (dev/prod)'
         required: true
         default: 'dev'
+        enum: ['dev', 'prod']  
       DEPLOY_CLUSTERS: # variable
         description: 'Create Clusters (true/false)'
         required: true
         default: 'true'
+        enum: ['true', 'false', 'destroy']
       DEPLOY_UC_STORAGE_CRED: # variable
         description: 'Create UC Storage Credential (true/false)'
         required: true
         default: 'true'
+        enum: ['true', 'false', 'destroy']
 
   push:
     branches:
