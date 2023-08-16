@@ -1,0 +1,4 @@
+{
+    "backend-bucket-dev": "value1",
+    "backend-bucket-prod": "value2"
+}
