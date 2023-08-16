@@ -67,6 +67,7 @@ jobs:
 
       - name: Setup Terraform Init Backend
         run: |
+          export TF_LOG=DEBUG
           if [[ "${{ env.TF_VAR_environment }}" == "dev" ]]; then
             export BUCKET_NAME="${{ env.BACKEND_BUCKET_DEV }}"
           else
@@ -79,10 +80,10 @@ jobs:
           chmod +x ../terraform/backend.sh
           ../terraform/backend.sh
 
-      - name: Terraform Init
-        run: |
-          export TF_LOG=DEBUG
-          terraform init
+      # - name: Terraform Init
+      #   run: |
+      #     export TF_LOG=DEBUG
+      #     terraform init
 
       - name: Terraform Validate
         run: |
