@@ -51,13 +51,27 @@ jobs:
 
       - name: Checkout repository
         uses: actions/checkout@v3
-    
+  
+      - name: Install jq
+        run: sudo apt-get install jq
+
+      - name: Read JSON S3 buckets and set as environment variables
+        run: |
+          BACKEND_BUCKET_DEV=$(jq -r .backend-bucket-dev < backend_config.json)
+          BACKEND_BUCKET_PROD=$(jq -r .backend-bucket-prod < backend_config.json)
+          echo "BACKEND_BUCKET_DEV=$BACKEND_BUCKET_DEV" >> $GITHUB_ENV
+          echo "BACKEND_BUCKET_PROD=$BACKEND_BUCKET_PROD" >> $GITHUB_ENV
+
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
 
       - name: Terraform Init Backend
         run: |
-          export BUCKET_NAME="dbricks-dev-bucket"
+          if [[ "${{ env.TF_VAR_environment }}" == "dev" ]]; then
+            export BUCKET_NAME="${{ env.BACKEND_BUCKET_DEV }}"
+          else
+            export BUCKET_NAME="${{ env.BACKEND_BUCKET_PROD }}"
+          fi
           export KEY_NAME="terraform/terraform.tfstate"
           export AWS_REGION="${{ env.TF_VAR_aws_region }}"
           export ACCESS_KEY="${{ env.TF_VAR_aws_access_key_id }}"
