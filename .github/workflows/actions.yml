@@ -54,15 +54,16 @@ jobs:
     
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
-    
+
       - name: Terraform Init
         run: |
-          terraform init \
-          -backend-config="bucket=dbricks-dev-bucket" \
-          -backend-config="key=terraform" \
-          -backend-config="region=${{ env.TF_VAR_aws_region }}" \
-          -backend-config="access_key=${{ env.TF_VAR_aws_access_key_id }}" \
-          -backend-config="secret_key=${{ env.TF_VAR_aws_access_key_secret}}"
+          export BUCKET_NAME="dbricks-dev-bucket"
+          export KEY_NAME="terraform/terraform.tfstate"
+          export AWS_REGION="${{ env.TF_VAR_aws_region }}"
+          export ACCESS_KEY="${{ env.TF_VAR_aws_access_key_id }}"
+          export SECRET_KEY="${{ env.TF_VAR_aws_access_key_secret}}"
+          chmod +x ../init-terraform.sh
+          ../init-terraform.sh
 
       - name: Terraform Validate
         run: |
