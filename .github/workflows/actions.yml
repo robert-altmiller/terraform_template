@@ -82,11 +82,11 @@ jobs:
 
       - name: Deploy Databricks Clusters
         if: env.TF_VAR_databricks_deploy_clusters == 'true'
-        run: 
+        run: |
           terraform apply --auto-approve -target=module.cluster_module.databricks_cluster.this
 
       - name: Deploy Unity Catalog Storage Credential
         if: env.TF_VAR_databricks_deploy_uc_storage_credential == 'true'
-        run: 
+        run: |
           terraform apply --auto-approve -target=module.uc_sc_module.databricks_storage_credential.external
           terraform apply --auto-approve -target=module.uc_sc_module.databricks_grants.external_creds
