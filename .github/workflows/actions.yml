@@ -63,7 +63,7 @@ jobs:
           export ACCESS_KEY="${{ env.TF_VAR_aws_access_key_id }}"
           export SECRET_KEY="${{ env.TF_VAR_aws_access_key_secret}}"
           chmod +x ../init-terraform.sh
-          ../init-terraform.sh
+          ./backend.sh
 
       - name: Terraform Validate
         run: |
