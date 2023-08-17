@@ -10,19 +10,19 @@ on:
       DEPLOY_CLUSTERS: # variable
         description: 'Create Clusters (true/false/destroy)'
         required: true
-        default: '[true],false,destroy' # install chrome extension for drop down menu (see readme)
+        default: 'true,[false],destroy' # install chrome extension for drop down menu (see readme)
       DEPLOY_CLUSTER_POLICIES: # variable
         description: 'Create Cluster Policies (true/false/destroy)'
         required: true
-        default: '[true],false,destroy' # install chrome extension for drop down menu (see readme)
+        default: 'true,[false],destroy' # install chrome extension for drop down menu (see readme)
       DEPLOY_UC_STORAGE_CRED: # variable
         description: 'Create UC Storage Credential (true/false/destroy)'
         required: true
-        default: '[true],false,destroy' # install chrome extension for drop down menu (see readme)
+        default: 'true,[false],destroy' # install chrome extension for drop down menu (see readme)
       DEPLOY_UC_SCHEMA: # variable
         description: 'Create UC Schema (true/false/destroy)'
         required: true
-        default: '[true],false,destroy' # install chrome extension for drop down menu (see readme)
+        default: 'true,[false],destroy' # install chrome extension for drop down menu (see readme)
 
 
   push:
