@@ -94,7 +94,8 @@ jobs:
           
       - name: Terraform Plan
         run: |
-          terraform plan
+          chmod +x ../terraform/tf_plan_summary.sh
+          ../terraform/tf_plan_summary.sh
 
       - name: Deploy / Destroy Databricks Clusters
         run: |
