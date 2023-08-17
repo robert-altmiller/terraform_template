@@ -1,10 +1,8 @@
-locals {
-  groups = ["group1", "group2"]
-}
+
 # grant use schema to the service principal (e.g. catalog_grants)
 resource "databricks_grants" "catalog_grants" {
   provider = databricks.workspace
-  catalog = locals.schema_config.catalog_name
+  catalog = local.schema_config.catalog_name
   grant {
     principal  = var.databricks_client_id
     privileges = [local.schema_config.catalog_principal_privileges]
