@@ -1,22 +1,30 @@
 #!/bin/bash
 
-plan_output=$(terraform plan)
+# Run terraform plan and save the output to a file
+terraform plan > plan_output.txt
 
-# Filter out the relevant section of the terraform plan output
-relevant_section=$(echo "$plan_output" | awk '/Terraform will perform the following actions:/,/Plan:/{print}')
+# Initialize an empty array to hold the summary lines
+declare -a summary_lines
 
-# Extract the operations, resource types, resource names, and resource ids
-resource_entries=$(echo "$relevant_section" | grep -E '\s+# [^ ]+ will be')
-operations=$(echo "$resource_entries" | awk -F' ' '{print $4}')
-resource_ids=$(echo "$relevant_section" | grep -E '^\s+- id[ \t]*=' | awk -F'= ' '{print $2}' | tr -d '"' | tr -d '-> null')
+# Read the plan output line by line and extract the relevant information
+while IFS= read -r line; do
+  if [[ $line == "# "* ]]; then
+    resource_type=$(echo "$line" | awk '{print $2}' | cut -d'.' -f2)
+    resource_name=$(echo "$line" | awk '{print $2}' | cut -d'.' -f3)
+    operation=$(echo "$line" | awk '{print $3}' | awk -F'[' '{print $1}' | tr -d ' ')
+    summary=$(echo "$line" | cut -d'#' -f2)
+    id_line=$(grep -A1 "id =" plan_output.txt | tail -n1)
+    resource_id=$(echo "$id_line" | awk -F'= ' '{print $2}' | tr -d ' ' | tr -d '"')
+    summary_line="$operation $resource_type $resource_name $resource_id \"$summary\""
+    summary_lines+=("$summary_line")
+  fi
+done < plan_output.txt
 
-# Extract resource types and resource names
-resource_types=$(echo "$resource_entries" | awk -F'# ' '{print $2}' | awk -F'.' '{print $2}')
-resource_names=$(echo "$resource_entries" | awk -F'# ' '{print $2}' | awk '{print substr($0, index($0,$3))}')
-
-# Extract a short summary of what's happening (using the first hashtag)
-summaries=$(echo "$relevant_section" | awk -F'# ' 'NF>1{print $2}' | awk -F' will be ' '{print $1}')
-
-# Display the summarized output in a table
+# Output the table with headers
 echo -e "Operation\tResource Type\tResource Name\tResource ID\tSummary"
-paste <(echo "$operations") <(echo "$resource_types") <(echo "$resource_names") <(echo "$resource_ids") <(echo "$summaries") | column -t -s $'\t'
+for line in "${summary_lines[@]}"; do
+  echo -e "$line"
+done
+
+# Remove the temporary plan output file
+rm plan_output.txt
