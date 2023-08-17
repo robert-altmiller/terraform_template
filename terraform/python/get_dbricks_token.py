@@ -4,7 +4,7 @@ from base64 import b64encode
 def get_databricks_token():
     account_id = os.environ.get("DATABRICKS_ACCOUNT_ID")
     client_id = os.environ.get("DATABRICKS_CLIENT_ID")
-    client_secret = os.environ.get(+"DATABRICKS_CLIENT_SECRET")
+    client_secret = os.environ.get("DATABRICKS_CLIENT_SECRET")
 
     token_url = f"https://accounts.cloud.databricks.com/oidc/accounts/{account_id}/v1/token"
     headers = {
