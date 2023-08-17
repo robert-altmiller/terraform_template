@@ -20,8 +20,4 @@ def get_databricks_token():
     response_data = response.json()
 
     if "access_token" in response_data:
-        return response_data["access_token"]
-    else:
-        raise Exception("Failed to retrieve Databricks token")
-    
-print(get_databricks_token())
+        print(response_data["access_token"])
