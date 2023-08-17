@@ -21,7 +21,7 @@ variable "cluster_policy_config_json" {
   }
 
   locals {
-      cluster_policy_details = jsonencode(
+      cluster_policy_details = <<-EOT
       {
         "node_type_id": {
           "type": "allowlist",
@@ -65,6 +65,6 @@ variable "cluster_policy_config_json" {
           "isOptional": true
         }
       }
-    )
+    EOT
   }
 
