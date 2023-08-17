@@ -99,8 +99,8 @@ jobs:
           export DATABRICKS_CLIENT_SECRET=$(echo $TF_VAR_databricks_client_secrets | jq -r .$TF_VAR_environment)
           pip3 install -r ../terraform/python/requirements.txt
           chmod +x ../terraform/python/get_dbricks_token.py
-          DATABRICKS_AUTH_TOKEN=$(python3 ../terraform/python/get_dbricks_token.py)
-          echo "DATABRICKS_AUTH_TOKEN=$TF_VAR_databricks_token" >> $GITHUB_ENV
+          TF_VAR_databricks_token=$(python3 ../terraform/python/get_dbricks_token.py)
+          echo "TF_VAR_databricks_token=$TF_VAR_databricks_token" >> $GITHUB_ENV
 
       - name: Terraform Validate
         run: |
