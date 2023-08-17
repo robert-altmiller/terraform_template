@@ -16,7 +16,7 @@ module "cluster_module" {
 # initialize cluster policies module with root level provider settings (inherited)
 module "cluster_policies_module" {
   source = "./workspace/clusters_policies"
-  databricks_deploy_clusters = local.databricks_deploy_cluster_policies
+  databricks_deploy_cluster_policies = local.databricks_deploy_cluster_policies
   github_actor = local.github_actor
   environment = local.environment 
   databricks_account_id = local.databricks_account_id
