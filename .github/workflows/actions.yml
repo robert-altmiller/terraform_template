@@ -91,16 +91,11 @@ jobs:
         run: |
           export TF_LOG=DEBUG
           terraform validate
-
-      - name: Terraform Plan Summary
-        run: |
-          chmod +x ../terraform/summarize_plan.sh
-          ../terraform/summarize_plan.sh
           
-      # - name: Terraform Plan
-      #   run: |
-      #     export TF_LOG=DEBUG
-      #     terraform plan
+      - name: Terraform Plan
+        run: |
+          export TF_LOG=DEBUG
+          terraform plan | grep -E '^\s*[#~+-]'
 
       - name: Deploy / Destroy Databricks Clusters
         run: |
