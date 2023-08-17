@@ -129,9 +129,9 @@ jobs:
 
       - name: Deploy / Destroy Databricks Cluster Policies
         run: |
-          if [[ "${{ env.TF_VAR_databricks_deploy_clusters }}" == "true" ]]; then
+          if [[ "${{ env.TF_VAR_databricks_deploy_cluster_policies }}" == "true" ]]; then
             terraform apply --auto-approve -target=module.cluster_policies_module.databricks_cluster_policy.policy
-          elif [[ "${{ env.TF_VAR_databricks_deploy_clusters }}" == "destroy" ]]; then
+          elif [[ "${{ env.TF_VAR_databricks_deploy_cluster_policies }}" == "destroy" ]]; then
             terraform destroy --auto-approve -target=module.cluster_policies_module.databricks_cluster_policy.policy
           fi
 
