@@ -33,7 +33,7 @@ locals {
       type         = "unlimited"
       defaultValue = local.cluster_policy_config.spark_version
     },
-    runtime_engine: {
+    runtime_engine = {
       type: "fixed",
       value: local.cluster_policy_config.runtime_engine,
       hidden: true
@@ -55,7 +55,7 @@ locals {
       type   = "forbidden"
       hidden = true
     },
-    spark_conf.spark.databricks.cluster.profile: {
+    spark_conf.spark.databricks.cluster.profile = {
       type: "fixed",
       value: local.cluster_policy_config.cluster_profile,
       hidden: true
