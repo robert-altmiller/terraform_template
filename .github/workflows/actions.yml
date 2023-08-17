@@ -132,7 +132,7 @@ jobs:
         run: |
           if [[ "${{ env.TF_VAR_databricks_deploy_uc_schema }}" == "true" ]]; then
             terraform apply --auto-approve -target=module.uc_schema_module.databricks_grants.catalog_grants
-            terraform destroy --auto-approve -target=module.uc_schema_module.databricks_schema.schema
+            terraform apply --auto-approve -target=module.uc_schema_module.databricks_schema.schema
             terraform apply --auto-approve -target=module.uc_schema_module.databricks_grants.schema_grants
           elif [[ "${{ env.TF_VAR_databricks_deploy_uc_schema }}" == "destroy" ]]; then
             terraform destroy --auto-approve -target=module.uc_schema_module.databricks_schema.schema
