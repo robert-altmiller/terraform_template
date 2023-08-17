@@ -92,23 +92,16 @@ jobs:
           chmod +x ../terraform/shell_scripts/tf_s3_backend/tf_s3_backend_deploy.sh
           ../terraform/shell_scripts/tf_s3_backend/tf_s3_backend_deploy.sh
 
-      - name: Get Databricks Auth Token
+      - name: Get Databricks Authentication Token
         run: |
-          export TF_VAR_environment="${{env.TF_VAR_environment}}"
           export DATABRICKS_ACCOUNT_ID="${{ env.TF_VAR_databricks_account_id }}"
           export DATABRICKS_CLIENT_ID=$(echo $TF_VAR_databricks_client_ids | jq -r .${{env.TF_VAR_environment}})
           export DATABRICKS_CLIENT_SECRET=$(echo $TF_VAR_databricks_client_secrets | jq -r .${{env.TF_VAR_environment}})
           pip3 install -r ../terraform/python/requirements.txt
           chmod +x ../terraform/python/get_dbricks_token.py
-          # Debugging lines
-          echo "DATABRICKS_ACCOUNT_ID: $DATABRICKS_ACCOUNT_ID"
-          echo "DATABRICKS_CLIENT_ID: $DATABRICKS_CLIENT_ID"
-          echo "DATABRICKS_CLIENT_SECRET: $DATABRICKS_CLIENT_SECRET"
-          # End of debugging lines
           TF_VAR_databricks_token=$(python3 ../terraform/python/get_dbricks_token.py)
           echo "TF_VAR_databricks_token=$TF_VAR_databricks_token" >> $GITHUB_ENV
           echo "TF_VAR_databricks_token: $TF_VAR_databricks_token"
-      
 
       - name: Terraform Validate
         run: |

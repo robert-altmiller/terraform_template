@@ -7,7 +7,7 @@ variable "schema_config_json" {
     "catalog_name": "main",
     "schema_name": "dbo",
     "principal_name": "prod-contributors",
-    "principal_privileges": "USE_SCHEMA"
+    "principal_privileges": "ALL_PRIVILEGES"
   }
   EOT
   }
