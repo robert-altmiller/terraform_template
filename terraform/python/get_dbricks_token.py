@@ -1,5 +1,4 @@
-import os
-import requests
+import os, requests
 from base64 import b64encode
 
 def get_databricks_token():
@@ -24,5 +23,3 @@ def get_databricks_token():
         return response_data["access_token"]
     else:
         raise Exception("Failed to retrieve Databricks token")
-    
-print(get_databricks_token())
