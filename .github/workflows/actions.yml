@@ -94,9 +94,10 @@ jobs:
 
       - name: Get Databricks Auth Token
         run: |
+          export TF_VAR_environment="${TF_VAR_environment:-dev}"
           export DATABRICKS_ACCOUNT_ID="${{ env.TF_VAR_databricks_account_id }}"
-          export DATABRICKS_CLIENT_ID=$(echo $TF_VAR_databricks_client_ids | jq -r .$TF_VAR_environment)
-          export DATABRICKS_CLIENT_SECRET=$(echo $TF_VAR_databricks_client_secrets | jq -r .$TF_VAR_environment)
+          export DATABRICKS_CLIENT_ID=$(echo $TF_VAR_databricks_client_ids | jq -r .${TF_VAR_environment})
+          export DATABRICKS_CLIENT_SECRET=$(echo $TF_VAR_databricks_client_secrets | jq -r .${TF_VAR_environment})
           pip3 install -r ../terraform/python/requirements.txt
           chmod +x ../terraform/python/get_dbricks_token.py
           TF_VAR_databricks_token=$(python3 ../terraform/python/get_dbricks_token.py)
