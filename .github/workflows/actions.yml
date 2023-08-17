@@ -114,27 +114,27 @@ jobs:
       - name: Deploy / Destroy Databricks Clusters
         run: |
           if [[ "${{ env.TF_VAR_databricks_deploy_clusters }}" == "true" ]]; then
-            terraform apply --auto-approve -target=module.cluster_module.databricks_cluster.this
+            terraform apply --auto-approve -target=module.cluster_module.databricks_cluster.create_cluster
           elif [[ "${{ env.TF_VAR_databricks_deploy_clusters }}" == "destroy" ]]; then
-            terraform destroy --auto-approve -target=module.cluster_module.databricks_cluster.this
+            terraform destroy --auto-approve -target=module.cluster_module.databricks_cluster.create_cluster
           fi
 
       - name: Deploy / Destroy Unity Catalog Storage Credential
         run: |
           if [[ "${{ env.TF_VAR_databricks_deploy_uc_storage_credential }}" == "true" ]]; then
             terraform apply --auto-approve -target=module.uc_sc_module.databricks_storage_credential.external
-            terraform apply --auto-approve -target=module.uc_sc_module.databricks_grants.external_creds
+            terraform apply --auto-approve -target=module.uc_sc_module.databricks_grants.credential_grants
           elif [[ "${{ env.TF_VAR_databricks_deploy_uc_storage_credential }}" == "destroy" ]]; then
             terraform destroy --auto-approve -target=module.uc_sc_module.databricks_storage_credential.external
-            terraform destroy --auto-approve -target=module.uc_sc_module.databricks_grants.external_creds
           fi
 
       - name: Deploy / Destroy Unity Catalog Schema
         run: |
           if [[ "${{ env.TF_VAR_databricks_deploy_uc_schema }}" == "true" ]]; then
+            terraform apply --auto-approve -target=module.uc_schema_module.databricks_grants.catalog_grants
             terraform apply --auto-approve -target=module.uc_schema_module.databricks_schema.schema
-            terraform apply --auto-approve -target=module.uc_schema_module.databricks_grants.schema
+            terraform apply --auto-approve -target=module.uc_schema_module.databricks_grants.schema_grants
           elif [[ "${{ env.TF_VAR_databricks_deploy_uc_schema }}" == "destroy" ]]; then
-            terraform destroy --auto-approve -target=module.uc_schema_module.databricks_schema.schema
             terraform destroy --auto-approve -target=module.uc_schema_module.databricks_grants.schema
+            terraform destroy --auto-approve -target=module.uc_schema_module.databricks_grants.catalog_grants
           fi
