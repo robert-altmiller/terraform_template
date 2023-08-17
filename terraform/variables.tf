@@ -71,12 +71,6 @@ variable "databricks_client_secrets" {
   type = map(string)
 }
 
-# # databricks token
-# variable "databricks_tokens" {
-#   description = "Map of Databricks tokens for different environments"
-#   type = map(string)
-# }
-
 # databricks token
 variable "databricks_token" {
   description = "DATABRICKS_AUTH_TOKEN secret passed from Github Actions"
