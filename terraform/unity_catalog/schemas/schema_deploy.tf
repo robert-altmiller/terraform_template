@@ -1,10 +1,10 @@
 
-# databricks_grants on catalog (UC)
+# grant use schema to the service principal (e.g. catalog_grants)
 resource "databricks_grants" "catalog_grants" {
-  provider = databricks.account
+  provider = databricks.workspace
   catalog = local.schema_config.catalog_name
   grant {
-    principal  = var.databricks_client_id
+    principal  = local.schema_config.schema_principal_name
     privileges = local.schema_config.catalog_principal_privileges
   }
 }
