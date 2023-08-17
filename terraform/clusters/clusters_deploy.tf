@@ -12,7 +12,7 @@ data "databricks_spark_version" "latest_lts" {
   latest = true
 }
 
-resource "databricks_cluster" "this" {
+resource "databricks_cluster" "create_cluster" {
   count                   = var.databricks_deploy_clusters == "true" ? 1 : 0 # used as a conditional
   provider                = databricks.workspace
   cluster_name            = "${local.cluster_config.cluster_name}-${var.environment}"

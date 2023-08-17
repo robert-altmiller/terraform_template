@@ -1,5 +1,5 @@
 
-# grant use schema to the service principal (e.g. catalog_grants)
+# databricks_grants on catalog (UC)
 resource "databricks_grants" "catalog_grants" {
   provider = databricks.workspace
   catalog = local.schema_config.catalog_name
@@ -18,7 +18,7 @@ resource "databricks_schema" "schema" {
 }
 
 # databricks_grants on schema (UC)
-resource "databricks_grants" "schema" {
+resource "databricks_grants" "schema_grants" {
   provider = databricks.workspace
   schema = "${local.schema_config.catalog_name}.${local.schema_config.schema_name }"
   grant {
