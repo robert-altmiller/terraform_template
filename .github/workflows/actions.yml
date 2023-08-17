@@ -94,8 +94,7 @@ jobs:
           
       - name: Terraform Plan
         run: |
-          export TF_LOG=DEBUG
-          terraform plan | grep -E '^\s*[#~+-]'
+          terraform plan
 
       - name: Deploy / Destroy Databricks Clusters
         run: |
