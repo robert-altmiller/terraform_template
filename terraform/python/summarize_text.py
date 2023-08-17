@@ -3,7 +3,7 @@ import sys
 
 def summarize_text(text):
     model_name = "amazon/FalconLite"
-    model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
+    model = AutoModelForSeq2SeqLM.from_pretrained(model_name, trust_remote_code=True)
     tokenizer = AutoTokenizer.from_pretrained(model_name)
 
     # Encode the text and generate the summary
