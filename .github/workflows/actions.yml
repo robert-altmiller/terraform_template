@@ -96,8 +96,9 @@ jobs:
         run: terraform plan
           
       - name: Terraform Plan Summary
-      
+
         run: |
+          pip install transformers
           chmod +x ../terraform/tf_plan_summary.sh
           ../terraform/tf_plan_summary.sh
 
