@@ -91,11 +91,16 @@ jobs:
         run: |
           export TF_LOG=DEBUG
           terraform validate
-      
-      - name: Terraform Plan
+
+      - name: Terraform Plan Summary
         run: |
-          export TF_LOG=DEBUG
-          terraform plan
+          chmod +x ../terraform/summarize_plan.sh
+          ../terraform/summarize_plan.sh
+          
+      # - name: Terraform Plan
+      #   run: |
+      #     export TF_LOG=DEBUG
+      #     terraform plan
 
       - name: Deploy / Destroy Databricks Clusters
         run: |
