@@ -5,10 +5,10 @@ variable "schema_config_json" {
     default     = <<EOT
   {
     "catalog_name": "main",
-    "catalog_principal_privileges": "USE_SCHEMA, CREATE_SCHEMA",
+    "catalog_principal_privileges": ["USE_SCHEMA", "CREATE_SCHEMA"],
     "schema_name": "dbo",
     "schema_principal_name": "prod-contributors",
-    "schema_principal_privileges": "ALL_PRIVILEGES"
+    "schema_principal_privileges": ["ALL_PRIVILEGES"]
   }
   EOT
   }

@@ -15,6 +15,6 @@ resource "databricks_grants" "external_creds" {
   storage_credential = databricks_storage_credential.external.id
   grant {
     principal  = local.sc_config.principal_name
-    privileges = [local.sc_config.principal_privileges]
+    privileges = local.sc_config.principal_privileges
   }
 }

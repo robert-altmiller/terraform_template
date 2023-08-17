@@ -5,7 +5,7 @@ resource "databricks_grants" "catalog_grants" {
   catalog = local.schema_config.catalog_name
   grant {
     principal  = local.schema_config.schema_principal_name
-    privileges = [local.schema_config.catalog_principal_privileges]
+    privileges = local.schema_config.catalog_principal_privileges
   }
 }
 
@@ -23,6 +23,6 @@ resource "databricks_grants" "schema" {
   schema = "${local.schema_config.catalog_name}.${local.schema_config.schema_name }"
   grant {
     principal  = local.schema_config.schema_principal_name
-    privileges = [local.schema_config.schema_principal_privileges]
+    privileges = local.schema_config.schema_principal_privileges
   }
 }
