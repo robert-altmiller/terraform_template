@@ -69,8 +69,8 @@ jobs:
 
       - name: Create Terraform Init Backend Configuration
         run: |
-          BACKEND_BUCKET_DEV=$(jq -r .backend_bucket_dev < ../terraform/backend_config.json)
-          BACKEND_BUCKET_PROD=$(jq -r .backend_bucket_prod < ../terraform/backend_config.json)
+          BACKEND_BUCKET_DEV=$(jq -r .backend_bucket_dev < ~/terraform/backend_config.json)
+          BACKEND_BUCKET_PROD=$(jq -r .backend_bucket_prod < ~/terraform/backend_config.json)
           echo "BACKEND_BUCKET_DEV=$BACKEND_BUCKET_DEV" >> $GITHUB_ENV
           echo "BACKEND_BUCKET_PROD=$BACKEND_BUCKET_PROD" >> $GITHUB_ENV
 
