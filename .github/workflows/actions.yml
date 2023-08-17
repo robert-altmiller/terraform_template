@@ -41,7 +41,7 @@ jobs:
       TF_VAR_databricks_instances: '{"dev": "${{ secrets.DATABRICKS_INSTANCE_DEV }}", "prod": "${{ secrets.DATABRICKS_INSTANCE_PROD }}"}'
       TF_VAR_databricks_client_ids: '{"dev": "${{ secrets.DATABRICKS_CLIENT_ID_DEV }}", "prod": "${{ secrets.DATABRICKS_CLIENT_ID_PROD }}"}'
       TF_VAR_databricks_client_secrets: '{"dev": "${{ secrets.DATABRICKS_CLIENT_SECRET_DEV }}", "prod": "${{ secrets.DATABRICKS_CLIENT_ID_SECRET_PROD }}"}'
-      TF_VAR_databricks_tokens: '{"dev": "${{ secrets.DATABRICKS_TOKEN_DEV }}", "prod": "${{ secrets.DATABRICKS_TOKEN_PROD }}"}'
+      # TF_VAR_databricks_tokens: '{"dev": "${{ secrets.DATABRICKS_TOKEN_DEV }}", "prod": "${{ secrets.DATABRICKS_TOKEN_PROD }}"}'
       TF_VAR_databricks_admin_login: ${{ secrets.DATABRICKS_ADMIN_LOGIN }}
       TF_VAR_databricks_admin_password: ${{ secrets.DATABRICKS_ADMIN_PASSWORD }}
       TF_VAR_github_actor: ${{ github.actor }} # username for tagging of resources
@@ -100,7 +100,7 @@ jobs:
           pip3 install -r ../terraform/python/requirements.txt
           chmod +x ../terraform/python/get_dbricks_token.py
           DATABRICKS_AUTH_TOKEN=$(python3 ../terraform/python/get_dbricks_token.py)
-          echo "DATABRICKS_AUTH_TOKEN=$DATABRICKS_AUTH_TOKEN" >> $GITHUB_ENV
+          echo "DATABRICKS_AUTH_TOKEN=$TF_VAR_databricks_token" >> $GITHUB_ENV
 
       - name: Terraform Validate
         run: |
