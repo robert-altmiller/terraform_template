@@ -4,7 +4,9 @@ variable "cluster_policy_config_json" {
     default     = <<EOT
   {
     "cluster_policy_name": "personal-compute-policy",
+    "cluster_profile: "singleNode"
     "cluster_type": "all-purpose",
+    "runtime_engine": "STANDARD"
     "node_type_id": ["i3.xlarge", "i3.2xlarge"],
     "spark_version": "auto:latest-ml",
     "min_workers": 1,
@@ -31,14 +33,14 @@ locals {
       type         = "unlimited"
       defaultValue = local.cluster_policy_config.spark_version
     },
-    runtime_engine = {
-      type   = "fixed"
-      value  = local.cluster_policy_config.spark_version
-      hidden = true
+    runtime_engine: {
+      type: "fixed",
+      value: local.cluster_policy_config.runtime_engine,
+      hidden: true
     },
     num_workers = {
       type   = "fixed"
-      value  = local.cluster_policy_config.spark_version
+      value  = local.cluster_policy_config.min_workers
       hidden = true
     },
     driver_instance_pool_id = {
@@ -53,11 +55,11 @@ locals {
       type   = "forbidden"
       hidden = true
     },
-    spark_conf_spark_databricks_cluster_profile = {
-      type   = "fixed"
-      value  = "singleNode"
-      hidden = true
-    },
+    spark_conf.spark.databricks.cluster.profile: {
+      type: "fixed",
+      value: local.cluster_policy_config.cluster_profile,
+      hidden: true
+  },
     autotermination_minutes = {
       type       = "unlimited"
       defaultValue = local.cluster_policy_config.auto_termination_mins
