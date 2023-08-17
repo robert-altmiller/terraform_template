@@ -1,7 +1,7 @@
 
 # databricks_grants on catalog (UC)
 resource "databricks_grants" "catalog_grants" {
-  provider = databricks.workspace
+  provider = databricks.account
   catalog = local.schema_config.catalog_name
   grant {
     principal  = var.databricks_client_id
