@@ -2,9 +2,9 @@ import os, requests, json
 from base64 import b64encode
 
 def get_databricks_token():
-    account_id = os.environ["DATABRICKS_ACCOUNT_ID"]
-    client_id = os.environ["DATABRICKS_CLIENT_ID"]
-    client_secret = os.environ["DATABRICKS_CLIENT_SECRET"]
+    account_id = os.environ.get("DATABRICKS_ACCOUNT_ID")
+    client_id = os.environ.get("DATABRICKS_CLIENT_ID")
+    client_secret = os.environ.get(+"DATABRICKS_CLIENT_SECRET")
 
     token_url = f"https://accounts.cloud.databricks.com/oidc/accounts/{account_id}/v1/token"
     headers = {
@@ -18,6 +18,5 @@ def get_databricks_token():
 
     response = requests.post(token_url, headers=headers, data=payload)
     response_data = response.json()
-
-    if "access_token" in response_data:
-        print(response_data["access_token"])
+    print(response_data["access_token"])
+    # if "access_token" in response_data:
