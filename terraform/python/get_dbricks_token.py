@@ -18,5 +18,6 @@ def get_databricks_token():
 
     response = requests.post(token_url, headers=headers, data=payload)
     response_data = response.json()
-    print(response_data["access_token"])
-    # if "access_token" in response_data:
+    if "access_token" in response_data:
+        print(response_data["access_token"])
+    else: print("could not get access token")
