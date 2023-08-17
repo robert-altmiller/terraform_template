@@ -21,3 +21,6 @@ def get_databricks_token():
     if "access_token" in response_data:
         print(response_data["access_token"])
     else: print("could not get access token")
+
+if __name__ == "__main__":
+    get_databricks_token()
