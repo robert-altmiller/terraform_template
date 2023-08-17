@@ -55,11 +55,11 @@ locals {
       type   = "forbidden"
       hidden = true
     },
-    spark_conf.spark.databricks.cluster.profile = {
+    spark_conf_spark_databricks_cluster_profile = {
       type: "fixed",
       value: local.cluster_policy_config.cluster_profile,
       hidden: true
-  },
+    },
     autotermination_minutes = {
       type       = "unlimited"
       defaultValue = local.cluster_policy_config.auto_termination_mins
