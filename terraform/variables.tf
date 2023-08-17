@@ -82,7 +82,13 @@ variable "databricks_deploy_clusters" {
   description = "create and deploy databricks clusters"
   type = string
   default = "false"
+}
 
+# databricks deploy cluster policies
+variable "databricks_deploy_cluster_policies" {
+  description = "create and deploy databricks cluster policies"
+  type = string
+  default = "false"
 }
 
 # databricks deploy uc storage credential
