@@ -69,8 +69,8 @@ jobs:
 
       - name: Create Terraform Init Backend Configuration
         run: |
-          BACKEND_BUCKET_DEV=$(jq -r .backend_bucket_dev < ~/terraform/backend_config.json)
-          BACKEND_BUCKET_PROD=$(jq -r .backend_bucket_prod < ~/terraform/backend_config.json)
+          BACKEND_BUCKET_DEV=$(jq -r .backend_bucket_dev < ~/terraform/shell_scripts/tf_s3_backend/tf_s3_backend_config.json)
+          BACKEND_BUCKET_PROD=$(jq -r .backend_bucket_prod < ~/terraform/shell_scripts/tf_s3_backend/tf_s3_backend_config.json)
           echo "BACKEND_BUCKET_DEV=$BACKEND_BUCKET_DEV" >> $GITHUB_ENV
           echo "BACKEND_BUCKET_PROD=$BACKEND_BUCKET_PROD" >> $GITHUB_ENV
 
@@ -89,8 +89,8 @@ jobs:
           export AWS_REGION="${{ env.TF_VAR_aws_region }}"
           export ACCESS_KEY="${{ env.TF_VAR_aws_access_key_id }}"
           export SECRET_KEY="${{ env.TF_VAR_aws_access_key_secret}}"
-          chmod +x ~/terraform/shell_scripts/terraform_s3_backend/tf_s3_backend_deploy.sh
-          ~/terraform/shell_scripts/terraform_s3_backend/tf_s3_backend_deploy.sh
+          chmod +x ~/terraform/shell_scripts/tf_s3_backend/tf_s3_backend_deploy.sh
+          ~/terraform/shell_scripts/tf_s3_backend/tf_s3_backend_deploy.sh
 
       - name: Get Databricks Auth Token
         run: |
