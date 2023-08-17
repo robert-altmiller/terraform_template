@@ -3,7 +3,7 @@ variable "cluster_policy_config_json" {
     type        = string
     default     = <<EOT
   {
-    "cluster_policy_name": "personal-computer-policy",
+    "cluster_policy_name": "personal-compute-policy",
     "cluster_type": "all-purpose",
     "node_type_id": ["i3.xlarge", "i3.2xlarge"],
     "spark_version": "auto:latest-ml",
