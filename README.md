@@ -40,7 +40,7 @@
 
 ### Step 2: In the Databricks admin console create 3 groups for dev, and 3 groups for prod workspaces and a service principle for each workspace.
 
-- Create the following groups: 'dev-readers', 'dev-contributors', 'dev-admin', 'prod-readers', 'prod-contributors', and 'prod-admins'
+- Create the following groups: 'dev-readers', 'dev-contributors', 'dev-admins', 'prod-readers', 'prod-contributors', and 'prod-admins'
 
 ![dbricks_prerequisite2a.jpg](/readme_images/dbricks_prerequisite2a.jpg)
 
