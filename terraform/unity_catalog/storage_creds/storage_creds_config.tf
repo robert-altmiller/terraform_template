@@ -6,8 +6,8 @@ variable "sc_config_json" {
   {
     "sc_name": "my-storage-creds7",
     "sc_role_arn": "arn:aws:iam::969341422355:role/s3-dbricks-prod-bucket-role",
-    "principal_name": "contributors",
-    "principal_privileges": ["ALL_PRIVILEGES"]
+    "sc_principal_name": "contributors",
+    "sc_principal_privileges": ["ALL_PRIVILEGES"]
   }
   EOT
   }

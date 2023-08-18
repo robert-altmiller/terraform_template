@@ -14,8 +14,8 @@ variable "cluster_policy_config_json" {
     "min_workers": 1,
     "max_workers": 2,
     "auto_termination_mins": 60,
-    "principal_name": "contributors",
-    "principal_privileges": "CAN_USE"
+    "cluster_policy_principal_name": "contributors",
+    "cluster_policy_principal_privileges": "CAN_USE"
   }
     EOT
 }
