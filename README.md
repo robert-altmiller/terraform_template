@@ -70,13 +70,13 @@
 
 ### Step 3: Add service principals to groups and grant groups permission to access, modify, and update Databricks workspace resources
 
-- Add 'dev' and 'prod' service principals to groups in 'my-workspace-prod' Databricks workspace.
+- Add 'dev' and 'prod' service principals to the 'prod-admins' group, and add the 'prod-contributors' group into the 'prod-readers' group in the 'my-workspace-prod' Databricks workspace.
 
 ![dbricks_prerequisite4a.jpg](/readme_images/dbricks_prerequisite4a.jpg)
 
 ![dbricks_prerequisite4b.jpg](/readme_images/dbricks_prerequisite4b.jpg)
 
-- Add entitlements 'Allow cluster creation', 'Databricks SQL access' and 'Workspace access' to service 'prod' service principal in 'my-workspace-prod' Databricks workspace.
+- Add entitlements 'Allow cluster creation', 'Databricks SQL access' and 'Workspace access' to service 'prod' service principal in the 'my-workspace-prod' Databricks workspace.
 
 ![dbricks_prerequisite4c.jpg](/readme_images/dbricks_prerequisite4c.jpg)
 
