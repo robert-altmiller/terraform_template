@@ -66,7 +66,11 @@
 
 ![dbricks_prerequisite3d.jpg](/readme_images/dbricks_prerequisite3d.jpg)
 
-### IMPORTANT: DO THE SAME STEPS ABOVE FOR THE 'my-workspace-dev' DATABRICKS WORKSPACE!
+### IMPORTANT: Do the same steps above in 'step 2' for the 'my-workspace-dev' Databricks workspace.
+
+### Step 3: Add group permissions to Databricks workspace resources
+
+
 
 ### Appendix
 
