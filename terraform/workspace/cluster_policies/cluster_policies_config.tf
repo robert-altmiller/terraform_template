@@ -54,7 +54,7 @@ locals {
       type   = "forbidden",
       hidden = true
     },
-    spark_conf_spark_databricks_cluster_profile = {
+    "spark.conf.spark.databricks.cluster.profile" = {
       type: "fixed",
       value: local.cluster_policy_config.cluster_profile,
       hidden: true
