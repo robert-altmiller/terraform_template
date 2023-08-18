@@ -10,7 +10,7 @@
 
 - You can also create two brand new dev and prod AWS Databricks workspaces, create service principals and groups for each of those workspaces in the Databricks account console, update all secrets in a forked github repo, and run the terraform template to deploy clusters, cluster policies, unity catalog schemas and storage credentials.  After you get this working and understand the structure of this Terraform template.  It can easily be extended to deploy additional Databricks account and workspace level resources.
 
-- See the end of this README.md for details about how to setup two brand new Databricks workspaces, groups, service principals, and resource grants prior to Terraform template execution.
+- See the end of this 'README.md' for details about how to setup two brand new Databricks workspaces, groups, service principals, and resource grants prior to Terraform template execution.
 
 ## How do I run the Github workflow?
 
@@ -29,6 +29,12 @@
 ![monitor_workflows2.jpg](/readme_images/monitor_workflows2.jpg)
 
 ![monitor_workflows3.jpg](/readme_images/monitor_workflows3.jpg)
+
+## How do I setup dev and prod Databricks workspaces for Terraform Template?
+
+### Step 1: Deploy two workspaces through the Databricks admin console using the quickstart (recommended) option
+
+![dbricks_prerequisite1.jpg](/readme_images/dbricks_prerequisite1.jpg)
 
 ### Appendix
 
