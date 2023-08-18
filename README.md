@@ -2,9 +2,7 @@
 
 ### This repo contains a Terraform deployment methodology that makes it easy to deploy Databricks resources in blocks that can be enabled, disabled or destroyed at Github workflow runtime while maintaining a single instance of the terraform state file across environments (e.g. dev/prod).  In the workflow manual run parameters you can set the deployment environment to dev or prod.  Each of these environments will be managed with it's own 'Terraform.tfstate' json file in separate AWS S3 buckets for dev and prod environments.  Within the chosen environment you can select to deploy or destroy the following resources: clusters, cluster policies, unity catalog schema, and unity catalog storage credentials.  We have implemented some best practices for parameterization and abstacted away the secrets in the Github repository secrets.
 
-### Link to Github repository
-
-- https://github.com/robert-altmiller/nationwide_terraform
+### Link to Github repository: https://github.com/robert-altmiller/nationwide_terraform
  
 ### Different ways to use this Terraform template
 
