@@ -66,6 +66,8 @@
 
 ![dbricks_prerequisite3d.jpg](/readme_images/dbricks_prerequisite3d.jpg)
 
+### IMPORTANT: DO THE SAME STEPS ABOVE FOR THE 'my-workspace-dev' DATABRICKS WORKSPACE!
+
 ### Appendix
 
 [How to setup a storage credential on AWS](https://docs.databricks.com/en/data-governance/unity-catalog/manage-external-locations-and-credentials.html#manage-storage-credentials)
