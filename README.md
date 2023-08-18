@@ -1,4 +1,4 @@
-## Nationwide Github Actions Terraform Deployment Template
+## Github Actions Terraform Deployment Template
 
 ### This repo contains a Terraform deployment methodology that makes it easy to deploy Databricks resources in modularized blocks that can be 'enabled', 'destroyed' or 'ignored' at Github workflow runtime while maintaining a single instance of the terraform state file across environments (e.g. dev / prod).  
 
