@@ -12,8 +12,6 @@ variable "cluster_policy_config_json" {
     "min_workers": 1,
     "max_workers": 2,
     "auto_termination_mins": 60,
-    "runtime_engine": "STANDARD"
-
   }
   EOT
   }
