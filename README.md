@@ -66,7 +66,7 @@
 
 ![dbricks_prerequisite3d.jpg](/readme_images/dbricks_prerequisite3d.jpg)
 
-#### **** IMPORTANT: **** Do the same steps above in 'step 2' for the 'my-workspace-dev' Databricks workspace ****
+#### **** IMPORTANT **** Do the same steps above in 'step 2' for the 'my-workspace-dev' Databricks workspace.
 
 ### Step 3: Add service principals to groups and grant groups permission to access, modify, and update Databricks workspace resources
 
@@ -84,7 +84,7 @@
 
 ![dbricks_prerequisite4d.jpg](/readme_images/dbricks_prerequisite4d.jpg)
 
-#### **** IMPORTANT: **** Do the same steps above in 'step 3' for the 'my-workspace-dev' Databricks workspace ****
+#### **** IMPORTANT *** Do the same steps above in 'step 3' for the 'my-workspace-dev' Databricks workspace.
 
 #### Once you have completed all these steps above you will be ready to run this Terraform template out of the box.
 
