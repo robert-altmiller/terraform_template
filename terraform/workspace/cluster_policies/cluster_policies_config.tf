@@ -9,6 +9,7 @@ variable "cluster_policy_config_json" {
     "runtime_engine": "STANDARD",
     "node_type_id": ["i3.xlarge", "i3.2xlarge"],
     "spark_version": "auto:latest-ml",
+    "num_workers": 0
     "min_workers": 1,
     "max_workers": 2,
     "auto_termination_mins": 60
@@ -39,7 +40,7 @@ locals {
     },
     num_workers = {
       type   = "fixed",
-      value  = local.cluster_policy_config.min_workers,
+      value  = local.cluster_policy_config.num_workers,
       hidden = true
     },
     driver_instance_pool_id = {
@@ -54,7 +55,7 @@ locals {
       type   = "forbidden",
       hidden = true
     },
-    "spark.conf.spark.databricks.cluster.profile" = {
+    "spark_conf.spark.databricks.cluster.profile" = {
       type: "fixed",
       value: local.cluster_policy_config.cluster_profile,
       hidden: true
