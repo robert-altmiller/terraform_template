@@ -8,10 +8,10 @@ variable "environment" {
   type        = string
 }
 
-variable "databricks_account_id" {
-  description = "databricks account id"
-  type        = string
-}
+# variable "databricks_account_id" {
+#   description = "databricks account id"
+#   type        = string
+# }
 
 variable "databricks_instance" {
   description = "databricks instance url"
@@ -45,7 +45,7 @@ variable "databricks_token" {
 
 # ----------variables for module instantiation----------
 
-variable "databricks_deploy_uc_storage_credential" {
-  description = "Set to true to execute the unity catalog  module, false to skip."
+variable "databricks_deploy_clusters" {
+  description = "Set to true to execute the cluster module, false to skip."
   type        = string
 }

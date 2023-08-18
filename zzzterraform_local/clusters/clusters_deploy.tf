@@ -6,16 +6,18 @@ data "databricks_node_type" "smallest" {
 
 # Use the latest Databricks Runtime
 # Long Term Support (LTS) version.
-# data "databricks_spark_version" "latest_lts" {
-#   provider = databricks.mws
-#   ml = true
-# }
+data "databricks_spark_version" "latest_lts" {
+  provider = databricks.workspace
+  ml = true
+  latest = true
+}
 
 resource "databricks_cluster" "this" {
+  count                   = var.databricks_deploy_clusters == "true" ? 1 : 0
   provider                = databricks.workspace
-  cluster_name            = "${local.cluster_config.cluster_name}-${local.environment}"
+  cluster_name            = "${local.cluster_config.cluster_name}-${var.environment}"
   node_type_id            = data.databricks_node_type.smallest.id
-  spark_version           = "12.2.x-scala2.12" #data.databricks_spark_version.latest_lts.id
+  spark_version           =  data.databricks_spark_version.latest_lts.id
   autotermination_minutes = format("%d", local.cluster_config.auto_termination_mins)
   num_workers             = format("%d", local.cluster_config.min_workers)
   
@@ -25,12 +27,7 @@ resource "databricks_cluster" "this" {
   }
   
   custom_tags = {
-    environment = local.environment
-    owner       = local.github_actor
+    environment = var.environment
+    owner       = var.github_actor
   }
-}
-
-# output cluster url to check if cluster was created successfully
-output "cluster_url" {
- value = databricks_cluster.this.url
 }

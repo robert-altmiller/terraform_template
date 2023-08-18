@@ -25,3 +25,5 @@
 [How to setup a storage credential on AWS](https://docs.databricks.com/en/data-governance/unity-catalog/manage-external-locations-and-credentials.html#manage-storage-credentials)
 
 [Dropdown for GitHub workflows input parameters](https://arthurbdiniz.com/github/actions/workflows/2021/10/23/gh-action-dropdown.html)
+
+[How to use foreach with Databricks grants](https://discuss.hashicorp.com/t/how-to-use-for-each-with-databricks-grants-resource/54592)
