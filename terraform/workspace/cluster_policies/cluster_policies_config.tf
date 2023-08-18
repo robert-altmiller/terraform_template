@@ -25,12 +25,12 @@ variable "cluster_policy_config_json" {
 locals {
   cluster_policy_details = {
     node_type_id = {
-      type         = "allowlist"
-      values       = local.cluster_policy_config.node_type_id
+      type         = "allowlist",
+      values       = local.cluster_policy_config.node_type_id,
       defaultValue = "i3.xlarge"
     },
     spark_version = {
-      type         = "unlimited"
+      type         = "unlimited",
       defaultValue = local.cluster_policy_config.spark_version
     },
     runtime_engine = {
@@ -39,20 +39,20 @@ locals {
       hidden: true
     },
     num_workers = {
-      type   = "fixed"
-      value  = local.cluster_policy_config.min_workers
+      type   = "fixed",
+      value  = local.cluster_policy_config.min_workers,
       hidden = true
     },
     driver_instance_pool_id = {
-      type   = "forbidden"
+      type   = "forbidden",
       hidden = true
     },
     cluster_type = {
-      type  = "fixed"
+      type  = "fixed",
       value = local.cluster_policy_config.cluster_type
     },
     instance_pool_id = {
-      type   = "forbidden"
+      type   = "forbidden",
       hidden = true
     },
     spark_conf_spark_databricks_cluster_profile = {
@@ -61,8 +61,8 @@ locals {
       hidden: true
     },
     autotermination_minutes = {
-      type       = "unlimited"
-      defaultValue = local.cluster_policy_config.auto_termination_mins
+      type       = "unlimited",
+      defaultValue = local.cluster_policy_config.auto_termination_mins,
       isOptional = true
     }
   }
