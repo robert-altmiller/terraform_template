@@ -76,7 +76,7 @@
 
 ![dbricks_prerequisite4b.jpg](/readme_images/dbricks_prerequisite4b.jpg)
 
-- Add entitlements 'allow cluster creation', 'databricks sql access' and 'workspace access' to service 'prod' service principal in 'my-workspace-prod' Databricks workspace.
+- Add entitlements 'Allow cluster creation', 'Databricks SQL access' and 'Workspace access' to service 'prod' service principal in 'my-workspace-prod' Databricks workspace.
 
 ![dbricks_prerequisite4c.jpg](/readme_images/dbricks_prerequisite4c.jpg)
 
