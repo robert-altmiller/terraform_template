@@ -54,15 +54,15 @@
 
 ![dbricks_prerequisite3a.jpg](/readme_images/dbricks_prerequisite3a.jpg)
 
-- Open the 'Admin Settings' after logging into 'my-workspace-prod'
+- Open the 'Admin Settings' after logging into the 'my-workspace-prod' Databricks workspace
 
 ![dbricks_prerequisite3b.jpg](/readme_images/dbricks_prerequisite3b.jpg)
 
-- Add the 'prod' groups to 'my-workspace-prod' Databricks workspace
+- Add the 'prod' groups to the 'my-workspace-prod' Databricks workspace
 
 ![dbricks_prerequisite3c.jpg](/readme_images/dbricks_prerequisite3c.jpg)
 
-- Add the 'prod' service principal to 'my-workspace-prod' Databricks workspace
+- Add the 'prod' service principal to the 'my-workspace-prod' Databricks workspace
 
 ![dbricks_prerequisite3d.jpg](/readme_images/dbricks_prerequisite3d.jpg)
 
