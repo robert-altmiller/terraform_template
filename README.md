@@ -20,9 +20,9 @@
 
 ### Different ways to use this Terraform template
 
-- Template can be used as a reference for how to structure and organize deployments of Databricks account and workspace level resources in a modular fashion.  By modularity we mean you can choose what Databricks resources to deploy, ingnore, or destroy in a single Github workflow run while maintaining updates and changes to one single 'terraform.tfstate' json file.
+- Template can be used as a reference for how to structure and organize deployments of Databricks account and workspace level resources in a modular fashion.  By modularity we mean you can choose what Databricks resources to deploy, ignore, or destroy in a single Github Actions workflow run while maintaining updates and changes to one single 'terraform.tfstate' json file in an AWS S3 bucket.
 
-- You can also create two brand new dev and prod AWS Databricks workspaces, create service principals and groups for each of those workspaces in the Databricks account console, update all secrets in a forked github repo, and run the terraform template to deploy clusters, cluster policies, unity catalog schemas and storage credentials.  After you get this working and understand the structure of this Terraform template.  It can easily be extended to deploy additional Databricks account and workspace level resources.
+- You can also create two brand new 'dev' and 'prod' AWS Databricks workspaces, create service principals and groups for each of those workspaces in the Databricks account console, update all secrets in a forked github repo, and run the terraform template to deploy clusters, cluster policies, unity catalog schemas and storage credentials.  After you get this working and understand the structure of this Terraform template it can easily be extended to deploy additional Databricks account and workspace level resources.
 
 - See the end of this 'README.md' for details about how to setup two brand new Databricks workspaces, groups, service principals, and resource grants prior to Terraform template execution.
 
