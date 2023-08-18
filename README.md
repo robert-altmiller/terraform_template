@@ -6,7 +6,7 @@
 
 ### Step 1: In order to run the Terraform code in this repository you will need to first set the secret values under the Github repo settings
 
-![github_secrets.png](/readme_images/github_secrets.jpg)
+![github_secret.png](/readme_images/github_secret.jpg)
 
 ### Step 2: Run the Github workflow to deploy cluster to Databricks workspace
 
@@ -14,11 +14,11 @@
 
 ### Step 3: Monitor Github workflow for deployment progress status
 
-![monitor_workflow1.jpg](/readme_images/monitor_workflow1.jpg)
+![monitor_workflows1.jpg](/readme_images/monitor_workflows1.jpg)
 
-![monitor_workflow2.jpg](/readme_images/monitor_workflow2.jpg)
+![monitor_workflows2.jpg](/readme_images/monitor_workflows2.jpg)
 
-![monitor_workflow3.jpg](/readme_images/monitor_workflow3.jpg)
+![monitor_workflows3.jpg](/readme_images/monitor_workflows3.jpg)
 
 ### Appendix
 
