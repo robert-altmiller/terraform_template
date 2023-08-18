@@ -6,13 +6,13 @@ variable "cluster_policy_config_json" {
     "cluster_policy_name": "personal-compute-policy",
     "cluster_profile: "singleNode"
     "cluster_type": "all-purpose",
-    "runtime_engine": "STANDARD"
+    "runtime_engine": "STANDARD",
     "node_type_id": ["i3.xlarge", "i3.2xlarge"],
     "spark_version": "auto:latest-ml",
     "min_workers": 1,
     "max_workers": 2,
     "auto_termination_mins": 60,
-    "runtime_engine": "standard"
+    "runtime_engine": "STANDARD"
 
   }
   EOT
