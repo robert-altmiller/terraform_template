@@ -44,6 +44,8 @@
 
 ![monitor_workflows3.jpg](/readme_images/monitor_workflows3.jpg)
 
+![monitor_workflows4.jpg](/readme_images/monitor_workflows4.jpg)
+
 ## How do I setup 'dev' and 'prod' AWS Databricks workspaces for Terraform template?
 
 ### Prerequisites: Access to the AWS Admin Console
