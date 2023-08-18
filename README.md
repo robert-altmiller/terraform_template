@@ -12,17 +12,17 @@
 
 - See the end of this README.md for details about how to setup two brand new Databricks workspaces, groups, service principals, and resource grants prior to Terraform template execution.
 
-### How do I run the Github workflow?
+## How do I run the Github workflow?
 
-#### Step 1: In order to run the Terraform code in this repository you will need to first set the secret values under the Github repo settings
+### Step 1: In order to run the Terraform code in this repository you will need to first set the secret values under the Github repo settings
 
 ![github_secret.png](/readme_images/github_secret.jpg)
 
-#### Step 2: Run the Github workflow to deploy cluster to Databricks workspace
+### Step 2: Run the Github workflow to deploy cluster to Databricks workspace
 
 ![run_workflow.jpg](/readme_images/run_workflow.jpg)
 
-#### Step 3: Monitor Github workflow for deployment progress status
+### Step 3: Monitor Github workflow for deployment progress status
 
 ![monitor_workflows1.jpg](/readme_images/monitor_workflows1.jpg)
 
