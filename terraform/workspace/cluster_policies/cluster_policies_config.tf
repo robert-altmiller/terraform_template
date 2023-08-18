@@ -14,7 +14,7 @@ variable "cluster_policy_config_json" {
     "max_workers": 2,
     "auto_termination_mins": 60,
     "principal_name": "prod-contributors",
-    "principal_privileges": ["CAN_MANAGE"]
+    "principal_privileges": "CAN_MANAGE"
   }
     EOT
 }
