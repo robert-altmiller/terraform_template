@@ -24,7 +24,6 @@ on:
         required: true
         default: '[false],true,destroy' # install chrome extension for drop down menu (see readme)
 
-
   push:
     branches:
       - main
@@ -59,8 +58,6 @@ jobs:
       TF_VAR_databricks_deploy_uc_storage_credential: ${{ github.event.inputs.DEPLOY_UC_STORAGE_CRED || 'false' }}
       # if running workflow manually then you can deploy uc storage credentials
       TF_VAR_databricks_deploy_uc_schema: ${{ github.event.inputs.DEPLOY_UC_SCHEMA || 'false' }}
-
-
 
     steps:
 
