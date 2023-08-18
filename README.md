@@ -1,12 +1,11 @@
 ## Nationwide Terraform Deployment Template
 
-### This repo contains a Terraform deployment methodology that makes it easy to deploy Databricks resources in blocks that can be enabled, disabled or destroyed at Github workflow runtime while maintaining a single instance of the terraform state file across environments (e.g. dev/prod).  In the workflow manual run parameters you can set the deployment environment to dev or prod.  Each of these environments will be managed with it's own 'Terraform.tfstate' json file in separate AWS S3 buckets for dev and prod environments.  Within the chosen environment you can select to deploy or destroy the following resources: clusters, cluster policies, unity catalog schema, and unity catalog storage credentials.  We have implemented some best practices for parameterization and abstacted away the secrets in the Github repository secrets.
+#### This repo contains a Terraform deployment methodology that makes it easy to deploy Databricks resources in blocks that can be enabled, disabled or destroyed at Github workflow runtime while maintaining a single instance of the terraform state file across environments (e.g. dev/prod).  In the workflow manual run parameters you can set the deployment environment to dev or prod.  Each of these environments will be managed with it's own 'Terraform.tfstate' json file in separate AWS S3 buckets for dev and prod environments.  Within the chosen environment you can select to deploy or destroy the following resources: clusters, cluster policies, unity catalog schema, and unity catalog storage credentials.  We have implemented some best practices for parameterization and abstacted away the secrets in the Github repository secrets.
 
 ### Link to Github repo: https://github.com/robert-altmiller/nationwide_terraform
  
-### Prequisites to use this terraform template
 
-### This Terraform template can be used in a variety of ways
+### Different ways to use this Terraform template
 
 - It can be used as a reference for how to structure and organize deployments of Databricks account and workspace level resources in a modular fashion.  By modularity we mean you can choose what Databricks resources to deploy, ingnore, or destroy in a single Github workflow run while maintaining updates and changes to one single terraform.tfstate json file.
 
