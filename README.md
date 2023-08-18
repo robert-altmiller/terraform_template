@@ -6,7 +6,7 @@
 
 ### We have implemented some best practices for parameterization and abstracted away the secrets in the Github repository secrets.
 
-### Link to Github repository: https://github.com/robert-altmiller/nationwide_terraform
+### Link to Github repository: https://github.com/robert-altmiller/terraform_template
 
 ![start_workflow.jpg](/readme_images/start_workflow.jpg)
 
