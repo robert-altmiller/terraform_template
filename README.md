@@ -58,6 +58,14 @@
 
 ![dbricks_prerequisite3b.jpg](/readme_images/dbricks_prerequisite3b.jpg)
 
+- Add the 'prod' groups to 'my-workspace-prod' Databricks workspace
+
+![dbricks_prerequisite3c.jpg](/readme_images/dbricks_prerequisite3c.jpg)
+
+- Add the 'prod' service principal to 'my-workspace-prod' Databricks workspace
+
+![dbricks_prerequisite3d.jpg](/readme_images/dbricks_prerequisite3d.jpg)
+
 ### Appendix
 
 [How to setup a storage credential on AWS](https://docs.databricks.com/en/data-governance/unity-catalog/manage-external-locations-and-credentials.html#manage-storage-credentials)
