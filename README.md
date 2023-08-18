@@ -48,7 +48,7 @@
 
 ![dbricks_prerequisite2b.jpg](/readme_images/dbricks_prerequisite2b.jpg)
 
-### Step 2: Add the dev groups / service principal to the dev workspace, and the prod groups / service principals to the prod workspace
+### Step 2: Add the 'dev' groups and 'dev' service principal to the 'dev' workspace, and add the 'prod' groups and 'prod' service principals to the 'prod' workspace
 
 - Open the 'prod' workspace from the Databricks account console
 
