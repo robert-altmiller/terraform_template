@@ -1,6 +1,5 @@
 # databricks_storage_credential (UC)
 resource "databricks_storage_credential" "external" {
-  count = var.databricks_deploy_uc_storage_credential == "true" ? 1 : 0 # used as a conditional
   provider = databricks.workspace
   name = "${local.sc_config.sc_name}-${var.environment}"
   aws_iam_role {
@@ -11,8 +10,9 @@ resource "databricks_storage_credential" "external" {
 
 # databricks_grants on storage credential (UC)
 resource "databricks_grants" "credential_grants" {
+  count = var.databricks_deploy_uc_storage_credential == "true" ? 1 : 0 # used as a conditional because of 'databricks_storage_credential.external.id'
   provider = databricks.workspace
-  storage_credential = databricks_storage_credential.external[count.index].id
+  storage_credential = databricks_storage_credential.external.id
   grant {
     principal  = local.sc_config.principal_name
     privileges = local.sc_config.principal_privileges

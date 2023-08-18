@@ -11,8 +11,8 @@ resource "databricks_grants" "catalog_grants" {
 
 # databricks_schema (UC)
 resource "databricks_schema" "schema" {
-  provider = databricks.workspace
   count = var.databricks_deploy_uc_schema == "true" ? 1 : 0 # used as a conditional
+  provider = databricks.workspace
   catalog_name = local.schema_config.catalog_name
   name         = local.schema_config.schema_name 
 }
