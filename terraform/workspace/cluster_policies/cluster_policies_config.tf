@@ -4,7 +4,7 @@ variable "cluster_policy_config_json" {
     default     = <<EOT
   {
     "cluster_policy_name": "personal-compute-policy",
-    "cluster_profile: "singleNode",
+    "cluster_profile": "singleNode",
     "cluster_type": "all-purpose",
     "runtime_engine": "STANDARD",
     "node_type_id": ["i3.xlarge", "i3.2xlarge"],
