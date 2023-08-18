@@ -131,6 +131,7 @@ jobs:
         run: |
           if [[ "${{ env.TF_VAR_databricks_deploy_cluster_policies }}" == "true" ]]; then
             terraform apply --auto-approve -target=module.cluster_policies_module.databricks_cluster_policy.policy
+            terraform apply --auto-approve -target=module.cluster_policies_module.databricks_permissions.policy_grants
           elif [[ "${{ env.TF_VAR_databricks_deploy_cluster_policies }}" == "destroy" ]]; then
             terraform destroy --auto-approve -target=module.cluster_policies_module.databricks_cluster_policy.policy
           fi

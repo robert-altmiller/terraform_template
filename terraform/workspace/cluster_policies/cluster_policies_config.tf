@@ -13,14 +13,16 @@ variable "cluster_policy_config_json" {
     "min_workers": 1,
     "max_workers": 2,
     "auto_termination_mins": 60
+    "principal_name": "prod-contributors"
+    "principal_privileges": ["CAN_USE", "CAN_MANAGE"]
   }
     EOT
 }
 
   
-  locals {
+locals {
     cluster_policy_config = jsondecode(var.cluster_policy_config_json)
-  }
+}
 
 locals {
   cluster_policy_details = {
