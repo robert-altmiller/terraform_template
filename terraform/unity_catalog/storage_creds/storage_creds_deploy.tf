@@ -12,7 +12,7 @@ resource "databricks_storage_credential" "external" {
 # databricks_grants on storage credential (UC)
 resource "databricks_grants" "credential_grants" {
   provider = databricks.workspace
-  storage_credential = databricks_storage_credential.external.id
+  storage_credential = databricks_storage_credential.external[count.index].id
   grant {
     principal  = local.sc_config.principal_name
     privileges = local.sc_config.principal_privileges
