@@ -80,9 +80,11 @@
 
 ![dbricks_prerequisite4c.jpg](/readme_images/dbricks_prerequisite4c.jpg)
 
+- Update the 'main' catalog owner to 'dev-admins' or 'prod-admins'.  It won't matter because both the 'dev' and 'prod' service principals are in both groups.  The service principal needs to be an owner on the catalog in order to create a schema beneath it and grant permissions to it.
+
+![dbricks_prerequisite4d.jpg](/readme_images/dbricks_prerequisite4d.jpg)
+
 ### Important: Do the same steps above in 'step 3' for the 'my-workspace-dev' Databricks workspace.
-
-
 
 ### Appendix
 
