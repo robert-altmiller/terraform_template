@@ -1,7 +1,7 @@
 variable "cluster_policy_config_json" {
-    description = "JSON configuration for Databricks cluster policies"
-    type        = string
-    default     = <<EOT
+  description = "JSON configuration for Databricks cluster policies"
+  type        = string
+  default     = <<-EOT
   {
     "cluster_policy_name": "personal-compute-policy",
     "cluster_profile": "singleNode",
@@ -11,10 +11,11 @@ variable "cluster_policy_config_json" {
     "spark_version": "auto:latest-ml",
     "min_workers": 1,
     "max_workers": 2,
-    "auto_termination_mins": 60,
+    "auto_termination_mins": 60
   }
-  EOT
-  }
+    EOT
+}
+
   
   locals {
     cluster_policy_config = jsondecode(var.cluster_policy_config_json)
