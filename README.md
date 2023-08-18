@@ -38,13 +38,11 @@
 
 ### Step 3: Monitor Github workflow for deployment progress status
 
-![monitor_workflows1.jpg](/readme_images/monitor_workflows1.jpg)
+![monitor_workflows1a.jpg](/readme_images/monitor_workflows1a.jpg)
 
-![monitor_workflows2.jpg](/readme_images/monitor_workflows2.jpg)
+![monitor_workflows1b.jpg](/readme_images/monitor_workflows1b.jpg)
 
-![monitor_workflows3.jpg](/readme_images/monitor_workflows3.jpg)
-
-![monitor_workflows4.jpg](/readme_images/monitor_workflows4.jpg)
+![monitor_workflows1c.jpg](/readme_images/monitor_workflows1c.jpg)
 
 ## How do I setup 'dev' and 'prod' AWS Databricks workspaces for Terraform template?
 
