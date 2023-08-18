@@ -95,7 +95,7 @@
 
 #### **** IMPORTANT *** Do the same steps above in 'step 3' for the 'my-workspace-dev' Databricks workspace.
 
-#### Once you have completed all these steps above you will be ready to run this Terraform template out of the box.
+#### Once you have completed all these steps above you will be ready to run this Terraform template out of the box with no modifications.
 
 ### Appendix
 
