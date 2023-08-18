@@ -66,11 +66,15 @@
 
 ![dbricks_prerequisite3d.jpg](/readme_images/dbricks_prerequisite3d.jpg)
 
-### IMPORTANT: Do the same steps above in 'step 2' for the 'my-workspace-dev' Databricks workspace.
+### Important: Do the same steps above in 'step 2' for the 'my-workspace-dev' Databricks workspace.
 
-### Step 3: Add group permissions to Databricks workspace resources
+### Step 3: Add service principals to groups and grant groups permission to access, modify, and update Databricks workspace resources
 
+- Add 'dev' and 'prod' service principals to groups
 
+![dbricks_prerequisite4a.jpg](/readme_images/dbricks_prerequisite4a.jpg)
+
+![dbricks_prerequisite4b.jpg](/readme_images/dbricks_prerequisite4b.jpg)
 
 ### Appendix
 
