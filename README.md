@@ -3,7 +3,15 @@
 ### This repo contains a Terraform deployment methodology that makes it easy to deploy Databricks resources in blocks that can be enabled, disabled or destroyed at Github workflow runtime while maintaining a single instance of the terraform state file across environments (e.g. dev/prod).  In the workflow manual run parameters you can set the deployment environment to dev or prod.  Each of these environments will be managed with it's own 'Terraform.tfstate' json file in separate AWS S3 buckets for dev and prod environments.  Within the chosen environment you can select to deploy or destroy the following resources: clusters, cluster policies, unity catalog schema, and unity catalog storage credentials.  We have implemented some best practices for parameterization and abstacted away the secrets in the Github repository secrets.
 
 ### Link to Github repository: https://github.com/robert-altmiller/nationwide_terraform
- 
+
+### Features of this Terraform template
+
+- Template is built to deploy Databricks resources between two different Databricks workspaces on AWS.
+- Template can deploy resources between a 'dev' and 'prod' Databricks workspace.
+- Template creates a unique dynamic Databricks authentication token during Github workflow runtime using a Databricks client-id and client-secret unique to each environment.
+- Terraform.tfstate json files for 'dev' and 'prod' environments are stored in S3 buckets named 'dbricks-dev-bucket' and 'dbricks-prod-bucket'.
+- Terraform backend configuration is completely automated for managing read, create, update, and delete actions for each environment's 'tfstate' configuration.
+
 ### Different ways to use this Terraform template
 
 - Template can be used as a reference for how to structure and organize deployments of Databricks account and workspace level resources in a modular fashion.  By modularity we mean you can choose what Databricks resources to deploy, ingnore, or destroy in a single Github workflow run while maintaining updates and changes to one single 'terraform.tfstate' json file.
@@ -11,6 +19,7 @@
 - You can also create two brand new dev and prod AWS Databricks workspaces, create service principals and groups for each of those workspaces in the Databricks account console, update all secrets in a forked github repo, and run the terraform template to deploy clusters, cluster policies, unity catalog schemas and storage credentials.  After you get this working and understand the structure of this Terraform template.  It can easily be extended to deploy additional Databricks account and workspace level resources.
 
 - See the end of this 'README.md' for details about how to setup two brand new Databricks workspaces, groups, service principals, and resource grants prior to Terraform template execution.
+
 
 ## How do I run the Github workflow?
 
@@ -30,7 +39,7 @@
 
 ![monitor_workflows3.jpg](/readme_images/monitor_workflows3.jpg)
 
-## How do I setup 'dev' and 'prod' Databricks workspaces for Terraform template?
+## How do I setup 'dev' and 'prod' AWS Databricks workspaces for Terraform template?
 
 ### Step 1: Deploy two workspaces through the Databricks admin console using the 'quickstart (recommended)' option.  After these two Databricks workspaces get provisioned they will automatically be Unity Catalog (UC) enabled workspaces.
 
