@@ -18,12 +18,12 @@ resource "databricks_cluster" "create_cluster" {
   cluster_name            = "${local.cluster_config.cluster_name}-${var.environment}"
   node_type_id            = data.databricks_node_type.smallest.id
   spark_version           =  data.databricks_spark_version.latest_lts.id
-  autotermination_minutes = format("%d", local.cluster_config.auto_termination_mins)
-  num_workers             = format("%d", local.cluster_config.min_workers)
+  autotermination_minutes = local.cluster_config.auto_termination_mins
+  num_workers             = local.cluster_config.min_workers
   
   autoscale {
-    min_workers = format("%d", local.cluster_config.min_workers)
-    max_workers = format("%d", local.cluster_config.max_workers)
+    min_workers = local.cluster_config.min_workers
+    max_workers = local.cluster_config.max_workers
   }
   
   custom_tags = {
