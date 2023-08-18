@@ -1,4 +1,4 @@
-# databricks_storage_credential (UC)
+# create databricks storage credential (UC)
 resource "databricks_storage_credential" "external" {
   provider = databricks.workspace
   name = "${local.sc_config.sc_name}-${var.environment}"
@@ -8,7 +8,7 @@ resource "databricks_storage_credential" "external" {
   comment = "Managed by Terraform (TF)"
 }
 
-# databricks_grants on storage credential (UC)
+# add databricks grants on storage credential (UC)
 resource "databricks_grants" "credential_grants" {
   count = var.databricks_deploy_uc_storage_credential == "true" ? 1 : 0 # used as a conditional because of 'databricks_storage_credential.external.id'
   provider = databricks.workspace

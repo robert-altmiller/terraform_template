@@ -1,4 +1,4 @@
-# sc = storage credentials
+# uc schema config json (sc = storage credentials)
 variable "schema_config_json" {
     description = "JSON configuration for Databricks UC schema"
     type        = string
@@ -13,6 +13,7 @@ variable "schema_config_json" {
   EOT
   }
   
+  # uc schema config
   locals {
     schema_config = jsondecode(var.schema_config_json)
   }

@@ -1,17 +1,16 @@
-# Create the cluster with the "smallest" amount
-# of resources allowed.
+# create the cluster with the "smallest" amount of resources allowed
 data "databricks_node_type" "smallest" {
   local_disk = true
 }
 
-# Use the latest Databricks Runtime
-# Long Term Support (LTS) version.
+# use the latest Databricks Runtime
 data "databricks_spark_version" "latest_lts" {
   provider = databricks.workspace
   ml = true
   latest = true
 }
 
+# create databrickls cluster
 resource "databricks_cluster" "create_cluster" {
   count                   = var.databricks_deploy_clusters == "true" ? 1 : 0 # used as a conditional
   provider                = databricks.workspace

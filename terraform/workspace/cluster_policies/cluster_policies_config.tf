@@ -1,3 +1,4 @@
+# cluster policy config json
 variable "cluster_policy_config_json" {
   description = "JSON configuration for Databricks cluster policies"
   type        = string
@@ -19,11 +20,12 @@ variable "cluster_policy_config_json" {
     EOT
 }
 
-  
+# cluster policy config
 locals {
     cluster_policy_config = jsondecode(var.cluster_policy_config_json)
 }
 
+# cluster policy details
 locals {
   cluster_policy_details = {
     node_type_id = {

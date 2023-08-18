@@ -1,3 +1,4 @@
+# cluster config json
 variable "cluster_config_json" {
     description = "JSON configuration for Databricks clusters"
     type        = string
@@ -10,7 +11,8 @@ variable "cluster_config_json" {
   }
   EOT
   }
-  
-  locals {
+
+# cluster config  
+locals {
     cluster_config = jsondecode(var.cluster_config_json)
   }

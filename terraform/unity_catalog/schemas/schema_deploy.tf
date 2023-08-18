@@ -9,7 +9,7 @@ resource "databricks_grants" "catalog_grants" {
   }
 }
 
-# databricks_schema (UC)
+# create databricks schema (UC)
 resource "databricks_schema" "schema" {
   count = var.databricks_deploy_uc_schema == "true" ? 1 : 0 # used as a conditional
   provider = databricks.workspace
@@ -17,7 +17,7 @@ resource "databricks_schema" "schema" {
   name         = local.schema_config.schema_name 
 }
 
-# databricks_grants on schema (UC)
+# add databricks grants on schema (UC)
 resource "databricks_grants" "schema_grants" {
   provider = databricks.workspace
   schema = "${local.schema_config.catalog_name}.${local.schema_config.schema_name}"
