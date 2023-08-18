@@ -34,6 +34,8 @@
 
 ### Step 1: Deploy two workspaces through the Databricks admin console using the quickstart (recommended) option
 
+- Name the workspace 'my-workspace-dev' and 'my-workspace-prod'
+
 ![dbricks_prerequisite1.jpg](/readme_images/dbricks_prerequisite1.jpg)
 
 ### Appendix
