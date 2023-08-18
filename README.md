@@ -32,11 +32,25 @@
 
 ## How do I setup dev and prod Databricks workspaces for Terraform Template?
 
-### Step 1: Deploy two workspaces through the Databricks admin console using the quickstart (recommended) option
+### Step 1: Deploy two workspaces through the Databricks admin console using the 'quickstart (recommended)' option.  After these two Databricks workspaces get provisioned they will automatically be Unity Catalog (UC) enabled workspaces.
 
 - Name the workspace 'my-workspace-dev' and 'my-workspace-prod'
 
 ![dbricks_prerequisite1.jpg](/readme_images/dbricks_prerequisite1.jpg)
+
+### Step 2: In the Databricks admin console create 3 groups for dev, and 3 groups for prod workspaces and a service principle for each workspace.
+
+- Create the following groups: 'dev-readers', 'dev-contributors', 'dev-admin', 'prod-readers', 'prod-contributors', and 'prod-admins'
+
+![dbricks_prerequisite2a.jpg](/readme_images/dbricks_prerequisite2a.jpg)
+
+- Create the following service principals: 'my-sp-dev' and 'my-sp-prod'
+
+![dbricks_prerequisite2b.jpg](/readme_images/dbricks_prerequisite2b.jpg)
+
+### Step 2: Add the dev groups / service principal to the dev workspace, and the prod groups / service principals to the prod workspace
+
+![dbricks_prerequisite3.jpg](/readme_images/dbricks_prerequisite3.jpg)
 
 ### Appendix
 
