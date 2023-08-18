@@ -30,7 +30,7 @@
 
 ![monitor_workflows3.jpg](/readme_images/monitor_workflows3.jpg)
 
-## How do I setup dev and prod Databricks workspaces for Terraform Template?
+## How do I setup 'dev' and 'prod' Databricks workspaces for Terraform template?
 
 ### Step 1: Deploy two workspaces through the Databricks admin console using the 'quickstart (recommended)' option.  After these two Databricks workspaces get provisioned they will automatically be Unity Catalog (UC) enabled workspaces.
 
