@@ -14,7 +14,7 @@
 
 ## How do I run the Github workflow?
 
-### Step 1: In order to run the Terraform code in this repository you will need to first set the secret values under the Github repo settings
+### Step 1: In order to run the Terraform code in this repository you will need to first set the secret values under the forked Github repo settings
 
 ![github_secret.png](/readme_images/github_secret.jpg)
 
