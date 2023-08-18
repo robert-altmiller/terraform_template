@@ -22,7 +22,7 @@ resource "databricks_grants" "schema_grants" {
   provider = databricks.workspace
   schema = "${local.schema_config.catalog_name}.${local.schema_config.schema_name}"
   grant {
-    principal  = local.schema_config.schema_principal_name
+    principal  = "${var.environment}-${local.schema_config.principal_name}"
     privileges = local.schema_config.schema_principal_privileges
   }
 }

@@ -11,7 +11,7 @@ resource "databricks_permissions" "policy_grants" {
   provider = databricks.workspace
   cluster_policy_id = databricks_cluster_policy.policy.id
   access_control {
-    group_name  = local.cluster_policy_config.principal_name
+    group_name  = "${var.environment}-${local.cluster_policy_config.principal_name}"
     permission_level = local.cluster_policy_config.principal_privileges
   }
   # access_control {
