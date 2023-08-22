@@ -10,6 +10,7 @@ resource "databricks_storage_credential" "external" {
 
 # add databricks grants on storage credential (UC)
 resource "databricks_grants" "credential_grants" {
+  depends_on = [databricks_storage_credential.external]
   count = var.databricks_deploy_uc_storage_credential == "true" ? 1 : 0 # used as a conditional because of 'databricks_storage_credential.external.id'
   provider = databricks.workspace
   storage_credential = databricks_storage_credential.external.id
