@@ -12,7 +12,7 @@ variable "sc_config_json" {
         "sc_principal_privileges": ["ALL_PRIVILEGES"]
       },
       "sc2": {
-        "sc_name": "my-storage-creds8",
+        "sc_name": "my-storage-creds9",
         "sc_role_arn": "arn:aws:iam::969341422355:role/s3-dbricks-prod-bucket-role",
         "sc_principal_name": "contributors",
         "sc_principal_privileges": ["ALL_PRIVILEGES"]
