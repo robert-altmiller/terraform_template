@@ -5,7 +5,7 @@ output "github_actor_output" {
 
 output "environment_output" {
   value = local.environment
-  description = "value for source_dir"
+  description = "value for environment"
 }
 
 output "source_dir_output" {
@@ -50,12 +50,12 @@ output "databricks_admin_password_output" {
 
 output "databricks_client_id_output" {
   value = local.databricks_client_id
-  description = "value for databricks_admin_password"
+  description = "value for databricks_client_id"
 }
 
 output "databricks_client_secret_output" {
   value = local.databricks_client_secret
-  description = "value for databricks_admin_password"
+  description = "value for databricks_client_secret"
 }
 
 output "databricks_token_output" {
@@ -65,7 +65,7 @@ output "databricks_token_output" {
 
 output "databricks_deploy_clusters_output" {
   value = local.databricks_deploy_clusters
-  description = "value for databricks_deploy_cluster"
+  description = "value for databricks_deploy_clusters"
 }
 
 output "databricks_deploy_cluster_policies_output" {

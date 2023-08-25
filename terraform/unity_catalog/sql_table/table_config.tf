@@ -1,5 +1,5 @@
-# storage credential config json (sc = storage credentials)
-variable "sc_config_json" {
+# table config json
+variable "table_config_json" {
     description = "JSON configuration for Databricks UC storage credentials"
     type        = string
     default     = <<EOT
@@ -24,7 +24,7 @@ variable "sc_config_json" {
   EOT
   }
   
-  # storage credential config
+  # table config
   locals {
-    sc_config = jsondecode(var.sc_config_json)
+    table_config = jsondecode(var.table_config_json)
   }

@@ -45,7 +45,7 @@ variable "databricks_token" {
 
 # ----------variables for module instantiation----------
 
-variable "databricks_deploy_uc_storage_credential" {
-  description = "Set to true to execute the unity catalog storage credentials module, false to skip."
+variable "databricks_deploy_uc_table" {
+  description = "Set to true to execute the unity catalog tables module, false to skip."
   type        = string
 }

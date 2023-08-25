@@ -106,8 +106,20 @@
 
 ### Appendix
 
-[How to setup a storage credential on AWS](https://docs.databricks.com/en/data-governance/unity-catalog/manage-external-locations-and-credentials.html#manage-storage-credentials)
+[How to Setup a Storage Credential on AWS](https://docs.databricks.com/en/data-governance/unity-catalog/manage-external-locations-and-credentials.html#manage-storage-credentials)
 
-[Dropdown for GitHub workflows input parameters](https://arthurbdiniz.com/github/actions/workflows/2021/10/23/gh-action-dropdown.html)
+[Dropdown for GitHub Workflows Input Parameters](https://arthurbdiniz.com/github/actions/workflows/2021/10/23/gh-action-dropdown.html)
 
-[How to use 'foreach' with Databricks grants](https://discuss.hashicorp.com/t/how-to-use-for-each-with-databricks-grants-resource/54592)
+[How to use 'foreach' with Databricks Grants](https://discuss.hashicorp.com/t/how-to-use-for-each-with-databricks-grants-resource/54592)
+
+[Terraform Key Concepts - Resources, Modules, Datasoureces, Composition](https://www.terraform-best-practices.com/key-concepts)
+
+[Terraform Naming Convention Best Practices](https://www.terraform-best-practices.com/naming)
+
+[Terraform Coding Structure](https://www.terraform-best-practices.com/code-structure)
+
+[AWS Cloudcasts: Organizing Terraform with Multiple States](https://cloudcasts.io/course/terraform/organizing-with-multiple-states)
+
+[Spacelift: Managing Terraform States Best Practices](https://spacelift.io/blog/terraform-state)
+
+[Google: Best Practices Using Terraform](https://cloud.google.com/docs/terraform/best-practices-for-terraform#minimize-resources)
