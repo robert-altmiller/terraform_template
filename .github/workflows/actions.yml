@@ -77,7 +77,6 @@ jobs:
           TF_VAR_databricks_submission_json=$(jq -c . < ../submission/submission.json)
           echo "TF_VAR_databricks_submission_json=$TF_VAR_databricks_submission_json" >> $GITHUB_ENV
       
-
       - name: Create Terraform Init Backend Configuration
         run: |
           BACKEND_BUCKET_DEV=$(jq -r .backend_bucket_dev < ../terraform/shell_scripts/tf_s3_backend/tf_s3_backend_config.json)
