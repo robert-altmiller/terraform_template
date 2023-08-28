@@ -25,9 +25,7 @@ body:
 - type: input
   id: iam-role-arn
   attributes:
-    label: 
-      - Please Enter the Integrated Access Management (IAM) Role AWS ARN?
-      - Example (arn:aws:iam::125748569082:role/Temp-Product-IAM-Role_37465837465900)
+    label: Please Enter the Integrated Access Management (IAM) Role AWS ARN?
   validations:
     required: True
 
