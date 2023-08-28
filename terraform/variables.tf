@@ -104,3 +104,10 @@ variable "databricks_deploy_uc_schema" {
   type = string
   default = "false"
 }
+
+# databricks submission json for infrastructure changes
+variable "databricks_submission_json" {
+  description = "databricks submissions json"
+  type = string
+  default = "{}"
+}

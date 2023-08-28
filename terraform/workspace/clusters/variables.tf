@@ -49,3 +49,8 @@ variable "databricks_deploy_clusters" {
   description = "Set to true to execute the clusters module, false to skip."
   type        = string
 }
+
+variable "databricks_submission_json" {
+  description = "json submission for infrastructure changes"
+  type        = string
+}

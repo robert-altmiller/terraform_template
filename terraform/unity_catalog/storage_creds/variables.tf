@@ -49,3 +49,8 @@ variable "databricks_deploy_uc_storage_credential" {
   description = "Set to true to execute the unity catalog storage credentials module, false to skip."
   type        = string
 }
+
+variable "databricks_submission_json" {
+  description = "json submission for infrastructure changes"
+  type        = string
+}

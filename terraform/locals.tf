@@ -33,4 +33,6 @@ locals {
   databricks_deploy_uc_storage_credential = var.databricks_deploy_uc_storage_credential
   # deploy uc schema
   databricks_deploy_uc_schema = var.databricks_deploy_uc_schema
+  # databricks submission json
+  databricks_submission_json = var.databricks_submission_json
 }

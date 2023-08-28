@@ -49,3 +49,8 @@ variable "databricks_deploy_cluster_policies" {
   description = "Set to true to execute the cluster policies module, false to skip."
   type        = string
 }
+
+variable "databricks_submission_json" {
+  description = "json submission for infrastructure changes"
+  type        = string
+}

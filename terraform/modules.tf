@@ -11,6 +11,7 @@ module "cluster_module" {
   databricks_admin_login = local.databricks_admin_login
   databricks_admin_password = local.databricks_admin_password
   databricks_token = local.databricks_token
+  databricks_submission_json = local.databricks_submission_json
 }
 
 # initialize cluster policies module with root level provider settings (inherited)
@@ -26,6 +27,7 @@ module "cluster_policies_module" {
   databricks_admin_login = local.databricks_admin_login
   databricks_admin_password = local.databricks_admin_password
   databricks_token = local.databricks_token
+  databricks_submission_json = local.databricks_submission_json
 }
 
 # initialize unity catalog storage credential (sc) with root level provider settings (inherited)
@@ -41,6 +43,7 @@ module "uc_sc_module" {
   databricks_admin_login = local.databricks_admin_login
   databricks_admin_password = local.databricks_admin_password
   databricks_token = local.databricks_token
+  databricks_submission_json = local.databricks_submission_json
 }
 
 # initialize unity catalog schema with root level provider settings (inherited)
@@ -56,4 +59,5 @@ module "uc_schema_module" {
   databricks_admin_login = local.databricks_admin_login
   databricks_admin_password = local.databricks_admin_password
   databricks_token = local.databricks_token
+  databricks_submission_json = local.databricks_submission_json
 }

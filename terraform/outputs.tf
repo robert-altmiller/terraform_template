@@ -83,3 +83,8 @@ output "databricks_deploy_uc_schema_output" {
   value = local.databricks_deploy_uc_schema
   description = "value for databricks_deploy_uc_schema"
 }
+
+output "databricks_submission_json_output" {
+  value = local.databricks_submission_json
+  description = "value for databricks_submission_json"
+}

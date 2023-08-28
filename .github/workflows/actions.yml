@@ -72,6 +72,11 @@ jobs:
       - name: Install jq
         run: sudo apt-get install jq
 
+      - name: Get Terraform Submission Json Request
+        run: |
+          SUBMISSION_JSON=$(jq -r .backend_bucket_dev < ../submission/submission.json)
+          echo "SUBMISSION_JSON=$SUBMISSION_JSON" >> $GITHUB_ENV
+
       - name: Create Terraform Init Backend Configuration
         run: |
           BACKEND_BUCKET_DEV=$(jq -r .backend_bucket_dev < ../terraform/shell_scripts/tf_s3_backend/tf_s3_backend_config.json)

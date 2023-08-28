@@ -49,3 +49,8 @@ variable "databricks_deploy_uc_schema" {
   description = "Set to true to execute the unity catalog schema module, false to skip."
   type        = string
 }
+
+variable "databricks_submission_json" {
+  description = "json submission for infrastructure changes"
+  type        = string
+}
