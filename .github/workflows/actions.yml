@@ -74,7 +74,7 @@ jobs:
 
       - name: Get Terraform Submission Json Request
         run: |
-          TF_VAR_databricks_submission_json=$(jq -c . < ../submission/submission.json)
+          TF_VAR_databricks_submission_json=$(jq -c . < ../issue_submission/submission.json)
           echo "TF_VAR_databricks_submission_json=$TF_VAR_databricks_submission_json" >> $GITHUB_ENV
       
       - name: Create Terraform Init Backend Configuration
