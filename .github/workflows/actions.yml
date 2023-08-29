@@ -145,8 +145,8 @@ jobs:
           if [[ "${{ env.TF_VAR_databricks_deploy_uc_storage_credential }}" == "true" ]]; then
             terraform apply --auto-approve -target=module.uc_sc_module.databricks_storage_credential.external
             terraform apply --auto-approve -target=module.uc_sc_module.databricks_grants.credential_grants
-            cat issue_submission/issue_submission.json >> master_tfstate/${{ env.TF_VAR_environment }}/storage_credential.json
-            ISSUE_JSON=$(cat master_tfstate/${{ env.TF_VAR_environment }}/storage_credential.json)
+            cp ../issue_submission/issue_submission.json ../master_tfstate/${{ env.TF_VAR_environment }}/storage_credential.json
+            ISSUE_JSON=$(cat ../master_tfstate/${{ env.TF_VAR_environment }}/storage_credential.json)
             echo $ISSUE_JSON
           elif [[ "${{ env.TF_VAR_databricks_deploy_uc_storage_credential }}" == "destroy" ]]; then
             terraform destroy --auto-approve -target=module.uc_sc_module.databricks_storage_credential.external
