@@ -74,7 +74,7 @@ jobs:
 
       - name: Get Terraform Submission Json Request
         run: |
-          TF_VAR_databricks_submission_json=$(jq -c . < ../issue_submission/submission.json)
+          TF_VAR_databricks_submission_json=$(jq -c . < ../issue_submission/issue_submission.json)
           echo "TF_VAR_databricks_submission_json=$TF_VAR_databricks_submission_json" >> $GITHUB_ENV
       
       - name: Create Terraform Init Backend Configuration
@@ -143,6 +143,7 @@ jobs:
           if [[ "${{ env.TF_VAR_databricks_deploy_uc_storage_credential }}" == "true" ]]; then
             terraform apply --auto-approve -target=module.uc_sc_module.databricks_storage_credential.external
             terraform apply --auto-approve -target=module.uc_sc_module.databricks_grants.credential_grants
+            cat issue_submission/issue_submission.json >> master_tf_state/storage_credential.json
           elif [[ "${{ env.TF_VAR_databricks_deploy_uc_storage_credential }}" == "destroy" ]]; then
             terraform destroy --auto-approve -target=module.uc_sc_module.databricks_storage_credential.external
           fi
