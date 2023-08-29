@@ -64,11 +64,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Set git config
-        run: |
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git config --global user.name "GitHub Actions Bot"
-
       - name: Set up latest version of Python
         uses: actions/setup-python@v2
         with:
@@ -166,6 +161,8 @@ jobs:
 
       - name: Commit changes to terraform_template repo
         run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com" && \
+          git config --global user.name "github-actions[bot]" && \
           git remote set-url origin https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/robert-altmiller/terraform_template.git
           git add .
           git commit -m "master_tfstates updated"
