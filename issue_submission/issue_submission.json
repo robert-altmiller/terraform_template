@@ -1,8 +1,8 @@
 {
   "create_or_delete": "Create",
-  "resource_name": "test",
-  "sc_role_arn": "test",
-  "sc_principal_name": "test",
+  "resource_name": "123",
+  "sc_role_arn": "123",
+  "sc_principal_name": "123",
   "sc_principal_privileges": [
     "CREATE_EXTERNAL_TABLE"
   ]
