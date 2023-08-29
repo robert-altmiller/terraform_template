@@ -1,8 +1,8 @@
 {
   "create_or_delete": "Create",
-  "resource_name": "testing",
-  "sc_role_arn": ": arn:aws:iam::111111111111:role/Temp-Product-IAM-Role_1111111111111",
-  "sc_principal_name": "contributors",
+  "resource_name": "test",
+  "sc_role_arn": "test",
+  "sc_principal_name": "test",
   "sc_principal_privileges": [
     "CREATE_EXTERNAL_TABLE"
   ]
