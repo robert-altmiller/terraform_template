@@ -63,7 +63,12 @@ jobs:
 
       - name: Checkout repository
         uses: actions/checkout@v3
-  
+
+      - name: Set git config
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "GitHub Actions Bot"
+
       - name: Set up latest version of Python
         uses: actions/setup-python@v2
         with:
@@ -72,11 +77,6 @@ jobs:
       - name: Install jq
         run: sudo apt-get install jq
 
-      - name: Get Terraform Submission Json Request
-        run: |
-          TF_VAR_databricks_submission_json=$(jq -c . < ../issue_submission/issue_submission.json)
-          echo "TF_VAR_databricks_submission_json=$TF_VAR_databricks_submission_json" >> $GITHUB_ENV
-      
       - name: Create Terraform Init Backend Configuration
         run: |
           BACKEND_BUCKET_DEV=$(jq -r .backend_bucket_dev < ../terraform/shell_scripts/tf_s3_backend/tf_s3_backend_config.json)
@@ -113,6 +113,11 @@ jobs:
           echo "TF_VAR_databricks_token=$TF_VAR_databricks_token" >> $GITHUB_ENV
           echo "TF_VAR_databricks_token: $TF_VAR_databricks_token"
 
+      - name: Get Terraform Submission Json Request
+        run: |
+          TF_VAR_databricks_submission_json=$(jq -c . < ../issue_submission/issue_submission.json)
+          echo "TF_VAR_databricks_submission_json=$TF_VAR_databricks_submission_json" >> $GITHUB_ENV
+
       - name: Terraform Validate
         run: |
           export TF_LOG=DEBUG
@@ -120,7 +125,7 @@ jobs:
 
       - name: Terraform Plan
         run: terraform plan
-          
+  
       - name: Deploy / Destroy Databricks Clusters
         run: |
           if [[ "${{ env.TF_VAR_databricks_deploy_clusters }}" == "true" ]]; then
@@ -143,7 +148,9 @@ jobs:
           if [[ "${{ env.TF_VAR_databricks_deploy_uc_storage_credential }}" == "true" ]]; then
             terraform apply --auto-approve -target=module.uc_sc_module.databricks_storage_credential.external
             terraform apply --auto-approve -target=module.uc_sc_module.databricks_grants.credential_grants
-            cat issue_submission/issue_submission.json >> master_tf_state/storage_credential.json
+            cat issue_submission/issue_submission.json >> master_tf_state/${{ env.TF_VAR_environment }}/storage_credential.json
+            git add master_tf_state/${{ env.TF_VAR_environment }}/storage_credential.json
+            git commit -m "Updated storage_credential.json"
           elif [[ "${{ env.TF_VAR_databricks_deploy_uc_storage_credential }}" == "destroy" ]]; then
             terraform destroy --auto-approve -target=module.uc_sc_module.databricks_storage_credential.external
           fi
@@ -158,3 +165,7 @@ jobs:
             terraform destroy --auto-approve -target=module.uc_schema_module.databricks_schema.schema
             terraform destroy --auto-approve -target=module.uc_schema_module.databricks_grants.catalog_grants
           fi
+
+      - name: Commit changes to terraform_template repo
+        run: |
+          git push
