@@ -17,16 +17,6 @@
         "ALL_PRIVILEGES"
       ],
       "create_or_delete": "create"
-    },
-    "enc": {
-      "environment": "dev",
-      "create_or_delete": "Create",
-      "resource_name": "enc",
-      "sc_role_arn": "nec",
-      "sc_principal_name": "ndnd",
-      "sc_principal_privileges": [
-        "CREATE_EXTERNAL_TABLE"
-      ]
     }
   }
 }
