@@ -2,7 +2,7 @@
 resource "databricks_storage_credential" "external" {
   for_each = local.sc_config.storage_credentials
   provider  = databricks.workspace
-  name      = "${each.value.sc_name}-${var.environment}"
+  name      = "${each.value.resource_name}-${var.environment}"
   aws_iam_role {
     role_arn = each.value.sc_role_arn
   }
