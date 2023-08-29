@@ -17,16 +17,6 @@
         "ALL_PRIVILEGES"
       ],
       "create_or_delete": "create"
-    },
-    "1234": {
-      "create_or_delete": "Create",
-      "resource_name": "1234",
-      "sc_role_arn": "1234",
-      "sc_principal_name": "1234",
-      "sc_principal_privileges": [
-        "CREATE_EXTERNAL_TABLE",
-        "CREATE_EXTERNAL_VOLUME"
-      ]
     }
   }
 }
