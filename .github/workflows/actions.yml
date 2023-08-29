@@ -119,7 +119,7 @@ jobs:
         run: |
           curl -H "Authorization: token ${{ secrets.GH_TOKEN }}" -H "Accept: application/vnd.github.v3.raw" -o issue_submission.json \
             "https://raw.githubusercontent.com/robert-altmiller/terraform_template_config/tree/main/issue_submission/${{ env.ISSUE_ENVIRONMENT }}/storage_credential.json"
-          ISSUE_SUBMISSION_JSON=(cat issue_submission.json)
+            TF_VAR_databricks_submission_json=(cat issue_submission.json)
           echo "TF_VAR_databricks_submission_json=$TF_VAR_databricks_submission_json" >> $GITHUB_ENV
 
       - name: Terraform Validate
