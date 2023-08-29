@@ -24,9 +24,9 @@ on:
         required: true
         default: '[false],true,destroy' # install chrome extension for drop down menu (see readme)
 
-  push:
-    branches:
-      - main
+  # push:
+  #   branches:
+  #     - main
 
 jobs:
   deploy:
@@ -169,4 +169,3 @@ jobs:
           git add ../master_tfstate/ && \
           git commit -m 'master_tfstates updated' || echo "Nothing to commit"
           git push origin main
-
