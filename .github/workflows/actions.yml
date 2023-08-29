@@ -168,4 +168,5 @@ jobs:
 
       - name: Commit changes to terraform_template repo
         run: |
+          git remote set-url origin https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/robert-altmiller/terraform_template.git
           git push
