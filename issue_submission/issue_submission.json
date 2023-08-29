@@ -1,9 +1,0 @@
-{
-  "create_or_delete": "Create",
-  "resource_name": "a",
-  "sc_role_arn": "a",
-  "sc_principal_name": "a",
-  "sc_principal_privileges": [
-    "CREATE_EXTERNAL_TABLE"
-  ]
-}
