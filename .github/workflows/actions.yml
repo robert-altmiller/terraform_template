@@ -146,8 +146,6 @@ jobs:
             terraform apply --auto-approve -target=module.uc_sc_module.databricks_storage_credential.external
             terraform apply --auto-approve -target=module.uc_sc_module.databricks_grants.credential_grants
             cp ../issue_submission/issue_submission.json ../master_tfstate/${{ env.TF_VAR_environment }}/storage_credential.json
-            ISSUE_JSON=$(cat ../master_tfstate/${{ env.TF_VAR_environment }}/storage_credential.json)
-            echo $ISSUE_JSON
           elif [[ "${{ env.TF_VAR_databricks_deploy_uc_storage_credential }}" == "destroy" ]]; then
             terraform destroy --auto-approve -target=module.uc_sc_module.databricks_storage_credential.external
           fi
@@ -168,6 +166,6 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com" && \
           git config --global user.name "github-actions[bot]" && \
           git remote set-url origin https://${{ secrets.GH_TOKEN }}@github.com/robert-altmiller/terraform_template.git && \
-          git add . && \
+          git add master_tfstate && \
           git commit -m 'master_tfstates updated' && \
           git push
