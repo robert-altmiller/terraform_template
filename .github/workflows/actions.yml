@@ -110,16 +110,9 @@ jobs:
           echo "TF_VAR_databricks_token=$TF_VAR_databricks_token" >> $GITHUB_ENV
           echo "TF_VAR_databricks_token: $TF_VAR_databricks_token"
 
-      # - name: Get Terraform Submission Json Request
-      #   run: |
-      #     TF_VAR_databricks_submission_json=$(jq -c . < ../issue_submission/issue_submission.json)
-      #     echo "TF_VAR_databricks_submission_json=$TF_VAR_databricks_submission_json" >> $GITHUB_ENV
-
-      - name: Fetch Terraform Terraform Submission Json Request From Terraform Config Repo
+      - name: Get Terraform Submission Json Request
         run: |
-          curl -H "Authorization: token ${{ secrets.GH_TOKEN }}" -H "Accept: application/vnd.github.v3.raw" -o issue_submission.json \
-            "https://raw.githubusercontent.com/robert-altmiller/terraform_template_config/tree/main/issue_submission/${{ env.ISSUE_ENVIRONMENT }}/storage_credential.json"
-          TF_VAR_databricks_submission_json=$(cat issue_submission.json)
+          TF_VAR_databricks_submission_json=$(jq -c . < ../issue_submission/issue_submission.json)
           echo "TF_VAR_databricks_submission_json=$TF_VAR_databricks_submission_json" >> $GITHUB_ENV
 
       - name: Terraform Validate
