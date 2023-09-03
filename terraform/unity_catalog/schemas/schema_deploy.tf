@@ -31,10 +31,10 @@
 resource "databricks_grants" "catalog_grants" {
   for_each  = local.schema_config.schemas
   provider  = databricks.workspace
-  catalog   = each.value.catalog_name
+  catalog   = try(each.value.catalog_name, "n/a")
   grant {
-    principal  = each.value.catalog_principal_name
-    privileges = each.value.catalog_principal_privileges
+    principal  = try(each.value.catalog_principal_name, "n/a")
+    privileges = try(each.value.catalog_principal_privileges, "n/a")
   }
 }
 
@@ -42,17 +42,17 @@ resource "databricks_grants" "catalog_grants" {
 resource "databricks_schema" "schema" {
   for_each    =  local.schema_config.schemas
   provider    = databricks.workspace
-  catalog_name= each.value.catalog_name
-  name        = each.value.resource_name 
+  catalog_name= try(each.value.catalog_name, "n/a")
+  name        = try(each.value.resource_name, "n/a")
 }
 
 # add databricks grants on schema (UC)
 resource "databricks_grants" "schema_grants" {
   for_each  = local.schema_config.schemas
   provider  = databricks.workspace
-  schema    = "${each.value.catalog_name}.${each.value.resource_name}"
+  schema    = try("${each.value.catalog_name}.${each.value.resource_name}", "n/a")
   grant {
-    principal  = "${var.environment}-${each.value.schema_principal_name}"
-    privileges = each.value.schema_principal_privileges
+    principal  = try()"${var.environment}-${each.value.schema_principal_name}", "n/a")
+    privileges = try(each.value.schema_principal_privileges, "n/a")
   }
 }

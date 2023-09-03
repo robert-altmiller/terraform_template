@@ -14,15 +14,15 @@ data "databricks_spark_version" "latest_lts" {
 resource "databricks_cluster" "create_cluster" {
   for_each                 = local.cluster_config.clusters
   provider                 = databricks.workspace
-  cluster_name             = each.value.cluster_name
+  cluster_name             = try(each.value.cluster_name, "n/a")
   node_type_id             = data.databricks_node_type.smallest.id
   spark_version            = data.databricks_spark_version.latest_lts.id
-  autotermination_minutes  = each.value.auto_termination_mins
-  num_workers              = each.value.min_workers
+  autotermination_minutes  = try(each.value.auto_termination_mins, "n/a")
+  num_workers              = try(each.value.min_workers, "n/a")
   
   autoscale {
-    min_workers = each.value.min_workers
-    max_workers = each.value.max_workers
+    min_workers = try(each.value.min_workers, "n/a")
+    max_workers = try(each.value.max_workers, "n/a")
   }
 
   custom_tags = {
