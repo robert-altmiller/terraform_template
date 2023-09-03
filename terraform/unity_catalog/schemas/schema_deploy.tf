@@ -33,7 +33,7 @@ resource "databricks_grants" "catalog_grants" {
   provider  = databricks.workspace
   catalog   = try(each.value.catalog_name, "n/a")
   grant {
-    principal  = try(each.value.catalog_principal_name, "n/a")
+    principal  = var.databricks_client_id
     privileges = try(each.value.catalog_principal_privileges, "n/a")
   }
 }
