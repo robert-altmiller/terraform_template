@@ -12,7 +12,7 @@ data "databricks_spark_version" "latest_lts" {
 
 # create databrickls cluster
 resource "databricks_cluster" "create_cluster" {
-  for_each                 = local.cluster_config.clusters
+  for_each                 = try(local.cluster_config.clusters, {})
   provider                 = databricks.workspace
   cluster_name             = try(each.value.cluster_name, "n/a")
   node_type_id             = data.databricks_node_type.smallest.id
