@@ -29,7 +29,7 @@
 
 # grant use schema to the service principal (e.g. catalog_grants)
 resource "databricks_grants" "catalog_grants" {
-  for_each  = local.schema_config
+  for_each  = local.schema_config.schemas
   provider  = databricks.workspace
   catalog   = each.value.catalog_name
   grant {
@@ -40,7 +40,7 @@ resource "databricks_grants" "catalog_grants" {
 
 # create databricks schema (UC)
 resource "databricks_schema" "schema" {
-  for_each    =  local.schema_config
+  for_each    =  local.schema_config.schemas
   provider    = databricks.workspace
   catalog_name= each.value.catalog_name
   name        = each.value.resource_name 
@@ -48,7 +48,7 @@ resource "databricks_schema" "schema" {
 
 # add databricks grants on schema (UC)
 resource "databricks_grants" "schema_grants" {
-  for_each  = local.schema_config
+  for_each  = local.schema_config.schemas
   provider  = databricks.workspace
   schema    = "${each.value.catalog_name}.${each.value.resource_name}"
   grant {

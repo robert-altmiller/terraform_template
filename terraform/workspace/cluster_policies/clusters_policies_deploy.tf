@@ -22,7 +22,7 @@
 
 # deploy cluster policy
 resource "databricks_cluster_policy" "policy" {
-  for_each   = local.cluster_policy_config
+  for_each   = local.cluster_policy_config.cluster_policies
   provider   = databricks.workspace
   name       = each.value.cluster_policy_name
   definition = jsonencode(local.cluster_policy_config_settings[each.key]) 
@@ -30,7 +30,7 @@ resource "databricks_cluster_policy" "policy" {
 
 # add grants to the cluster policy
 resource "databricks_permissions" "policy_grants" {
-  for_each          = local.cluster_policy_config
+  for_each          = local.cluster_policy_config.cluster_policies
   provider          = databricks.workspace
   cluster_policy_id = databricks_cluster_policy.policy[each.key].id
   access_control {
