@@ -31,7 +31,7 @@ locals {
       node_type_id = {
         type         = "allowlist",
         values       = try(config.nodetype_id, null)
-        defaultValue = ["i3.xlarge"]
+        defaultValue = "i3.xlarge"
       },
       spark_version = {
         type         = "unlimited",
