@@ -30,8 +30,8 @@ locals {
     for key, config in local.cluster_policy_config.cluster_policies : key => { 
       node_type_id = {
         type         = "allowlist",
-        values       = try(config.node_type_id, null)
-        defaultValue = "i3.xlarge"
+        values       = try(config.node_typeid, null)
+        defaultValue = ["i3.xlarge"]
       },
       spark_version = {
         type         = "unlimited",
@@ -44,7 +44,7 @@ locals {
       },
       num_workers = {
         type   = "fixed",
-        value  = try(config.num_workers, null)
+        value  = try(tonumber(config.num_workers), null)
         hidden = true
       },
       driver_instance_pool_id = {
@@ -66,7 +66,7 @@ locals {
       },
       autotermination_minutes = {
         type       = "unlimited",
-        defaultValue = try(config.auto_termination_mins, null),
+        defaultValue = try(tonumber(config.auto_termination_mins), null),
         isOptional = true
       }
     }
