@@ -33,7 +33,7 @@ resource "databricks_grants" "catalog_grants" {
   provider  = databricks.workspace
   catalog   = each.value.catalog_name
   grant {
-    principal  = each.val.catalog_principal_name
+    principal  = each.value.catalog_principal_name
     privileges = each.value.catalog_principal_privileges
   }
 }

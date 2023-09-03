@@ -113,7 +113,7 @@ jobs:
       - name: Clone down the Terraform Template Config Repo with the submission.json
         shell: bash
         run: |
-          git clone https://github.com/robert-altmiller/terraform_template_config.git
+          git clone https://github.com/${{ github.repository_owner }}/terraform_template_config.git
 
 
       - name: Get Terraform Submission Json Request
