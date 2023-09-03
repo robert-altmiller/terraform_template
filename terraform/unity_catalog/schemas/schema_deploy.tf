@@ -52,7 +52,7 @@ resource "databricks_grants" "schema_grants" {
   provider  = databricks.workspace
   schema    = try("${each.value.catalog_name}.${each.value.resource_name}", "n/a")
   grant {
-    principal  = try()"${var.environment}-${each.value.schema_principal_name}", "n/a")
+    principal  = try("${var.environment}-${each.value.schema_principal_name}", "n/a")
     privileges = try(each.value.schema_principal_privileges, "n/a")
   }
 }
