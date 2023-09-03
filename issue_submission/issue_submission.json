@@ -19,5 +19,8 @@
         "SELECT"
       ]
     }
-  }
+  },
+  "clusters": {},
+  "storage_credentials": {},
+  "cluster_policies": {}
 }
