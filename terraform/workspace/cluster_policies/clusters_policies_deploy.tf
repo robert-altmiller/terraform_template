@@ -47,7 +47,7 @@
 resource "databricks_cluster_policy" "policy" {
   for_each   = local.cluster_policy_config.cluster_policies
   provider   = databricks.workspace
-  name       = each.value.cluster_policy_name
+  name       = each.value.resource_name
   definition = jsonencode(local.cluster_policy_config_settings[each.key])
 }
 

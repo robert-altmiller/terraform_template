@@ -14,7 +14,7 @@ data "databricks_spark_version" "latest_lts" {
 resource "databricks_cluster" "create_cluster" {
   for_each                 = try(local.cluster_config.clusters, {})
   provider                 = databricks.workspace
-  cluster_name             = try(each.value.cluster_name, "n/a")
+  cluster_name             = try(each.value.resource_name, "n/a")
   node_type_id             = data.databricks_node_type.smallest.id
   spark_version            = data.databricks_spark_version.latest_lts.id
   autotermination_minutes  = try(each.value.auto_termination_mins, "n/a")
