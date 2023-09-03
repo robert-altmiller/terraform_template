@@ -30,7 +30,7 @@ locals {
     for key, config in local.cluster_policy_config.cluster_policies : key => { 
       node_type_id = {
         type         = "allowlist",
-        values       = try(config.node_typeid, null)
+        values       = try(config.nodetype_id, null)
         defaultValue = ["i3.xlarge"]
       },
       spark_version = {
