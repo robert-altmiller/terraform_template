@@ -13,7 +13,6 @@
       ],
       "schema_principal_name": "contributors",
       "schema_principal_privileges": [
-        "USE_CATALOG",
         "USE_SCHEMA",
         "EXECUTE",
         "SELECT"
