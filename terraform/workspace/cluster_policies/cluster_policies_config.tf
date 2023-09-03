@@ -26,7 +26,7 @@ locals {
 }
 
 locals {
-  cluster_policy_config_settings = [for config in jsondecode(local.cluster_policy_config) : {
+  cluster_policy_config_settings = [for config in local.cluster_policy_config : {
     node_type_id = {
       type         = "allowlist",
       values       = config.node_type_id,
