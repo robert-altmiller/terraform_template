@@ -19,13 +19,12 @@ runs:
     run:
       working-directory: ./terraform
 
-  env:
-    ENVIRONMENT: unity-catalog
-
 
   steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+
+    - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GH_TOKEN }}
 
     - name: Set up latest version of Python
       uses: actions/setup-python@v2
@@ -38,6 +37,6 @@ runs:
         git clone https://github-dev.nwie.net/NationwideTest/Databricks_Automation_Config.git
         ls -ltra
         cat ./Databricks_Automation_Config/issue_submission/env.sh
-        echo "ENVIRONMENT=$ENVIRONMENT" >> $GITHUB_ENV
-        echo "BSA_SHORTNAME=$BSA_SHORTNAME" >> $GITHUB_ENV
-        echo "DB_REGION=$DB_REGION" >> $GITHUB_ENV
+        # echo "ENVIRONMENT=$ENVIRONMENT" >> $GITHUB_ENV
+        # echo "BSA_SHORTNAME=$BSA_SHORTNAME" >> $GITHUB_ENV
+        # echo "DB_REGION=$DB_REGION" >> $GITHUB_ENV
