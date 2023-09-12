@@ -9,7 +9,7 @@ runs:
     - name: Checkout repo
       uses: actions/checkout@v3
       with:
-        token: ${{ secrets.GH_TOKEN }}
+        token: ${{ inputs.GH_TOKEN }}
 
 
     - name: Set up latest version of Python
@@ -25,4 +25,5 @@ runs:
         cat ./issue_submission/env.sh
         echo "ENVIRONMENT=$TF_VAR_environment" >> $GITHUB_ENV
         echo "Current TF_VAR_environment: ${{ env.TF_VAR_environment }}"
+      shell: bash
       working-directory: ./terraform
