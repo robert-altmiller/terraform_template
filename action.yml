@@ -1,23 +1,9 @@
 name: 'Terraform Template Composite Action'
 description: 'Terraform Template Composite Action'
-# inputs:
-#   who-to-greet:  # id of input
-#     description: 'Who to greet'
-#     required: true
-#     default: 'World'
-# outputs:
-#   random-number:
-#     description: "Random number"
-#     value: ${{ steps.random-number-generator.outputs.random-number }}
-runs:
-  using: "composite"
-#   steps:
-#   - run: echo Hello World
-#     shell: bash
 
-  defaults:
-    run:
-      working-directory: ./terraform
+runs:
+
+  using: "composite"
 
   steps:
 
@@ -38,3 +24,4 @@ runs:
         ls -ltra
         cat ./issue_submission/env.sh
         echo "ENVIRONMENT=$TF_VAR_environment" >> $GITHUB_ENV
+      working-directory: ./terraform
