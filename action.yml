@@ -19,24 +19,22 @@ runs:
     run:
       working-directory: ./terraform
 
-
   steps:
 
     - uses: actions/checkout@v3
         with:
           token: ${{ secrets.GH_TOKEN }}
 
+
     - name: Set up latest version of Python
       uses: actions/setup-python@v2
       with:
         python-version: '3.x'
 
-    - name: Clone Config repot
-      #uses: hashicorp/setup-terraform@v1
+
+    - name: Clone Terraform Template Config repo
       run: |
-        git clone https://github-dev.nwie.net/NationwideTest/Databricks_Automation_Config.git
+        git clone https://https://github.com/robert-altmiller/terraform_template_config.git
         ls -ltra
-        cat ./Databricks_Automation_Config/issue_submission/env.sh
-        # echo "ENVIRONMENT=$ENVIRONMENT" >> $GITHUB_ENV
-        # echo "BSA_SHORTNAME=$BSA_SHORTNAME" >> $GITHUB_ENV
-        # echo "DB_REGION=$DB_REGION" >> $GITHUB_ENV
+        cat ./issue_submission/env.sh
+        echo "ENVIRONMENT=$TF_VAR_environment" >> $GITHUB_ENV
