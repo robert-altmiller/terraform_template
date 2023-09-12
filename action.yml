@@ -2,25 +2,21 @@ name: 'Terraform Template Composite Action'
 description: 'Terraform Template Composite Action'
 
 runs:
-
   using: "composite"
-
   steps:
-
-    - uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.GH_TOKEN }}
-
+    - name: Checkout repo
+      uses: actions/checkout@v3
+      with:
+        token: ${{ secrets.GH_TOKEN }}
 
     - name: Set up latest version of Python
       uses: actions/setup-python@v2
       with:
         python-version: '3.x'
 
-
     - name: Clone Terraform Template Config repo
       run: |
-        git clone https://https://github.com/robert-altmiller/terraform_template_config.git
+        git clone https://github.com/robert-altmiller/terraform_template_config.git
         ls -ltra
         cat ./issue_submission/env.sh
         echo "ENVIRONMENT=$TF_VAR_environment" >> $GITHUB_ENV
