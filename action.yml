@@ -1,6 +1,11 @@
 name: 'Terraform Template Composite Action'
 description: 'Terraform Template Composite Action'
 
+inputs:
+  GH_TOKEN:
+    description: 'GitHub Token'
+    required: true
+
 runs:
   using: "composite"
 
@@ -26,4 +31,4 @@ runs:
         echo "ENVIRONMENT=$TF_VAR_environment" >> $GITHUB_ENV
         echo "Current TF_VAR_environment: ${{ env.TF_VAR_environment }}"
       shell: bash
-      working-directory: ./terraform
+      # working-directory: ./terraform
