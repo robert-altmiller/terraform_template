@@ -12,7 +12,7 @@ data "databricks_spark_version" "latest_lts" {
 
 # create databrickls cluster
 resource "databricks_cluster" "create_cluster" {
-  for_each                 = local.cluster_config.clusters
+  for_each                 = jsondecode(var.databricks_submission_json)
   provider                 = databricks.workspace
   cluster_name             = each.value.resource_name
   node_type_id             = data.databricks_node_type.smallest.id
@@ -30,24 +30,3 @@ resource "databricks_cluster" "create_cluster" {
     owner       = var.github_actor
   }
 }
-
-# # create databrickls cluster
-# resource "databricks_cluster" "create_cluster" {
-#   count                   = var.databricks_deploy_clusters == "true" ? 1 : 0 # used as a conditional
-#   provider                = databricks.workspace
-#   cluster_name            = "${local.cluster_config.cluster_name}-${var.environment}"
-#   node_type_id            = data.databricks_node_type.smallest.id
-#   spark_version           =  data.databricks_spark_version.latest_lts.id
-#   autotermination_minutes = local.cluster_config.auto_termination_mins
-#   num_workers             = local.cluster_config.min_workers
-  
-#   autoscale {
-#     min_workers = local.cluster_config.min_workers
-#     max_workers = local.cluster_config.max_workers
-#   }
-  
-#   custom_tags = {
-#     environment = var.environment
-#     owner       = var.github_actor
-#   }
-# }
