@@ -108,6 +108,5 @@ variable "databricks_deploy_uc_schema" {
 # databricks submission json for infrastructure changes
 variable "databricks_submission_json" {
   description = "databricks submissions json"
-  type = map(any)
-  default = {}
+  type = string
 }
