@@ -16,6 +16,6 @@ resource "databricks_grants" "credential_grants" {
   storage_credential = databricks_storage_credential.external[each.key].id
   grant {
     principal  = tostring(lookup(each.value, "sc_principal_name", ""))
-    privileges = tostring(lookup(each.value, "sc_principal_privileges", ""))
+    privileges = lookup(each.value, "sc_principal_privileges", null) != null ? each.value.sc_principal_privileges : [""]
   }
 }
