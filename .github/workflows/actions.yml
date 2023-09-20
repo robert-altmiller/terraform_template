@@ -64,7 +64,7 @@ jobs:
           
       - name: Clone Terraform Template Config repo
         run: |
-          git clone https://https://github.com/robert-altmiller/terraform_template_config.git
+          git clone https://github.com/robert-altmiller/terraform_template_config.git
           ls -ltra
           cat ./issue_submission/env.sh
           echo "ENVIRONMENT=$TF_VAR_environment" >> $GITHUB_ENV
