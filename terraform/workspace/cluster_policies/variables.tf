@@ -53,4 +53,5 @@ variable "databricks_deploy_cluster_policies" {
 variable "databricks_submission_json" {
   description = "json submission for infrastructure changes"
   type        = string
+  default     = "{}"
 }

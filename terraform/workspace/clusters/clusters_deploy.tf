@@ -12,17 +12,17 @@ data "databricks_spark_version" "latest_lts" {
 
 # create databrickls cluster
 resource "databricks_cluster" "create_cluster" {
-  for_each                 = jsondecode(var.databricks_submission_json)
+  for_each = length(jsondecode(var.databricks_submission_json)) > 0 ? jsondecode(var.databricks_submission_json) : {}
   provider                 = databricks.workspace
-  cluster_name             = each.value.resource_name
+  cluster_name             = lookup(each.value, "resource_name", null)
   node_type_id             = data.databricks_node_type.smallest.id
   spark_version            = data.databricks_spark_version.latest_lts.id
-  autotermination_minutes  = each.value.auto_termination_mins
-  num_workers              = each.value.min_workers
+  autotermination_minutes  = lookup(each.value, "auto_termination_mins", null)
+  num_workers              = lookup(each.value, "min_workers", null)
   
   autoscale {
-    min_workers = each.value.min_workers
-    max_workers = each.value.max_workers
+    min_workers = lookup(each.value, "min_workers", null)
+    max_workers = lookup(each.value, "max_workers", null)
   }
 
   custom_tags = {
