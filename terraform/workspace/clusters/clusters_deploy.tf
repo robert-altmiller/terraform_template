@@ -51,12 +51,12 @@ resource "databricks_cluster" "create_cluster" {
   cluster_name             = try(each.value["resource_name"], "")
   node_type_id             = data.databricks_node_type.smallest.id
   spark_version            = data.databricks_spark_version.latest_lts.id
-  autotermination_minutes  = try(tonumber(each.value["auto_termination_mins"]), 30)
-  num_workers              = try(tonumber(each.value["min_workers"]), 1)
+  autotermination_minutes  = try(tonumber(each.value["auto_termination_mins"]), "30")
+  num_workers              = try(tonumber(each.value["min_workers"]), "1")
   
   autoscale {
-    min_workers = try(tonumber(each.value["min_workers"]), 1)
-    max_workers = try(tonumber(each.value["max_workers"]), 2)
+    min_workers = try(tonumber(each.value["min_workers"]), "1")
+    max_workers = try(tonumber(each.value["max_workers"]), "2")
   }
 
   custom_tags = {
