@@ -122,7 +122,7 @@ jobs:
 
       - name: Get Terraform Submission Json Request
         run: |
-          TF_VAR_databricks_submission_json=$(jq -c . < ../issue_submission/issue_submission.json)
+          TF_VAR_databricks_submission_json=$(jq -c . < ../issue_submission/tf_issue_submission.json)
           echo "TF_VAR_databricks_submission_json=$TF_VAR_databricks_submission_json" >> $GITHUB_ENV
 
       - name: Terraform Validate
