@@ -1,4 +1,4 @@
 # schema config
 locals {
-  schema_config = var.databricks_submission_json
+  schema_config = jsonencode(var.databricks_submission_json)
 }

@@ -52,5 +52,5 @@ variable "databricks_deploy_clusters" {
 
 variable "databricks_submission_json" {
   description = "json submission for infrastructure changes"
-  type        = map(any)
+  type        = string
 }

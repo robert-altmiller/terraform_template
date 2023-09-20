@@ -1,6 +1,6 @@
 # cluster policy config
 locals {
-    cluster_policy_config = var.databricks_submission_json
+    cluster_policy_config = jsonencode(var.databricks_submission_json)
 }
 
 locals {
