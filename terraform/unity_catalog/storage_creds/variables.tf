@@ -52,6 +52,6 @@ variable "databricks_deploy_uc_storage_credential" {
 
 variable "databricks_submission_json" {
   description = "json submission for infrastructure changes"
-  type        = string
-  default     = "{}"
+  type        = map(any)
+  default     = {}
 }
