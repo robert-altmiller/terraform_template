@@ -12,6 +12,7 @@ os.environ["PRINCIPAL_NAME"] = ""
 
 def get_databricks_token():
     """get databricks token for a service principal"""
+    
     account_id = os.environ.get("DATABRICKS_ACCOUNT_ID")
     client_id = os.environ.get("DATABRICKS_CLIENT_ID")
     client_secret = os.environ.get("DATABRICKS_CLIENT_SECRET")
@@ -36,6 +37,7 @@ def get_databricks_token():
 
 def change_catalog_owner():
     """change the owner of a Databricks catalog"""
+    
     databricks_url = os.environ.get("DATABRICKS_URL")
     catalog_name = os.environ.get("DATABRICKS_CATALOG_NAME")
     principal_name = os.environ.get("PRINCIPAL_NAME")

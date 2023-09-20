@@ -10,6 +10,7 @@ os.environ["DATABRICKS_CATALOG_NAME"] = ""
 
 def get_databricks_token():
     """get databricks token for a service principal"""
+    
     account_id = os.environ.get("DATABRICKS_ACCOUNT_ID")
     client_id = os.environ.get("DATABRICKS_CLIENT_ID")
     client_secret = os.environ.get("DATABRICKS_CLIENT_SECRET")
@@ -37,6 +38,7 @@ def delete_catalog():
     delete a Databricks catalog
     prerequisite: 'default' and all other schemas need to be removed
     """
+    
     databricks_url = os.environ.get("DATABRICKS_URL")
     catalog_name = os.environ.get("DATABRICKS_CATALOG_NAME")
     
