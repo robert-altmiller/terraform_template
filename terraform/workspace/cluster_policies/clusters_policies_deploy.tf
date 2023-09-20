@@ -12,7 +12,7 @@ resource "databricks_permissions" "policy_grants" {
   provider          = databricks.workspace
   cluster_policy_id = databricks_cluster_policy.policy[each.key].id
   access_control {
-    group_name       = try("${var.environment}-${each.value.cluster_policy_principal_name}", "")
+    group_name       = try(each.value.cluster_policy_principal_name, "")
     permission_level = try(each.value.cluster_policy_principal_privileges, "")
   }
   # access_control {
