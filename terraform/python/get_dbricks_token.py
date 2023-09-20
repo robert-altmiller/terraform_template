@@ -2,6 +2,8 @@ import os, requests, json
 from base64 import b64encode
 
 def get_databricks_token():
+    """get databricks token for a service principal"""
+    
     account_id = os.environ.get("DATABRICKS_ACCOUNT_ID")
     client_id = os.environ.get("DATABRICKS_CLIENT_ID")
     client_secret = os.environ.get("DATABRICKS_CLIENT_SECRET")
@@ -20,7 +22,9 @@ def get_databricks_token():
     response_data = response.json()
     if "access_token" in response_data:
         print(response_data["access_token"])
+        return response_data["access_token"]
     else: print("could not get access token....")
+    
 
 if __name__ == "__main__":
     get_databricks_token()

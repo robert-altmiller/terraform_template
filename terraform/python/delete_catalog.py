@@ -7,8 +7,6 @@ os.environ["DATABRICKS_CLIENT_SECRET"] = ""
 
 os.environ["DATABRICKS_URL"] = ""
 os.environ["DATABRICKS_CATALOG_NAME"] = ""
-os.environ["PRINCIPAL_NAME"] = ""
-
 
 def get_databricks_token():
     """get databricks token for a service principal"""
@@ -34,11 +32,13 @@ def get_databricks_token():
     else: return None
 
 
-def change_catalog_owner():
-    """change the owner of a Databricks catalog"""
+def delete_catalog():
+    """
+    delete a Databricks catalog
+    prerequisite: 'default' and all other schemas need to be removed
+    """
     databricks_url = os.environ.get("DATABRICKS_URL")
     catalog_name = os.environ.get("DATABRICKS_CATALOG_NAME")
-    principal_name = os.environ.get("PRINCIPAL_NAME")
     
     url = f"{databricks_url}/api/2.1/unity-catalog/catalogs/{catalog_name}"
     headers = {
@@ -47,18 +47,14 @@ def change_catalog_owner():
     }
 
     # Adjust the payload as per your requirement.
-    payload = {
-        "name": catalog_name,
-        "owner": principal_name
-    }
-
-    response = requests.patch(url, headers=headers, json=payload)
+    payload = {}
+    response = requests.delete(url, headers = headers, json = payload)
     if response.status_code == 200:
-        print(f"The owner of the '{catalog_name}' catalog has been changed to '{principal_name}'.")
+        print(f"Databricks Catalog '{catalog_name}' has been deleted.")
     else:
-        print(f"Failed to change the owner of the '{catalog_name}' catalog. Response: {response.text}")
+        print(f"Databricks Catalog '{catalog_name}' was not deleted. Response: {response.text}")
 
 
 if __name__ == "__main__":
-    change_catalog_owner()
+    delete_catalog()
     
