@@ -2,9 +2,9 @@
 resource "databricks_storage_credential" "external" {
   for_each  = var.databricks_submission_json
   provider  = databricks.workspace
-  name      = lookup(each.value, "resource_name", "")
+  name      = tostring(lookup(each.value, "resource_name", ""))
   aws_iam_role {
-    role_arn = lookup(each.value, "sc_role_arn", "")
+    role_arn = tostring(lookup(each.value, "sc_role_arn", ""))
   }
   comment = "Managed by Terraform (TF)"
 }
@@ -15,7 +15,7 @@ resource "databricks_grants" "credential_grants" {
   provider           = databricks.workspace
   storage_credential = databricks_storage_credential.external[each.key].id
   grant {
-    principal  = lookup(each.value, "sc_principal_name", "")
-    privileges = lookup(each.value, "sc_principal_privileges", "")
+    principal  = tostring(lookup(each.value, "sc_principal_name", ""))
+    privileges = tostring(lookup(each.value, "sc_principal_privileges", ""))
   }
 }
