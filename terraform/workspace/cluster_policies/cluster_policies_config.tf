@@ -1,11 +1,8 @@
-# cluster policy config
+# cluster policy config settings
 locals {
-    cluster_policy_config = jsonencode(var.databricks_submission_json)
-}
-
-locals {
+  decoded_cluster_policy_config = jsondecode(var.databricks_submission_json)
   cluster_policy_config_settings = { 
-    for key, config in local.cluster_policy_config.cluster_policies : key => { 
+    for key, config in local.decoded_cluster_policy_config["cluster_policies"] : key => { 
       node_type_id = {
         type         = "allowlist",
         values       = try(config.nodetype_id, null)
