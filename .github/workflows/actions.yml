@@ -62,12 +62,12 @@ jobs:
           token: ${{ secrets.GH_TOKEN }}
 
           
-      - name: Clone Terraform Template Config repo
-        run: |
-          git clone https://github.com/robert-altmiller/terraform_template_config.git
-          ls -ltra
-          cat issue_submission/env.sh
-          echo "ENVIRONMENT=$TF_VAR_environment" >> $GITHUB_ENV
+      # - name: Clone Terraform Template Config repo
+      #   run: |
+      #     git clone https://github.com/robert-altmiller/terraform_template_config.git
+      #     ls -ltra
+      #     cat issue_submission/env.sh
+      #     echo "ENVIRONMENT=$TF_VAR_environment" >> $GITHUB_ENV
     
 
       - name: Set up latest version of Python
@@ -113,6 +113,7 @@ jobs:
           TF_VAR_databricks_token=$(python3 ../terraform/python/get_dbricks_token.py)
           echo "TF_VAR_databricks_token=$TF_VAR_databricks_token" >> $GITHUB_ENV
           echo "TF_VAR_databricks_token: $TF_VAR_databricks_token"
+
 
       - name: Clone down the Terraform Template Config Repo with the submission.json
         shell: bash
