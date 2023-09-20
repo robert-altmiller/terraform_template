@@ -12,7 +12,7 @@ data "databricks_spark_version" "latest_lts" {
 
 # create databrickls cluster
 resource "databricks_cluster" "create_cluster" {
-  for_each                 = jsondecode(var.databricks_submission_json)
+  for_each                 = var.databricks_submission_json
   provider                 = databricks.workspace
   cluster_name             = lookup(each.value, "resource_name", null)
   node_type_id             = data.databricks_node_type.smallest.id

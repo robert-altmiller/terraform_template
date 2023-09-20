@@ -1,28 +1,6 @@
-# # cluster policy config json
-# variable "cluster_policy_config_json" {
-#   description = "JSON configuration for Databricks cluster policies"
-#   type        = string
-#   default     = <<-EOT
-#   {
-#     "cluster_policy_name": "personal-compute-policy",
-#     "cluster_profile": "singleNode",
-#     "cluster_type": "all-purpose",
-#     "runtime_engine": "STANDARD",
-#     "node_type_id": ["i3.xlarge", "i3.2xlarge"],
-#     "spark_version": "auto:latest-ml",
-#     "num_workers": 0,
-#     "min_workers": 1,
-#     "max_workers": 2,
-#     "auto_termination_mins": 60,
-#     "cluster_policy_principal_name": "contributors",
-#     "cluster_policy_principal_privileges": "CAN_USE"
-#   }
-#     EOT
-# }
-
 # cluster policy config
 locals {
-    cluster_policy_config = jsondecode(var.databricks_submission_json)
+    cluster_policy_config = var.databricks_submission_json
 }
 
 locals {
