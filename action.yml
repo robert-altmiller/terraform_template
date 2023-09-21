@@ -92,66 +92,66 @@ runs:
       shell: bash
 
 
-    - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v1
+    # - name: Setup Terraform
+    #   uses: hashicorp/setup-terraform@v1
 
 
-    - name: Setup Terraform Init Backend
-      run: |
-        export TF_LOG=DEBUG
-        if [[ "${{ env.TF_VAR_environment }}" == "dev" ]]; then
-          export BUCKET_NAME="${{ env.BACKEND_BUCKET_DEV }}"
-        else
-          export BUCKET_NAME="${{ env.BACKEND_BUCKET_PROD }}"
-        fi
-        export KEY_NAME="terraform/terraform.tfstate"
-        export AWS_REGION="${{ env.TF_VAR_aws_region }}"
-        export ACCESS_KEY="${{ env.TF_VAR_aws_access_key_id }}"
-        export SECRET_KEY="${{ env.TF_VAR_aws_access_key_secret}}"
-        chmod +x ../terraform/shell_scripts/tf_s3_backend/tf_s3_backend_deploy.sh
-        ../terraform/shell_scripts/tf_s3_backend/tf_s3_backend_deploy.sh
-      shell: bash
+    # - name: Setup Terraform Init Backend
+    #   run: |
+    #     export TF_LOG=DEBUG
+    #     if [[ "${{ env.TF_VAR_environment }}" == "dev" ]]; then
+    #       export BUCKET_NAME="${{ env.BACKEND_BUCKET_DEV }}"
+    #     else
+    #       export BUCKET_NAME="${{ env.BACKEND_BUCKET_PROD }}"
+    #     fi
+    #     export KEY_NAME="terraform/terraform.tfstate"
+    #     export AWS_REGION="${{ env.TF_VAR_aws_region }}"
+    #     export ACCESS_KEY="${{ env.TF_VAR_aws_access_key_id }}"
+    #     export SECRET_KEY="${{ env.TF_VAR_aws_access_key_secret}}"
+    #     chmod +x ../terraform/shell_scripts/tf_s3_backend/tf_s3_backend_deploy.sh
+    #     ../terraform/shell_scripts/tf_s3_backend/tf_s3_backend_deploy.sh
+    #   shell: bash
 
-    - name: Get Databricks Authentication Token
-      run: |
-        export DATABRICKS_ACCOUNT_ID="${{ env.TF_VAR_databricks_account_id }}"
-        export DATABRICKS_CLIENT_ID=$(echo $TF_VAR_databricks_client_ids | jq -r .${{env.TF_VAR_environment}})
-        export DATABRICKS_CLIENT_SECRET=$(echo $TF_VAR_databricks_client_secrets | jq -r .${{env.TF_VAR_environment}})
-        pip3 install -r ../terraform/python/requirements.txt
-        chmod +x ../terraform/python/get_dbricks_token.py
-        TF_VAR_databricks_token=$(python3 ../terraform/python/get_dbricks_token.py)
-        echo "TF_VAR_databricks_token=$TF_VAR_databricks_token" >> $GITHUB_ENV
-        echo "TF_VAR_databricks_token: $TF_VAR_databricks_token"
-      shell: bash
-
-
-    - name: Clone down the Terraform Template Config Repo with the tf_issue_submission.json
-      run: |
-        git clone https://github.com/${{ github.repository_owner }}/${{ github.event.repository.name }}_config.git
-      shell: bash
+    # - name: Get Databricks Authentication Token
+    #   run: |
+    #     export DATABRICKS_ACCOUNT_ID="${{ env.TF_VAR_databricks_account_id }}"
+    #     export DATABRICKS_CLIENT_ID=$(echo $TF_VAR_databricks_client_ids | jq -r .${{env.TF_VAR_environment}})
+    #     export DATABRICKS_CLIENT_SECRET=$(echo $TF_VAR_databricks_client_secrets | jq -r .${{env.TF_VAR_environment}})
+    #     pip3 install -r ../terraform/python/requirements.txt
+    #     chmod +x ../terraform/python/get_dbricks_token.py
+    #     TF_VAR_databricks_token=$(python3 ../terraform/python/get_dbricks_token.py)
+    #     echo "TF_VAR_databricks_token=$TF_VAR_databricks_token" >> $GITHUB_ENV
+    #     echo "TF_VAR_databricks_token: $TF_VAR_databricks_token"
+    #   shell: bash
 
 
-    - name: Get Terraform Submission Json Request
-      run: |
-        TF_VAR_databricks_submission_json=$(jq -c . < ./${{ github.event.repository.name }}_config/issue_submission/tf_issue_submission.json)
-        echo "TF_VAR_databricks_submission_json=$TF_VAR_databricks_submission_json" >> $GITHUB_ENV
-      shell: bash
+    # - name: Clone down the Terraform Template Config Repo with the tf_issue_submission.json
+    #   run: |
+    #     git clone https://github.com/${{ github.repository_owner }}/${{ github.event.repository.name }}_config.git
+    #   shell: bash
 
 
-    - name: Terraform Validate
-      run: |
-        export TF_LOG=DEBUG
-        terraform validate
-      shell: bash
+    # - name: Get Terraform Submission Json Request
+    #   run: |
+    #     TF_VAR_databricks_submission_json=$(jq -c . < ./${{ github.event.repository.name }}_config/issue_submission/tf_issue_submission.json)
+    #     echo "TF_VAR_databricks_submission_json=$TF_VAR_databricks_submission_json" >> $GITHUB_ENV
+    #   shell: bash
 
 
-    - name: Terraform Plan
-      run: |
-        terraform plan
-      shell: bash
+    # - name: Terraform Validate
+    #   run: |
+    #     export TF_LOG=DEBUG
+    #     terraform validate
+    #   shell: bash
 
 
-    - name: Terraform Apply
-      run: | 
-        terraform apply      
-      shell: bash
+    # - name: Terraform Plan
+    #   run: |
+    #     terraform plan
+    #   shell: bash
+
+
+    # - name: Terraform Apply
+    #   run: | 
+    #     terraform apply      
+    #   shell: bash
