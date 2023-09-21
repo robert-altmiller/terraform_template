@@ -122,7 +122,6 @@ jobs:
         shell: bash
         run: |
           git clone https://github.com/${{ github.repository_owner }}/${{ github.event.repository.name }}_config.git
-          ls -ltra
 
 
       - name: Get Terraform Submission Json Request
