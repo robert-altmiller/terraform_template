@@ -85,8 +85,8 @@ runs:
 
     - name: Create Terraform Init Backend Configuration
       run: |
-        BACKEND_BUCKET_DEV=$(jq -r .backend_bucket_dev < ../${{ github.event.repository.name }}_config/terraform/shell_scripts/tf_s3_backend/tf_s3_backend_config.json)
-        BACKEND_BUCKET_PROD=$(jq -r .backend_bucket_prod < ../${{ github.event.repository.name }}_config/terraform/shell_scripts/tf_s3_backend/tf_s3_backend_config.json)
+        BACKEND_BUCKET_DEV=$(jq -r .backend_bucket_dev < ./terraform/shell_scripts/tf_s3_backend/tf_s3_backend_config.json)
+        BACKEND_BUCKET_PROD=$(jq -r .backend_bucket_prod < ./terraform/shell_scripts/tf_s3_backend/tf_s3_backend_config.json)
         echo "BACKEND_BUCKET_DEV=$BACKEND_BUCKET_DEV" >> $GITHUB_ENV
         echo "BACKEND_BUCKET_PROD=$BACKEND_BUCKET_PROD" >> $GITHUB_ENV
       shell: bash
@@ -109,7 +109,7 @@ runs:
         export ACCESS_KEY="${{ env.TF_VAR_aws_access_key_id }}"
         export SECRET_KEY="${{ env.TF_VAR_aws_access_key_secret}}"
         chmod +x ../terraform/shell_scripts/tf_s3_backend/tf_s3_backend_deploy.sh
-        ../${{ github.event.repository.name }}_config/terraform/shell_scripts/tf_s3_backend/tf_s3_backend_deploy.sh
+        ../terraform/shell_scripts/tf_s3_backend/tf_s3_backend_deploy.sh
       shell: bash
 
     - name: Get Databricks Authentication Token
@@ -118,8 +118,8 @@ runs:
         export DATABRICKS_CLIENT_ID=$(echo $TF_VAR_databricks_client_ids | jq -r .${{env.TF_VAR_environment}})
         export DATABRICKS_CLIENT_SECRET=$(echo $TF_VAR_databricks_client_secrets | jq -r .${{env.TF_VAR_environment}})
         pip3 install -r ../terraform/python/requirements.txt
-        chmod +x ../${{ github.event.repository.name }}_config/terraform/python/get_dbricks_token.py
-        TF_VAR_databricks_token=$(python3 ..${{ github.event.repository.name }}_config//terraform/python/get_dbricks_token.py)
+        chmod +x ../terraform/python/get_dbricks_token.py
+        TF_VAR_databricks_token=$(python3 ../terraform/python/get_dbricks_token.py)
         echo "TF_VAR_databricks_token=$TF_VAR_databricks_token" >> $GITHUB_ENV
         echo "TF_VAR_databricks_token: $TF_VAR_databricks_token"
       shell: bash
