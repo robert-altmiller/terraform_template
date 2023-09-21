@@ -94,7 +94,6 @@ runs:
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
-      shell: bash
 
 
     - name: Setup Terraform Init Backend
