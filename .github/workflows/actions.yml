@@ -41,7 +41,6 @@ jobs:
       TF_VAR_databricks_instances: '{"dev": "${{ secrets.DATABRICKS_INSTANCE_DEV }}", "prod": "${{ secrets.DATABRICKS_INSTANCE_PROD }}"}'
       TF_VAR_databricks_client_ids: '{"dev": "${{ secrets.DATABRICKS_CLIENT_ID_DEV }}", "prod": "${{ secrets.DATABRICKS_CLIENT_ID_PROD }}"}'
       TF_VAR_databricks_client_secrets: '{"dev": "${{ secrets.DATABRICKS_CLIENT_ID_SECRET_DEV }}", "prod": "${{ secrets.DATABRICKS_CLIENT_ID_SECRET_PROD }}"}'
-      # TF_VAR_databricks_tokens: '{"dev": "${{ secrets.DATABRICKS_TOKEN_DEV }}", "prod": "${{ secrets.DATABRICKS_TOKEN_PROD }}"}'
       TF_VAR_databricks_admin_login: ${{ secrets.DATABRICKS_ADMIN_LOGIN }}
       TF_VAR_databricks_admin_password: ${{ secrets.DATABRICKS_ADMIN_PASSWORD }}
       TF_VAR_github_actor: ${{ github.actor }} # username for tagging of resources
@@ -60,13 +59,6 @@ jobs:
       - uses: actions/checkout@v3
         with:
           token: ${{ secrets.GH_TOKEN }}
-
-      # - name: Clone Terraform Template Config repo
-      #   run: |
-      #     git clone https://github.com/robert-altmiller/terraform_template_config.git
-      #     ls -ltra
-      #     cat issue_submission/env.sh
-      #     echo "ENVIRONMENT=$TF_VAR_environment" >> $GITHUB_ENV
     
 
       - name: Set up latest version of Python
