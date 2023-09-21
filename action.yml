@@ -2,6 +2,45 @@ name: 'Terraform Template Composite Action'
 description: 'Terraform Template Composite Action'
 
 inputs:
+  AWS_ACCESS_KEY_ID:
+    description: 'GitHub Token'
+    required: true
+  AWS_REGION:
+    description: 'GitHub Token'
+    required: true
+  AWS_SECRET_ACCESS_KEY:
+    description: 'GitHub Token'
+    required: true
+  DATABRICKS_ACCOUNT_ID:
+    description: 'GitHub Token'
+    required: true
+  DATABRICKS_ADMIN_LOGIN:
+    description: 'GitHub Token'
+    required: true
+  DATABRICKS_ADMIN_PASSWORD:
+    description: 'GitHub Token'
+    required: true
+  DATABRICKS_CLIENT_ID_DEV:
+    description: 'GitHub Token'
+    required: true
+  DATABRICKS_CLIENT_ID_PROD:
+    description: 'GitHub Token'
+    required: true
+  DATABRICKS_CLIENT_ID_SECRET_DEV:
+    description: 'GitHub Token'
+    required: true
+  DATABRICKS_CLIENT_ID_SECRET_PROD:
+    description: 'GitHub Token'
+    required: true
+  DATABRICKS_INSTANCE_DEV:
+    description: 'GitHub Token'
+    required: true
+  DATABRICKS_INSTANCE_PROD:
+    description: 'GitHub Token'
+    required: true
+  ENVIRONMENT:
+    description: 'GitHub Token'
+    required: true
   GH_TOKEN:
     description: 'GitHub Token'
     required: true
