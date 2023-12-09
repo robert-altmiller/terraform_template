@@ -1,0 +1,32 @@
+{
+  "catalogs": {},
+  "cluster_policies": {},
+  "clusters": {},
+  "external_locations": {
+    "ggm-dce-raqo": {
+      "environment": "unity_catalog",
+      "create_or_delete": "create",
+      "resource_name": "ggm-dce-raqo",
+      "el_s3_url": "s3://ggm-dce-db-dev-01/",
+      "el_sc_name": "ggm-dce-cred",
+      "el_principal_name": "dev-contributors",
+      "el_principal_privileges": [
+        "WRITE_FILES"
+      ]
+    }
+  },
+  "schemas": {},
+  "storage_credentials": {
+    "my-test-raqo-sc": {
+      "environment": "unity_catalog",
+      "create_or_delete": "create",
+      "resource_name": "my-test-raqo-sc",
+      "sc_role_arn": "arn:aws:iam::997819012307:role/one-env-admin-cross-account-access-role",
+      "sc_principal_name": "dev-contributors",
+      "sc_principal_privileges": [
+        "READ_FILES",
+        "WRITE_FILES"
+      ]
+    }
+  }
+}

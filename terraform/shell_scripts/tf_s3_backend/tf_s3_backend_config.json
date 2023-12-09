@@ -1,0 +1,6 @@
+{
+    "backend_bucket_dev": "dbx-dev-bucket",
+    "backend_bucket_prod": "dbx-prod-bucket",
+    "backend_bucket_uc": "dbx-unitycatalog-bucket",
+    "backend_bucket_artifacts": "dbx-artifacts-bucket"
+}

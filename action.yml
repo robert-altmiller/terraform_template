@@ -1,0 +1,339 @@
+name: 'Terraform Template Composite Action'
+description: 'Terraform Template Composite Action'
+
+inputs:
+  AWS_ACCESS_KEY_ID:
+    description: 'AWS Access Key ID'
+    required: true
+  AWS_REGION:
+    description: 'AWS Region'
+    required: true
+  AWS_SECRET_ACCESS_KEY:
+    description: 'AWS Secret Access Key'
+    required: true
+  DATABRICKS_ACCOUNT_ID:
+    description: 'Databricks Account ID'
+    required: true
+  DATABRICKS_ADMIN_LOGIN:
+    description: 'Databricks Admin Login'
+    required: true
+  DATABRICKS_ADMIN_PASSWORD:
+    description: 'Databricks Admin Password'
+    required: true
+  DATABRICKS_CLIENT_ID_DEV:
+    description: 'Databricks Client ID Dev'
+    required: true
+  DATABRICKS_CLIENT_ID_PROD:
+    description: 'Databricks Client ID Prod'
+    required: true
+  DATABRICKS_CLIENT_ID_SECRET_DEV:
+    description: 'Databricks Client ID Secret Dev'
+    required: true
+  DATABRICKS_CLIENT_ID_SECRET_PROD:
+    description: 'Databricks Client ID Secret Prod'
+    required: true
+  DATABRICKS_INSTANCE_DEV:
+    description: 'Databricks Instance Dev'
+    required: true
+  DATABRICKS_INSTANCE_PROD:
+    description: 'Databricks Instance Prod'
+    required: true
+  # ENVIRONMENT:
+  #   description: 'Environment'
+  #   required: true
+  GH_TOKEN:
+    description: 'Github Token'
+    required: true
+  ISSUE_BRANCH_NAME_MAIN:
+    description: 'Issue Branch Name Main'
+    required: true
+
+runs:
+  using: "composite"
+
+  steps:
+
+    - name: Set all Terraform environment variables passed in from Terraform Config Repo
+      run: |
+        export TF_VAR_aws_region="${{ inputs.AWS_REGION }}"
+        echo "TF_VAR_aws_region=$TF_VAR_aws_region" >> $GITHUB_ENV
+        export TF_VAR_aws_access_key_id="${{ inputs.AWS_ACCESS_KEY_ID }}"
+        echo "TF_VAR_aws_access_key_id=$TF_VAR_aws_access_key_id" >> $GITHUB_ENV
+        export TF_VAR_aws_access_key_secret="${{ inputs.AWS_SECRET_ACCESS_KEY }}"
+        echo "TF_VAR_aws_access_key_secret=$TF_VAR_aws_access_key_secret" >> $GITHUB_ENV
+        export TF_VAR_databricks_account_id="${{ inputs.DATABRICKS_ACCOUNT_ID }}"
+        echo "TF_VAR_databricks_account_id=$TF_VAR_databricks_account_id" >> $GITHUB_ENV
+        export TF_VAR_databricks_instances='{"dev": "${{ inputs.DATABRICKS_INSTANCE_DEV }}", "prod": "${{ inputs.DATABRICKS_INSTANCE_PROD }}"}'
+        echo "TF_VAR_databricks_instances=$TF_VAR_databricks_instances" >> $GITHUB_ENV
+        export TF_VAR_databricks_client_ids='{"dev": "${{ inputs.DATABRICKS_CLIENT_ID_DEV }}", "prod": "${{ inputs.DATABRICKS_CLIENT_ID_PROD }}"}'
+        echo "TF_VAR_databricks_client_ids=$TF_VAR_databricks_client_ids" >> $GITHUB_ENV
+        export TF_VAR_databricks_client_secrets='{"dev": "${{ inputs.DATABRICKS_CLIENT_ID_SECRET_DEV }}", "prod": "${{ inputs.DATABRICKS_CLIENT_ID_SECRET_PROD }}"}'
+        echo "TF_VAR_databricks_client_secrets=$TF_VAR_databricks_client_secrets" >> $GITHUB_ENV
+        export TF_VAR_databricks_admin_login="${{ inputs.DATABRICKS_ADMIN_LOGIN }}"
+        echo "TF_VAR_databricks_admin_login=$TF_VAR_databricks_admin_login" >> $GITHUB_ENV
+        export TF_VAR_databricks_admin_password="${{ inputs.DATABRICKS_ADMIN_PASSWORD }}"
+        echo "TF_VAR_databricks_admin_password=$TF_VAR_databricks_admin_password" >> $GITHUB_ENV
+        export TF_VAR_github_actor="${{ github.actor }}" # username for tagging of resources
+        echo "TF_VAR_github_actor=$TF_VAR_github_actor" >> $GITHUB_ENV
+      shell: bash
+
+
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+      with:
+        repository: ${{ github.repository_owner }}/terraform_template
+        ref: main
+        token: ${{ inputs.GH_TOKEN }}
+  
+
+    - name: Set up latest version of Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+
+    - name: Install jq
+      run: sudo apt-get install jq
+      shell: bash
+
+
+    - name: Create Terraform Init Backend Configuration
+      run: |
+        BACKEND_BUCKET_UC=$(jq -r .backend_bucket_uc < ./terraform/shell_scripts/tf_s3_backend/tf_s3_backend_config.json)
+        BACKEND_BUCKET_DEV=$(jq -r .backend_bucket_dev < ./terraform/shell_scripts/tf_s3_backend/tf_s3_backend_config.json)
+        BACKEND_BUCKET_PROD=$(jq -r .backend_bucket_prod < ./terraform/shell_scripts/tf_s3_backend/tf_s3_backend_config.json)
+        BACKEND_BUCKET_ARTIFACTS=$(jq -r .backend_bucket_artifacts < ./terraform/shell_scripts/tf_s3_backend/tf_s3_backend_config.json)
+        echo "BACKEND_BUCKET_UC=$BACKEND_BUCKET_UC" >> $GITHUB_ENV
+        echo "BACKEND_BUCKET_DEV=$BACKEND_BUCKET_DEV" >> $GITHUB_ENV
+        echo "BACKEND_BUCKET_PROD=$BACKEND_BUCKET_PROD" >> $GITHUB_ENV
+        echo "BACKEND_BUCKET_ARTIFACTS=$BACKEND_BUCKET_ARTIFACTS" >> $GITHUB_ENV
+      shell: bash
+
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+
+
+    - name: Clone down the Terraform Template Config Repo With the tf_issue_submission.json
+      run: |
+        git clone https://github.com/${{ github.repository_owner }}/${{ github.event.repository.name }}.git
+        cd ${{ github.event.repository.name }}
+        git fetch
+        git checkout ${{ inputs.ISSUE_BRANCH_NAME_MAIN }}
+      shell: bash
+
+
+    - name: Get and Set Env.sh Variables From Config Repo
+      run: |
+        chmod +x ./${{ github.event.repository.name }}/issue_submission/env.sh
+        source ./${{ github.event.repository.name }}/issue_submission/env.sh
+        echo "ENVIRONMENT=$ENVIRONMENT" >> $GITHUB_ENV
+        echo "ENVIRONMENT: $ENVIRONMENT"
+        echo "ISSUE_BRANCH_NAME=$ISSUE_BRANCH_NAME" >> $GITHUB_ENV
+        echo "ISSUE_BRANCH_NAME: $ISSUE_BRANCH_NAME"
+        echo "ISSUE_BRANCH_NAME_MAIN=$ISSUE_BRANCH_NAME_MAIN" >> $GITHUB_ENV
+        echo "ISSUE_BRANCH_NAME_MAIN: $ISSUE_BRANCH_NAME_MAIN"
+        echo "ISSUE_RESOURCE_NAME=$ISSUE_RESOURCE_NAME" >> $GITHUB_ENV
+        echo "ISSUE_RESOURCE_NAME: $ISSUE_RESOURCE_NAME"
+        echo "ISSUE_RESOURCE_TYPE=$ISSUE_RESOURCE_TYPE" >> $GITHUB_ENV
+        echo "ISSUE_RESOURCE_TYPE: $ISSUE_RESOURCE_TYPE"
+        echo "ISSUE_REQUESTOR_EMAIL=$ISSUE_REQUESTOR_EMAIL" >> $GITHUB_ENV
+        echo "ISSUE_REQUESTOR_EMAIL: $ISSUE_REQUESTOR_EMAIL"
+        echo "GITHUB_ISSUE_NUMBER=$GITHUB_ISSUE_NUMBER" >> $GITHUB_ENV
+        echo "GITHUB_ISSUE_NUMBER: $GITHUB_ISSUE_NUMBER"
+      shell: bash
+
+
+    - name: Get and Set Init Backend Environment From Env.sh Vars
+      run: |
+        echo "init_backend_environment=$ENVIRONMENT" >> $GITHUB_ENV
+        echo "init_backend_environment: $init_backend_environment"
+      shell: bash
+
+
+    - name: Setup Terraform Init Backend
+      run: |
+        export TF_LOG=DEBUG
+        if [ "${{ env.init_backend_environment }}" == "unity_catalog" ]; then
+          export BUCKET_NAME="${{ env.BACKEND_BUCKET_UC }}"
+        elif [ "${{ env.init_backend_environment }}" == "dev" ]; then
+          export BUCKET_NAME="${{ env.BACKEND_BUCKET_DEV }}"
+        else
+          export BUCKET_NAME="${{ env.BACKEND_BUCKET_PROD }}"
+        fi
+        echo BUCKET_NAME: $BUCKET_NAME
+        export KEY_NAME="terraform/terraform.tfstate"
+        export AWS_REGION="${{ env.TF_VAR_aws_region }}"
+        export ACCESS_KEY="${{ env.TF_VAR_aws_access_key_id }}"
+        export SECRET_KEY="${{ env.TF_VAR_aws_access_key_secret}}"
+        chmod +x ./terraform/shell_scripts/tf_s3_backend/tf_s3_backend_deploy.sh
+        cd ./terraform
+        ./shell_scripts/tf_s3_backend/tf_s3_backend_deploy.sh
+      shell: bash
+
+
+    - name: Get Terraform Submission Json Request and Update Terraform Deploy Environment
+      run: |
+        TF_VAR_databricks_submission_json=$(jq -c . < ./${{ github.event.repository.name }}/issue_submission/tf_issue_submission.json)
+        echo "TF_VAR_databricks_submission_json=$TF_VAR_databricks_submission_json" >> $GITHUB_ENV
+        echo "TF_VAR_databricks_submission_json: $TF_VAR_databricks_submission_json"
+
+        # check environment name if 'unity_catalog' update it to 'dev' environment
+        if [ "${{ env.init_backend_environment }}" == "unity_catalog" ]; then
+          export TF_VAR_environment="dev"
+        else
+          export TF_VAR_environment="${{ env.init_backend_environment }}"
+        fi
+        echo "TF_VAR_environment=$TF_VAR_environment" >> $GITHUB_ENV
+      shell: bash
+
+
+    - name: Get Databricks Authentication Token
+      run: |
+        export DATABRICKS_ACCOUNT_ID="${{ env.TF_VAR_databricks_account_id }}"
+        export DATABRICKS_CLIENT_ID=$(echo $TF_VAR_databricks_client_ids | jq -r .${{env.TF_VAR_environment}})
+        export DATABRICKS_CLIENT_SECRET=$(echo $TF_VAR_databricks_client_secrets | jq -r .${{env.TF_VAR_environment}})
+        pip3 install -r ./terraform/python/requirements.txt
+        chmod +x ./terraform/python/get_dbricks_token.py
+        TF_VAR_databricks_token=$(python3 ./terraform/python/get_dbricks_token.py)
+        echo "TF_VAR_databricks_token=$TF_VAR_databricks_token" >> $GITHUB_ENV
+        echo "TF_VAR_databricks_token: $TF_VAR_databricks_token"
+      shell: bash
+
+
+    - name: Terraform Validate
+      run: |
+        cd ./terraform
+        export TF_LOG=DEBUG
+        terraform validate
+      shell: bash
+
+
+    - name: Terraform Plan
+      run: |
+        cd ./terraform
+        terraform plan
+      shell: bash
+
+
+    - name: Terraform Apply With Conditional Logic
+      run: |
+        cd ./terraform
+        # Run terraform apply and capture the exit code
+        if terraform apply -auto-approve; then
+          echo "Terraform deployment was successful"
+          echo "terraform_succeeded=yes" >> $GITHUB_ENV
+        else
+          echo "Terraform deployment failed"
+          echo "terraform_succeeded=no" >> $GITHUB_ENV
+        fi
+      shell: bash
+
+
+    - name: Commit Changes in 'Feature' Main Branch to Main Branch Since Terraform Deployed Successfully
+      if: ${{ env.terraform_succeeded == 'yes' }}
+      run: |
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git config --global user.name "github-actions[bot]"
+
+        # Configure Git to use the token for authentication
+        git config --global credential.helper "store --file ~/.git-credentials"
+        echo "https://github.com:${{ inputs.GH_TOKEN }}@github.com" > ~/.git-credentials
+        
+        rm -rf ${{ github.event.repository.name }}
+        git clone https://github.com/${{ github.repository_owner }}/${{ github.event.repository.name }}.git
+        cd ${{ github.event.repository.name }}
+        git fetch
+        git pull origin main
+        git merge origin/${{ inputs.ISSUE_BRANCH_NAME_MAIN }}
+        git add --all
+        git push origin main
+      shell: bash
+
+
+    - name: Comment / Close Issue in Config Repo (Check for Multiple Resources Request)
+      if: ${{ env.terraform_succeeded == 'yes' && env.ISSUE_RESOURCE_TYPE != 'multiple' }}
+      run: |
+        databricks_instance=$(echo $TF_VAR_databricks_instances | jq -r .${{env.TF_VAR_environment}})
+        ISSUE_UPDATE_COMMENT="${{ env.ISSUE_RESOURCE_NAME }} was created for $databricks_instance"
+        echo "${{ inputs.GH_TOKEN }}" | gh auth login --hostname github.com --with-token
+        gh issue comment ${{ env.GITHUB_ISSUE_NUMBER }} --body "$ISSUE_UPDATE_COMMENT" --repo ${{ github.repository_owner }}/${{ github.event.repository.name }}
+        gh issue close ${{ env.GITHUB_ISSUE_NUMBER }} --repo ${{ github.repository_owner }}/${{ github.event.repository.name }}
+      shell: bash
+
+
+    - name: Install Sendmail for Failed Workflow Runs
+      if: ${{ env.terraform_succeeded == 'no'}}
+      run: |
+        # install sendmail pip package
+        sudo apt-get install -y sendmail
+      shell: bash
+
+
+    - name: Email Original Requestor That Terraform Multiple Deployment Failed
+      if: ${{ env.terraform_succeeded == 'no' && env.ISSUE_RESOURCE_TYPE == 'multiple' }}
+      run: |
+        # send an email to issue request about failed deployment
+        FROM_EMAIL="do-not-reply@githubactions.com"
+        TO_EMAIL=$(echo "${{ env.ISSUE_REQUESTOR_EMAIL }}" | sed 's/-/./g')
+        SUBJECT="GitHub Actions Workflow Failed for Multiple Resources Request"
+        databricks_instance=$(echo $TF_VAR_databricks_instances | jq -r .${{ env.TF_VAR_environment }})
+
+        BODY="Multiple Resources Actions Workflow Failed: <a href='https://github.com/${{ github.repository_owner }}/${{ github.event.repository.name }}/actions/runs/${{ github.run_id }}'>${{ github.run_id }}</a><br><br>"
+        BODY+="Databricks ${{ env.ISSUE_RESOURCE_TYPE }} resource '${{ env.ISSUE_RESOURCE_NAME }}' was NOT created for $databricks_instance<br><br>"
+        BODY+="Please fix the error in the Multiple Resource request Excel template using workflow link above, commit it to the Terraform Config main branch, and rerun the Multiple Resources request Github Actions workflow. <br><br>"
+        BODY+="The feature branches 'issue-${{ env.GITHUB_ISSUE_NUMBER }}-branch' and 'issue-${{ env.GITHUB_ISSUE_NUMBER }}-main-branch' have been deleted so you can resubmit the Multiple Resources request if necessary."
+
+        # Send email with HTML content
+        (echo "Subject: $SUBJECT"; echo "MIME-Version: 1.0"; echo "Content-Type: text/html"; echo; echo -e "$BODY") | sendmail -f "$FROM_EMAIL" "$TO_EMAIL"
+      shell: bash
+
+
+    - name: Comment Github Issue and Email Original Requestor That Terraform Individual Deployment Failed
+      if: ${{ env.terraform_succeeded == 'no' && env.ISSUE_RESOURCE_TYPE != 'multiple' }}
+      run: |
+        # send an email to issue request about failed deployment
+        FROM_EMAIL="do-not-reply@githubactions.com"
+        TO_EMAIL=$(echo "${{ env.ISSUE_REQUESTOR_EMAIL }}" | sed 's/-/./g')
+        SUBJECT="GitHub Actions Workflow Failed for Issue ${{ env.GITHUB_ISSUE_NUMBER }}"
+        databricks_instance=$(echo $TF_VAR_databricks_instances | jq -r .${{ env.TF_VAR_environment }})
+
+        BODY="Issue Number: <a href='https://github.com/${{ github.repository_owner }}/${{ github.event.repository.name }}/issues/${{ env.GITHUB_ISSUE_NUMBER }}'>${{ env.GITHUB_ISSUE_NUMBER }}</a><br><br>"
+        BODY+="Databricks ${{ env.ISSUE_RESOURCE_TYPE }} resource '${{ env.ISSUE_RESOURCE_NAME }}' was NOT created for $databricks_instance<br><br>"
+        BODY+="Please update the issue comments with additional comments for next steps or if you plan on resubmitting the issue.  If you resubmit the issue please close the current issue.<br><br>"
+        BODY+="The feature branches 'issue-${{ env.GITHUB_ISSUE_NUMBER }}-branch' and 'issue-${{ env.GITHUB_ISSUE_NUMBER }}-main-branch' have been deleted so you can resubmit the issue if necessary."
+
+        # Send email with HTML content
+        (echo "Subject: $SUBJECT"; echo "MIME-Version: 1.0"; echo "Content-Type: text/html"; echo; echo -e "$BODY") | sendmail -f "$FROM_EMAIL" "$TO_EMAIL"
+        
+        # authenticate with GitHub CLI and comment on the GitHub issue
+        echo "${{ inputs.GH_TOKEN }}" | gh auth login --hostname github.com --with-token
+        gh issue comment ${{ env.GITHUB_ISSUE_NUMBER }} --body "$BODY" --repo ${{ github.repository_owner }}/${{ github.event.repository.name }}
+      shell: bash
+
+
+    - name: Deploy Previous Version of 'tf_issue_submission.json' From Main Branch Because Terraform Apply Failed
+      if: ${{ env.terraform_succeeded == 'no' }}
+      run: |
+        # clone the Config repo main branch to get the previous issue submissions JSON
+        rm -rf ${{ github.event.repository.name }}
+        git clone https://github.com/${{ github.repository_owner }}/${{ github.event.repository.name }}.git
+        
+        # read the previous issue submissions json and store as env variable
+        TF_VAR_databricks_submission_json=$(jq -c . < ./${{ github.event.repository.name }}/issue_submission/tf_issue_submission.json)
+        echo "TF_VAR_databricks_submission_json=$TF_VAR_databricks_submission_json" >> $GITHUB_ENV
+
+        # redeploy previous Terraform state
+        cd ./terraform
+        terraform init
+        terraform plan -refresh=true
+        terraform apply -auto-approve 
+      shell: bash
+
+
+    - name: Delete Feature and Feature Main Branches regardless of workflow status
+      run: |
+        echo "${{ inputs.GH_TOKEN }}" | gh auth login --hostname github.com --with-token
+        gh api repos/${{ github.repository_owner }}/${{ github.event.repository.name }}/git/refs/heads/issue-${{ env.GITHUB_ISSUE_NUMBER }}-branch -X DELETE
+        gh api repos/${{ github.repository_owner }}/${{ github.event.repository.name }}/git/refs/heads/issue-${{ env.GITHUB_ISSUE_NUMBER }}-main-branch -X DELETE
+      shell: bash
